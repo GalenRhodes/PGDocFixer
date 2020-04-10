@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1117D0E3BB197AD2FD9E05F0 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D968994A4DED5D37C704 /* Data.swift */; };
+		1117D51E7E6725893C595B2B /* DocFixer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D443A634A0C26EA17BE4 /* DocFixer.swift */; };
+		1117D96D85DFEF14F3C41A9D /* html.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DA7ADB70E03186030641 /* html.swift */; };
+		1117DB75B1882950FFC424B1 /* Stuff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D7FAE545175D2FDBF113 /* Stuff.swift */; };
 		83ECEA65243F7B42004BB0FD /* PGDocFixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83ECEA5B243F7B42004BB0FD /* PGDocFixer.framework */; };
 		83ECEA6A243F7B42004BB0FD /* PGDocFixerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83ECEA69243F7B42004BB0FD /* PGDocFixerTests.swift */; };
 		83ECEA6C243F7B42004BB0FD /* PGDocFixer.h in Headers */ = {isa = PBXBuildFile; fileRef = 83ECEA5E243F7B42004BB0FD /* PGDocFixer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -23,6 +27,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1117D1BBF5134CFA7C12C568 /* build.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
+		1117D443A634A0C26EA17BE4 /* DocFixer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocFixer.swift; sourceTree = "<group>"; };
+		1117D7FAE545175D2FDBF113 /* Stuff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stuff.swift; sourceTree = "<group>"; };
+		1117D968994A4DED5D37C704 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		1117DA7ADB70E03186030641 /* html.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = html.swift; sourceTree = "<group>"; };
 		83ECEA5B243F7B42004BB0FD /* PGDocFixer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PGDocFixer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		83ECEA5E243F7B42004BB0FD /* PGDocFixer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PGDocFixer.h; sourceTree = "<group>"; };
 		83ECEA5F243F7B42004BB0FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -50,12 +59,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1117DF57D63FABB23E7EA904 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				1117D443A634A0C26EA17BE4 /* DocFixer.swift */,
+				1117DA7ADB70E03186030641 /* html.swift */,
+				1117D7FAE545175D2FDBF113 /* Stuff.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		83ECEA51243F7B42004BB0FD = {
 			isa = PBXGroup;
 			children = (
 				83ECEA5D243F7B42004BB0FD /* PGDocFixer */,
 				83ECEA68243F7B42004BB0FD /* PGDocFixerTests */,
 				83ECEA5C243F7B42004BB0FD /* Products */,
+				1117D1BBF5134CFA7C12C568 /* build.sh */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,6 +93,7 @@
 			children = (
 				83ECEA5E243F7B42004BB0FD /* PGDocFixer.h */,
 				83ECEA5F243F7B42004BB0FD /* Info.plist */,
+				1117DF57D63FABB23E7EA904 /* Source */,
 			);
 			path = PGDocFixer;
 			sourceTree = "<group>";
@@ -82,6 +103,7 @@
 			children = (
 				83ECEA69243F7B42004BB0FD /* PGDocFixerTests.swift */,
 				83ECEA6B243F7B42004BB0FD /* Info.plist */,
+				1117D968994A4DED5D37C704 /* Data.swift */,
 			);
 			path = PGDocFixerTests;
 			sourceTree = "<group>";
@@ -195,6 +217,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1117D51E7E6725893C595B2B /* DocFixer.swift in Sources */,
+				1117D96D85DFEF14F3C41A9D /* html.swift in Sources */,
+				1117DB75B1882950FFC424B1 /* Stuff.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83ECEA6A243F7B42004BB0FD /* PGDocFixerTests.swift in Sources */,
+				1117D0E3BB197AD2FD9E05F0 /* Data.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
