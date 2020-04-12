@@ -40,7 +40,6 @@ let NORMAL_FIND_REPLACE: [RegexRepl] = [
     RegexRepl(pattern: "<code>([^<]+)</code>",                      repl: "`$1`"),
     RegexRepl(pattern: "(?<!\\w)(null)(?!\\w)",                     repl: "`nil`"),
     RegexRepl(pattern: "(?<!\\w|`)([Tt]rue|[Ff]alse)(?!\\w|`)",     repl: "`$1`"),
-    RegexRepl(pattern: "\\[(\\[[^]]+\\]\\([^)]+\\))\\]",            repl: "$1"),
     RegexRepl(pattern: "\\`(\\[[^]]+\\]\\([^)]+\\))\\`",            repl: "<code>$1</code>"),
 ]
 //@f:1
@@ -456,30 +455,34 @@ public class PGDocFixer {
     /// - Returns:
     ///
     func processParagraph(prefix: String, indent: String = "", paragraph para: String) -> String {
-        if (prefix.count + para.count) <= maxLineLength {
-            return prefix + doSimpleOnes(string: para) + CR
+        let cleansed: String = doSimpleOnes(string: para)
+
+        if (prefix.count + cleansed.count) <= maxLineLength {
+            return prefix + cleansed + CR
         }
         else {
             var index: Int    = 0
             var outs:  String = ""
             var line:  String = ""
             let maxln: Int    = (maxLineLength - prefix.count)
-            let ic:    Int    = adjustIndent(indent: indent, para: para)
+            let ic:    Int    = adjustIndent(indent: indent, para: cleansed)
             let pfx:   String = prefix.padding(toLength: (prefix.count + ic))
 
-            rx3.enumerateMatches(in: para) {
+            rx3.enumerateMatches(in: cleansed) {
                 (m: NSTextCheckingResult?, _, _) in
                 if let m: NSTextCheckingResult = m {
-                    foo02((outs.isEmpty ? prefix : pfx), para.getPreMatch(start: &index, range: m.range), ic, maxln, &line, &outs)
+                    foo02((outs.isEmpty ? prefix : pfx), cleansed.getPreMatch(start: &index, range: m.range), ic, maxln, &line, &outs)
                 }
             }
 
-            let word: String = para.substr(from: index)
+            let word: String = cleansed.substr(from: index)
+
             if !(line.isEmpty && word.isEmpty) {
                 foo02(pfx, word, ic, maxln, &line, &outs)
                 if !line.isEmpty { outs += pfx + line + CR }
             }
-            return doSimpleOnes(string: outs)
+
+            return outs
         }
     }
 
