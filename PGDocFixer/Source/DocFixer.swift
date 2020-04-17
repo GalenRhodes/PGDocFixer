@@ -22,18 +22,12 @@
 
 import Foundation
 
-let rxLead: String = "^([ \\t]*///[ \\t]+)"
-let rxLine: String = "\(rxLead)((([|+*-])[ \\t]?)?(.+?))[ \\t]*\\R"
+let CR:  String = "\n"
+let SPC: String = " "
 
-let rx1:                 NSRegularExpression = try! regexML(pattern: "(\(rxLine))+")
-let rx2:                 NSRegularExpression = try! regexML(pattern: rxLine)
-let rx3:                 NSRegularExpression = try! regexML(pattern: "\\s+")
-let rx4:                 NSRegularExpression = try! regexML(pattern: "^\\-[ \\t]*([^:]+:[ \\t]){1,2}")
-let rx5:                 NSRegularExpression = try! regexML(pattern: "\\s*\\|\\s*")
-let rx6:                 NSRegularExpression = try! regexML(pattern: "^(?:(\\:\\-{3,}\\:)|(\\-{3,}\\:)|(\\:?\\-{3,}))$")
-let rx7:                 NSRegularExpression = try! regexML(pattern: "\\R")
-let rx8:                 NSRegularExpression = try! regexML(pattern: "`([^`]+)`")
-let rxFinal:             NSRegularExpression = try! regexML(pattern: "``")
+final public class LogDestination: TextOutputStream { public func write(_ string: String) { if let data: Data = string.data(using: .utf8) { FileHandle.standardError.write(data) } } }
+
+public var errorLog: LogDestination = LogDestination()
 
 //@f:0
 let NORMAL_FIND_REPLACE: [RegexRepl] = [
@@ -53,103 +47,38 @@ public enum DocFixerErrors: Error {
     case FileNotFound(description: String)
 }
 
-///
-///
-/// - Left:
-/// - Center:
-/// - Right:
-///
-enum Alignment {
-    case Left
-    case Center
-    case Right
-
-    //==========================================================================================================================================
-    ///
-    ///
-    /// - Parameter str:
-    /// - Returns:
-    ///
-    static func testAlignment(_ str: String) -> Alignment? {
-        if let m: NSTextCheckingResult = rx6.firstMatch(in: str) {
-            if m.range(at: 1).location != NSNotFound { return .Center }
-            if m.range(at: 2).location != NSNotFound { return .Right }
-            if m.range(at: 3).location != NSNotFound { return .Left }
-        }
-        return nil
-    }
-
-    //==========================================================================================================================================
-    ///
-    ///
-    /// - Parameter align:
-    /// - Returns:
-    ///
-    static func getAlignText(_ align: Alignment) -> String {
-        switch align {
-            case .Left: return "left"
-            case .Center: return "center"
-            case .Right: return "right"
-        }
-    }
-}
-
-public class RegexRepl {
-    let regex: NSRegularExpression
-    let repl:  String
-
-    //==========================================================================================================================================
-    ///
-    ///
-    /// - Parameters:
-    ///   - pattern:
-    ///   - repl:
-    public init(pattern: String, repl: String) {
-        self.regex = try! regexML(pattern: pattern)
-        self.repl = repl
-    }
-}
-
 public class PGDocFixer {
+    static let rxLead: String = "^([ \\t]*///[ \\t]+)"
+    static let rxLine: String = "\(rxLead)((([|+*-])[ \\t]?)?(.+?))[ \\t]*\\R"
 
-    let CR:                     String = "\n"
-    let SPC:                    String = " "
+    let rx1:     NSRegularExpression = try! regexML(pattern: "(\(rxLine))+")
+    let rx2:     NSRegularExpression = try! regexML(pattern: rxLine)
+    let rx3:     NSRegularExpression = try! regexML(pattern: "\\s+")
+    let rx4:     NSRegularExpression = try! regexML(pattern: "^\\-[ \\t]*([^:]+:[ \\t]){1,2}")
+    let rx5:     NSRegularExpression = try! regexML(pattern: "\\s*\\|\\s*")
+    let rx7:     NSRegularExpression = try! regexML(pattern: "\\R")
+    let rx8:     NSRegularExpression = try! regexML(pattern: "`([^`]+)`")
+    let rxFinal: NSRegularExpression = try! regexML(pattern: "``")
+
     let maxLineLength:          Int
     let twoThirdsMaxLineLength: Int
     let tablesAsMarkdown:       Bool
     let findReplace:            [RegexRepl]
+
+    ///
+    /// Code blocks can extend across several blocks so we need to
+    /// let the code that only knows about a single block know that
+    /// it is in the middle of a possibly larger code block. This
+    /// field holds a flag to do just that. 'true' means we're in
+    /// the middle of a code block and 'false' means we aren't.
+    ///
+    var insideCodeBlock:        Bool = false
 
     init(findAndReplace: [RegexRepl], lineLength: Int = 132) {
         self.maxLineLength = lineLength
         self.twoThirdsMaxLineLength = ((lineLength * 2) / 3)
         self.findReplace = findAndReplace
         self.tablesAsMarkdown = false
-    }
-
-    //==========================================================================================================================================
-    ///
-    ///
-    /// - Parameters:
-    ///   - prefix:
-    ///   - word:
-    ///   - ic:
-    ///   - maxln:
-    ///   - line:
-    ///   - outs:
-    ///
-    func foo02(_ prefix: String, _ word: String, _ ic: Int, _ maxln: Int, _ line: inout String, _ outs: inout String) {
-        let lc: Int = line.count
-
-        if lc == 0 {
-            line = word
-        }
-        else if (lc + word.count + (outs.isEmpty ? 0 : ic) + 1) < maxln {
-            line += SPC + word
-        }
-        else {
-            outs += prefix + line + CR
-            line = word
-        }
     }
 
     //==========================================================================================================================================
@@ -373,7 +302,7 @@ public class PGDocFixer {
 
                 if name == "th" || name == "td" {
                     if name == "th" && headerIndex < 0 { headerIndex = table.count + 1 }
-                    let s: String = doSimpleOnes(string: e1.innerDescription.trimmed)
+                    let s: String = doSimpleOnes(string: e1.innerHtml.trimmed)
                     row.append(s)
                     if ci < columnWidths.count { columnWidths[ci] = max(columnWidths[ci], s.count) }
                     else { columnWidths.append(s.count) }
@@ -422,6 +351,49 @@ public class PGDocFixer {
     ///
     /// - Parameters:
     ///   - prefix:
+    ///   - dlStr:
+    /// - Returns:
+    ///
+    func processDL(prefix: String, dl dlStr: String) -> String {
+        if let elem: HTMLElement = scanHTML(string: dlStr) {
+            if elem.name == "dl" {
+                var f: Bool     = true
+                var t: String   = ""
+                var d: String   = ""
+                var l: [DLItem] = []
+
+                for e: HTMLElement in elem.children {
+                    if f {
+                        if e.name == "dt" {
+                            t = e.innerHtml
+                            f = false
+                        }
+                    }
+                    else {
+                        if e.name == "dd" {
+                            d = e.innerHtml
+                            f = true
+                            l.append(DLItem(dt: t, dd: d))
+                            t = ""
+                            d = ""
+                        }
+                    }
+                }
+
+                var outs: String = "\(prefix)<dl>\n"
+                for i: DLItem in l { outs += i.getHTML(prefix: prefix, lineLength: maxLineLength) }
+                return outs + "\(prefix)</dl>\n"
+            }
+        }
+
+        return prefix + dlStr
+    }
+
+    //==========================================================================================================================================
+    ///
+    ///
+    /// - Parameters:
+    ///   - prefix:
     ///   - tabstr:
     /// - Returns:
     ///
@@ -461,29 +433,17 @@ public class PGDocFixer {
             return prefix + cleansed + CR
         }
         else {
-            var index: Int    = 0
-            var outs:  String = ""
-            var line:  String = ""
-            let maxln: Int    = (maxLineLength - prefix.count)
-            let ic:    Int    = adjustIndent(indent: indent, para: cleansed)
-            let pfx:   String = prefix.padding(toLength: (prefix.count + ic))
-
-            rx3.enumerateMatches(in: cleansed) {
-                (m: NSTextCheckingResult?, _, _) in
-                if let m: NSTextCheckingResult = m {
-                    foo02((outs.isEmpty ? prefix : pfx), cleansed.getPreMatch(start: &index, range: m.range), ic, maxln, &line, &outs)
-                }
-            }
-
-            let word: String = cleansed.substr(from: index)
-
-            if !(line.isEmpty && word.isEmpty) {
-                foo02(pfx, word, ic, maxln, &line, &outs)
-                if !line.isEmpty { outs += pfx + line + CR }
-            }
-
-            return outs
+            let pfx: String = prefix.padding(toLength: (prefix.count + adjustIndent(indent: indent, para: cleansed)))
+            return WordWrap(prefix1: prefix, prefix2: pfx, lineLength: maxLineLength).wrap(str: cleansed) + CR
         }
+    }
+
+    enum BlockType {
+        case Normal
+        case MarkDownTable
+        case HTMLTable
+        case DefList
+        case CodeBlock
     }
 
     //==========================================================================================================================================
@@ -499,13 +459,12 @@ public class PGDocFixer {
     /// - Returns:
     ///
     func processBlock(block: String) -> String {
-        var paragraph:   String = ""
-        var prefix:      String = ""
-        var indent:      String = ""
-        var output:      String = ""
-        var inTable:     Bool   = false
-        var inHTMLTable: Bool   = false
-        var startup:     Bool   = true
+        var paragraph: String    = ""
+        var prefix:    String    = ""
+        var indent:    String    = ""
+        var output:    String    = ""
+        var blockType: BlockType = insideCodeBlock ? .CodeBlock : .Normal
+        var startup:   Bool      = !insideCodeBlock
 
         rx2.enumerateMatches(in: block) {
             (m: NSTextCheckingResult?, _, _) in
@@ -517,75 +476,127 @@ public class PGDocFixer {
                 let s4: String = m.getSub(string: block, at: 4)
                 let s5: String = m.getSub(string: block, at: 5)
 
-                if inTable {
-                    if s4 == "|" {
-                        paragraph += CR + s5
-                    }
-                    else {
-                        output += processTable(prefix: prefix, table: paragraph)
-                        prefix = s1
-                        indent = s3
-                        paragraph = s2
-                        inTable = false
-                    }
-                }
-                else if inHTMLTable {
-                    if s2.hasSuffix("</table>") {
-                        output += processHTMLTable(prefix: prefix, table: paragraph)
-                        inHTMLTable = false
-                        paragraph = ""
-                        indent = ""
-                        prefix = ""
-                        startup = true
-                    }
-                    else {
-                        paragraph += " " + s2
-                    }
-                }
-                else if s2.hasPrefix("<table") {
-                    if startup { startup = false }
-                    else { output += processParagraph(prefix: prefix, indent: indent, paragraph: paragraph) }
-                    prefix = s1
-                    indent = s3
-                    paragraph = s2
-                    inHTMLTable = true
-                }
-                else if s4 == "-" || s4 == "+" || s4 == "*" { // The start of a new paragraph
-                    if startup { startup = false }
-                    else { output += processParagraph(prefix: prefix, indent: indent, paragraph: paragraph) }
-                    prefix = s1
-                    indent = s3
-                    paragraph = s2
-                }
-                else if s4 == "|" { // The start of a new table
-                    if startup { startup = false }
-                    else { output += processParagraph(prefix: prefix, indent: indent, paragraph: paragraph) }
-                    prefix = s1
-                    indent = s3
-                    paragraph = s5
-                    inTable = true
-                }
-                else if startup { // The continuation of the current paragraph
-                    prefix = s1
-                    indent = s3
-                    paragraph = s2
-                    startup = false
-                }
-                else {
-                    paragraph += (SPC + s2)
+                switch blockType {
+                    case .MarkDownTable:
+                        if s4 == "|" {
+                            paragraph += CR + s5
+                        }
+                        else {
+                            output += processTable(prefix: prefix, table: paragraph)
+                            prefix = s1
+                            indent = s3
+                            paragraph = s2
+                            blockType = .Normal
+                        }
+                    case .HTMLTable:
+                        if s2.hasSuffix("</table>") {
+                            output += processHTMLTable(prefix: prefix, table: paragraph)
+                            blockType = .Normal
+                            paragraph = ""
+                            indent = ""
+                            prefix = ""
+                            startup = true
+                        }
+                        else {
+                            paragraph += " " + s2
+                        }
+                    case .DefList:
+                        if s2.hasSuffix("</dl>") {
+                            output += processDL(prefix: prefix, dl: paragraph)
+                            blockType = .Normal
+                            paragraph = ""
+                            indent = ""
+                            prefix = ""
+                            startup = true
+                        }
+                        else {
+                            paragraph += " " + s2
+                        }
+                    case .CodeBlock:
+                        if s2 == "```" || s2 == "~~~" {
+                            output += paragraph + m.getSub(string: block, at: 0)
+                            blockType = .Normal
+                            insideCodeBlock = false
+                            paragraph = ""
+                            indent = ""
+                            prefix = ""
+                            startup = true
+                        }
+                        else {
+                            //----------------------------------------------------------------------------
+                            // Code blocks just get passed through without any conversion or formatting.
+                            //----------------------------------------------------------------------------
+                            paragraph += m.getSub(string: block, at: 0)
+                        }
+                    default:
+                        if s2.hasPrefix("<table") {
+                            if startup { startup = false }
+                            else { output += processParagraph(prefix: prefix, indent: indent, paragraph: paragraph) }
+                            prefix = s1
+                            indent = s3
+                            paragraph = s2
+                            blockType = .HTMLTable
+                        }
+                        else if s2.hasPrefix("<dl") {
+                            if startup { startup = false }
+                            else { output += processParagraph(prefix: prefix, indent: indent, paragraph: paragraph) }
+                            prefix = s1
+                            indent = s3
+                            paragraph = s2
+                            blockType = .DefList
+                        }
+                        else if s4 == "|" { // The start of a new table
+                            if startup { startup = false }
+                            else { output += processParagraph(prefix: prefix, indent: indent, paragraph: paragraph) }
+                            prefix = s1
+                            indent = s3
+                            paragraph = s5
+                            blockType = .MarkDownTable
+                        }
+                        else if s2 == "~~~" || s2 == "```" {
+                            if startup { startup = false }
+                            else { output += processParagraph(prefix: prefix, indent: indent, paragraph: paragraph) }
+                            prefix = ""
+                            indent = ""
+                            //----------------------------------------------------------------------------
+                            // Code blocks just get passed through without any conversion or formatting.
+                            //----------------------------------------------------------------------------
+                            paragraph = m.getSub(string: block, at: 0)
+                            blockType = .CodeBlock
+                            insideCodeBlock = true
+                        }
+                        else if s4 == "-" || s4 == "+" || s4 == "*" { // The start of a new paragraph
+                            if startup { startup = false }
+                            else { output += processParagraph(prefix: prefix, indent: indent, paragraph: paragraph) }
+                            prefix = s1
+                            indent = s3
+                            paragraph = s2
+                        }
+                        else if startup { // The continuation of the current paragraph
+                            prefix = s1
+                            indent = s3
+                            paragraph = s2
+                            startup = false
+                        }
+                        else {
+                            paragraph += (SPC + s2)
+                        }
                 }
             }
         }
 
         if paragraph.count > 0 && !startup {
-            if inTable {
-                output += processTable(prefix: prefix, table: paragraph)
-            }
-            else if inHTMLTable {
-                output += processHTMLTable(prefix: prefix, table: paragraph)
-            }
-            else {
-                output += processParagraph(prefix: prefix, indent: indent, paragraph: paragraph)
+            switch blockType {
+                case .MarkDownTable:
+                    output += processTable(prefix: prefix, table: paragraph)
+                case .HTMLTable:
+                    output += processHTMLTable(prefix: prefix, table: paragraph)
+                case .DefList:
+                    output += processDL(prefix: prefix, dl: paragraph)
+                case .CodeBlock:
+                    output += paragraph
+                default:
+                    output += processParagraph(prefix: prefix, indent: indent, paragraph: paragraph)
             }
         }
 
@@ -644,41 +655,4 @@ public class PGDocFixer {
             throw DocFixerErrors.FileNotFound(description: "The file could not be found: \(filename)")
         }
     }
-}
-
-//==========================================================================================================================================
-///
-///
-/// - Parameters:
-///   - filenames: the filenames of the source code files to process.
-///   - findsAndReplacements: any extra matches and replacements to use.
-///   - lineLength: the max line length used for word wrapping.
-///
-/// - Returns: The processed files in the same order that their filenames were given.
-/// - Throws: `DocFixerErrors.FileNotFound(description:)` if the file was not found or could not be loaded.
-///
-public func processDocument(filenames: [String], findsAndReplacements: [RegexRepl] = [], lineLength: Int = 132) throws -> [String] {
-    let docFixer: PGDocFixer = PGDocFixer(findAndReplace: findsAndReplacements, lineLength: lineLength)
-    var output:   [String]   = []
-
-    for filename: String in filenames {
-        output.append(try docFixer.processDocument(filename: filename))
-    }
-
-    return output
-}
-
-//==========================================================================================================================================
-///
-///
-/// - Parameters:
-///   - filename: the filename of the source code file to process.
-///   - findsAndReplacements: any extra matches and replacements to use.
-///   - lineLength: the max line length used for word wrapping.
-///
-/// - Returns: The processed file.
-/// - Throws: `DocFixerErrors.FileNotFound(description:)` if the file was not found or could not be loaded.
-///
-public func processDocument(filename: String, findsAndReplacements: [RegexRepl] = [], lineLength: Int = 132) throws -> String {
-    try processDocument(filenames: [filename], findsAndReplacements: findsAndReplacements, lineLength: lineLength)[0]
 }
