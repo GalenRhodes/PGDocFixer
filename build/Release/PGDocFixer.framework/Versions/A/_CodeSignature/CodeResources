@@ -6,7 +6,7 @@
 	<dict>
 		<key>Resources/Info.plist</key>
 		<data>
-		ellwKaquQQXDYsvmU3YbNgE1YK0=
+		VyiapsteazUyB7BqHh9+tKlV46Y=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -15,7 +15,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Q6zNqypVGbEqgjoF6hScCQ16BaSHwE/fy3fpaxwiA/E=
+			hje5mh2xWvq8sNM4mGyT8rNBg423etTX5X7nPYc/UVc=
 			</data>
 		</dict>
 		<key>Headers/PGDocFixer.h</key>
@@ -29,42 +29,42 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			wpM4WMbBpuXUonKUva5l/XNowGzEQOo28734jBjM59Q=
+			SwZJsYbs390L5PmRPiyA/7u4mWwbAv13JxQYJOVt9/g=
 			</data>
 		</dict>
 		<key>Modules/PGDocFixer.swiftmodule/Project/x86_64.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			wpM4WMbBpuXUonKUva5l/XNowGzEQOo28734jBjM59Q=
+			SwZJsYbs390L5PmRPiyA/7u4mWwbAv13JxQYJOVt9/g=
 			</data>
 		</dict>
 		<key>Modules/PGDocFixer.swiftmodule/x86_64-apple-macos.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			j4I1OWcUaOIugHuD3ykda15Jbv1hwpQbSleip2o3ZlM=
+			8OHuhOJ0CKiIKXGp6j2wjiwTH9ShBmdZNYNm9zXMZo0=
 			</data>
 		</dict>
 		<key>Modules/PGDocFixer.swiftmodule/x86_64-apple-macos.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			33Od3J26a0gOLM8sMBfFZ239MOPl6vMJ9tBxBter99E=
+			dCaJMOPPXx2/uLhIXrmTkzM5bwFOULnF5BI/tRCtqg4=
 			</data>
 		</dict>
 		<key>Modules/PGDocFixer.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			j4I1OWcUaOIugHuD3ykda15Jbv1hwpQbSleip2o3ZlM=
+			8OHuhOJ0CKiIKXGp6j2wjiwTH9ShBmdZNYNm9zXMZo0=
 			</data>
 		</dict>
 		<key>Modules/PGDocFixer.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			33Od3J26a0gOLM8sMBfFZ239MOPl6vMJ9tBxBter99E=
+			dCaJMOPPXx2/uLhIXrmTkzM5bwFOULnF5BI/tRCtqg4=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -78,7 +78,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			dpbj0YPgqPebuVpAyTiQmeEwEpiqoSrM8sJRe+IccT8=
+			OXSCMQZS6UHb9Slj70e6n30lFzhHWesoSDwQxR99gIY=
 			</data>
 		</dict>
 	</dict>

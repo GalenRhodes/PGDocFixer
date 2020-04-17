@@ -444,6 +444,7 @@ public class PGDocFixer {
         case HTMLTable
         case DefList
         case CodeBlock
+        case Preformatted
     }
 
     //==========================================================================================================================================
@@ -528,8 +529,38 @@ public class PGDocFixer {
                             //----------------------------------------------------------------------------
                             paragraph += m.getSub(string: block, at: 0)
                         }
+                    case .Preformatted:
+                        if s2.hasSuffix("</pre>") {
+                            output += paragraph + m.getSub(string: block, at: 0)
+                            blockType = .Normal
+                            insideCodeBlock = false
+                            paragraph = ""
+                            indent = ""
+                            prefix = ""
+                            startup = true
+                        }
+                        else {
+                            //----------------------------------------------------------------------------
+                            // Preformatted blocks just get passed through without any conversion or
+                            // formatting.
+                            //----------------------------------------------------------------------------
+                            paragraph += m.getSub(string: block, at: 0)
+                        }
                     default:
-                        if s2.hasPrefix("<table") {
+                        if s2.hasPrefix("<pre") {
+                            if startup { startup = false }
+                            else { output += processParagraph(prefix: prefix, indent: indent, paragraph: paragraph) }
+                            prefix = ""
+                            indent = ""
+                            //----------------------------------------------------------------------------
+                            // Preformatted blocks just get passed through without any conversion or
+                            // formatting.
+                            //----------------------------------------------------------------------------
+                            paragraph = m.getSub(string: block, at: 0)
+                            blockType = .Preformatted
+                            insideCodeBlock = true
+                        }
+                        else if s2.hasPrefix("<table") {
                             if startup { startup = false }
                             else { output += processParagraph(prefix: prefix, indent: indent, paragraph: paragraph) }
                             prefix = s1
