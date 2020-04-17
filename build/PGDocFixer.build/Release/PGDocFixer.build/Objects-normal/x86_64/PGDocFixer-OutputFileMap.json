@@ -1,1 +1,23 @@
-{"":{"dependencies":"/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/build/PGDocFixer.build/Release/PGDocFixer.build/Objects-normal/x86_64/PGDocFixer-master.d","diagnostics":"/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/build/PGDocFixer.build/Release/PGDocFixer.build/Objects-normal/x86_64/PGDocFixer-master.dia","swift-dependencies":"/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/build/PGDocFixer.build/Release/PGDocFixer.build/Objects-normal/x86_64/PGDocFixer-master.swiftdeps"},"/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/PGDocFixer/Source/DocFixer.swift":{"llvm-bc":"/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/build/PGDocFixer.build/Release/PGDocFixer.build/Objects-normal/x86_64/DocFixer.bc","object":"/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/build/PGDocFixer.build/Release/PGDocFixer.build/Objects-normal/x86_64/DocFixer.o"},"/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/PGDocFixer/Source/Stuff.swift":{"llvm-bc":"/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/build/PGDocFixer.build/Release/PGDocFixer.build/Objects-normal/x86_64/Stuff.bc","object":"/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/build/PGDocFixer.build/Release/PGDocFixer.build/Objects-normal/x86_64/Stuff.o"},"/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/PGDocFixer/Source/html.swift":{"llvm-bc":"/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/build/PGDocFixer.build/Release/PGDocFixer.build/Objects-normal/x86_64/html.bc","object":"/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/build/PGDocFixer.build/Release/PGDocFixer.build/Objects-normal/x86_64/html.o"}}
+{
+  "": {
+    "dependencies": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/build/PGDocFixer.build/Release/PGDocFixer.build/Objects-normal/x86_64/PGDocFixer-master.d",
+    "diagnostics": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/build/PGDocFixer.build/Release/PGDocFixer.build/Objects-normal/x86_64/PGDocFixer-master.dia",
+    "swift-dependencies": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/build/PGDocFixer.build/Release/PGDocFixer.build/Objects-normal/x86_64/PGDocFixer-master.swiftdeps"
+  },
+  "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/PGDocFixer/Source/DocFixer.swift": {
+    "llvm-bc": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/build/PGDocFixer.build/Release/PGDocFixer.build/Objects-normal/x86_64/DocFixer.bc",
+    "object": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/build/PGDocFixer.build/Release/PGDocFixer.build/Objects-normal/x86_64/DocFixer.o"
+  },
+  "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/PGDocFixer/Source/Extensions.swift": {
+    "llvm-bc": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/build/PGDocFixer.build/Release/PGDocFixer.build/Objects-normal/x86_64/Extensions.bc",
+    "object": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/build/PGDocFixer.build/Release/PGDocFixer.build/Objects-normal/x86_64/Extensions.o"
+  },
+  "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/PGDocFixer/Source/Stuff.swift": {
+    "llvm-bc": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/build/PGDocFixer.build/Release/PGDocFixer.build/Objects-normal/x86_64/Stuff.bc",
+    "object": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/build/PGDocFixer.build/Release/PGDocFixer.build/Objects-normal/x86_64/Stuff.o"
+  },
+  "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/PGDocFixer/Source/html.swift": {
+    "llvm-bc": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/build/PGDocFixer.build/Release/PGDocFixer.build/Objects-normal/x86_64/html.bc",
+    "object": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/build/PGDocFixer.build/Release/PGDocFixer.build/Objects-normal/x86_64/html.o"
+  }
+}
