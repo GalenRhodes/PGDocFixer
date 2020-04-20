@@ -25,7 +25,22 @@ import Foundation
 let CR:  String = "\n"
 let SPC: String = " "
 
-final public class LogDestination: TextOutputStream { public func write(_ string: String) { if let data: Data = string.data(using: .utf8) { FileHandle.standardError.write(data) } } }
+//=================================================================================================================================
+///
+///
+final public class LogDestination: TextOutputStream {
+
+    //=============================================================================================================================
+    ///
+    ///
+    /// - Parameter string:
+    ///
+    public func write(_ string: String) {
+        if let data: Data = string.data(using: .utf8) {
+            FileHandle.standardError.write(data)
+        }
+    }
+}
 
 public var errorLog: LogDestination = LogDestination()
 
@@ -65,15 +80,22 @@ public class PGDocFixer {
     let tablesAsMarkdown:       Bool
     let findReplace:            [RegexRepl]
 
-    ///
+    //=============================================================================================================================
     /// Code blocks can extend across several blocks so we need to
     /// let the code that only knows about a single block know that
     /// it is in the middle of a possibly larger code block. This
     /// field holds a flag to do just that. 'true' means we're in
     /// the middle of a code block and 'false' means we aren't.
     ///
-    var insideCodeBlock:        Bool = false
+    var blockType:              BlockType = .Normal
 
+    //=============================================================================================================================
+    ///
+    ///
+    /// - Parameters:
+    ///   - findAndReplace:
+    ///   - lineLength:
+    ///
     init(findAndReplace: [RegexRepl], lineLength: Int = 132) {
         self.maxLineLength = lineLength
         self.twoThirdsMaxLineLength = ((lineLength * 2) / 3)
@@ -81,7 +103,7 @@ public class PGDocFixer {
         self.tablesAsMarkdown = false
     }
 
-    //==========================================================================================================================================
+    //=============================================================================================================================
     ///
     ///
     /// - Parameters:
@@ -97,7 +119,7 @@ public class PGDocFixer {
         return indent.count
     }
 
-    //==========================================================================================================================================
+    //=============================================================================================================================
     ///
     ///
     /// - Parameters:
@@ -121,7 +143,7 @@ public class PGDocFixer {
         outs += "\(prefix)\(tab)\(tab)</tr>\n"
     }
 
-    //==========================================================================================================================================
+    //=============================================================================================================================
     ///
     ///
     /// - Parameters:
@@ -154,7 +176,7 @@ public class PGDocFixer {
         return outs
     }
 
-    //==========================================================================================================================================
+    //=============================================================================================================================
     ///
     ///
     /// - Parameters:
@@ -173,7 +195,7 @@ public class PGDocFixer {
         outs += "|\n"
     }
 
-    //==========================================================================================================================================
+    //=============================================================================================================================
     ///
     ///
     /// - Parameters:
@@ -201,7 +223,7 @@ public class PGDocFixer {
         outs += "|\n"
     }
 
-    //==========================================================================================================================================
+    //=============================================================================================================================
     ///
     ///
     /// - Parameters:
@@ -224,7 +246,7 @@ public class PGDocFixer {
         return outs
     }
 
-    //==========================================================================================================================================
+    //=============================================================================================================================
     ///
     ///
     /// - Parameters:
@@ -244,7 +266,7 @@ public class PGDocFixer {
         }
     }
 
-    //==========================================================================================================================================
+    //=============================================================================================================================
     ///
     ///
     /// - Parameters:
@@ -282,7 +304,7 @@ public class PGDocFixer {
         }
     }
 
-    //==========================================================================================================================================
+    //=============================================================================================================================
     ///
     ///
     /// - Parameters:
@@ -319,7 +341,7 @@ public class PGDocFixer {
         }
     }
 
-    //==========================================================================================================================================
+    //=============================================================================================================================
     ///
     ///
     /// - Parameters:
@@ -327,8 +349,8 @@ public class PGDocFixer {
     ///   - tabstr:
     /// - Returns:
     ///
-    func processHTMLTable(prefix: String, table tabstr: String) -> String {
-        if let elem: HTMLElement = scanHTML(string: tabstr) {
+    func processHTMLTable(workers q: Workers) -> String {
+        if let elem: HTMLElement = scanHTML(string: q.paragraph) {
             if elem.name == "table" {
                 var table:        [[String]]  = []
                 var headerIndex:  Int         = -1
@@ -339,14 +361,14 @@ public class PGDocFixer {
                     processHTMLSub(e, &table, &headerIndex, &columnWidths, &columnAligns)
                 }
 
-                return dumpTable(prefix, table, headerIndex, columnWidths, columnAligns)
+                return dumpTable(q.prefix, table, headerIndex, columnWidths, columnAligns)
             }
         }
 
-        return prefix + tabstr
+        return q.prefix + q.paragraph
     }
 
-    //==========================================================================================================================================
+    //=============================================================================================================================
     ///
     ///
     /// - Parameters:
@@ -354,8 +376,8 @@ public class PGDocFixer {
     ///   - dlStr:
     /// - Returns:
     ///
-    func processDL(prefix: String, dl dlStr: String) -> String {
-        if let elem: HTMLElement = scanHTML(string: dlStr) {
+    func processDL(workers q: Workers) -> String {
+        if let elem: HTMLElement = scanHTML(string: q.paragraph) {
             if elem.name == "dl" {
                 var f: Bool     = true
                 var t: String   = ""
@@ -380,16 +402,16 @@ public class PGDocFixer {
                     }
                 }
 
-                var outs: String = "\(prefix)<dl>\n"
-                for i: DLItem in l { outs += i.getHTML(prefix: prefix, lineLength: maxLineLength) }
-                return outs + "\(prefix)</dl>\n"
+                var outs: String = "\(q.prefix)<dl>\n"
+                for i: DLItem in l { outs += i.getHTML(prefix: q.prefix, lineLength: maxLineLength) }
+                return outs + "\(q.prefix)</dl>\n"
             }
         }
 
-        return prefix + dlStr
+        return q.prefix + q.paragraph
     }
 
-    //==========================================================================================================================================
+    //=============================================================================================================================
     ///
     ///
     /// - Parameters:
@@ -397,14 +419,14 @@ public class PGDocFixer {
     ///   - tabstr:
     /// - Returns:
     ///
-    func processTable(prefix: String, table tabstr: String) -> String {
+    func processTable(workers q: Workers) -> String {
         var table:        [[String]]  = []
         var idx01:        Int         = 0
         var maxColumns:   Int         = 0
         var headerIndex:  Int         = -1
         var columnWidths: [Int]       = []
         var columnAligns: [Alignment] = []
-        let fixedStr:     String      = doSimpleOnes(string: tabstr)
+        let fixedStr:     String      = doSimpleOnes(string: q.paragraph)
 
         rx7.enumerateMatches(in: fixedStr) {
             (m: NSTextCheckingResult?, _, _) in
@@ -414,10 +436,10 @@ public class PGDocFixer {
         }
 
         if idx01 < fixedStr.count { stripTableRow(fixedStr.substr(from: idx01), &headerIndex, &maxColumns, &columnWidths, &columnAligns, &table) }
-        return dumpTable(prefix, table, headerIndex, columnWidths, columnAligns)
+        return dumpTable(q.prefix, table, headerIndex, columnWidths, columnAligns)
     }
 
-    //==========================================================================================================================================
+    //=============================================================================================================================
     ///
     ///
     /// - Parameters:
@@ -426,18 +448,28 @@ public class PGDocFixer {
     ///   - para:
     /// - Returns:
     ///
-    func processParagraph(prefix: String, indent: String = "", paragraph para: String) -> String {
-        let cleansed: String = doSimpleOnes(string: para)
+    func processParagraph(workers q: Workers) -> String {
+        let cleansed: String = doSimpleOnes(string: q.paragraph)
 
-        if (prefix.count + cleansed.count) <= maxLineLength {
-            return prefix + cleansed + CR
+        if (q.prefix.count + cleansed.count) <= maxLineLength {
+            return q.prefix + cleansed + CR
         }
         else {
-            let pfx: String = prefix.padding(toLength: (prefix.count + adjustIndent(indent: indent, para: cleansed)))
-            return WordWrap(prefix1: prefix, prefix2: pfx, lineLength: maxLineLength).wrap(str: cleansed) + CR
+            let pfx: String = q.prefix.padding(toLength: (q.prefix.count + adjustIndent(indent: q.indent, para: cleansed)))
+            return WordWrap(prefix1: q.prefix, prefix2: pfx, lineLength: maxLineLength).wrap(str: cleansed) + CR
         }
     }
 
+    //=============================================================================================================================
+    ///
+    ///
+    /// - Normal:
+    /// - MarkDownTable:
+    /// - HTMLTable:
+    /// - DefList:
+    /// - CodeBlock:
+    /// - Preformatted:
+    ///
     enum BlockType {
         case Normal
         case MarkDownTable
@@ -447,194 +479,271 @@ public class PGDocFixer {
         case Preformatted
     }
 
-    //==========================================================================================================================================
+    //=============================================================================================================================
+    ///
+    ///
+    typealias BlockParts = (s0: String, s1: String, s2: String, s3: String, s4: String, s5: String)
+
+    //=============================================================================================================================
+    ///
+    ///
+    typealias Workers = (paragraph: String, prefix: String, indent: String, startup: Bool)
+
+    //=============================================================================================================================
     //    Range #0: `/// - Document: `PGDOMDocument``
     //    Range #1: `/// `
     //    Range #2: `- Document: `PGDOMDocument``
     //    Range #3: `- `
     //    Range #4: `-`
     //    Range #5: `Document: `PGDOMDocument``
-    //==========================================================================================================================================
+    //=============================================================================================================================
     ///
     /// - Parameter block:
     /// - Returns:
     ///
     func processBlock(block: String) -> String {
-        var paragraph: String    = ""
-        var prefix:    String    = ""
-        var indent:    String    = ""
-        var output:    String    = ""
-        var blockType: BlockType = insideCodeBlock ? .CodeBlock : .Normal
-        var startup:   Bool      = !insideCodeBlock
-
-        rx2.enumerateMatches(in: block) {
-            (m: NSTextCheckingResult?, _, _) in
-
-            if let m: NSTextCheckingResult = m {
-                let s1: String = m.getSub(string: block, at: 1)
-                let s2: String = m.getSub(string: block, at: 2)
-                let s3: String = m.getSub(string: block, at: 3)
-                let s4: String = m.getSub(string: block, at: 4)
-                let s5: String = m.getSub(string: block, at: 5)
-
-                switch blockType {
-                    case .MarkDownTable:
-                        if s4 == "|" {
-                            paragraph += CR + s5
-                        }
-                        else {
-                            output += processTable(prefix: prefix, table: paragraph)
-                            prefix = s1
-                            indent = s3
-                            paragraph = s2
-                            blockType = .Normal
-                        }
-                    case .HTMLTable:
-                        if s2.hasSuffix("</table>") {
-                            output += processHTMLTable(prefix: prefix, table: paragraph)
-                            blockType = .Normal
-                            paragraph = ""
-                            indent = ""
-                            prefix = ""
-                            startup = true
-                        }
-                        else {
-                            paragraph += " " + s2
-                        }
-                    case .DefList:
-                        if s2.hasSuffix("</dl>") {
-                            output += processDL(prefix: prefix, dl: paragraph)
-                            blockType = .Normal
-                            paragraph = ""
-                            indent = ""
-                            prefix = ""
-                            startup = true
-                        }
-                        else {
-                            paragraph += " " + s2
-                        }
-                    case .CodeBlock:
-                        if s2 == "```" || s2 == "~~~" {
-                            output += paragraph + m.getSub(string: block, at: 0)
-                            blockType = .Normal
-                            insideCodeBlock = false
-                            paragraph = ""
-                            indent = ""
-                            prefix = ""
-                            startup = true
-                        }
-                        else {
-                            //----------------------------------------------------------------------------
-                            // Code blocks just get passed through without any conversion or formatting.
-                            //----------------------------------------------------------------------------
-                            paragraph += m.getSub(string: block, at: 0)
-                        }
-                    case .Preformatted:
-                        if s2.hasSuffix("</pre>") {
-                            output += paragraph + m.getSub(string: block, at: 0)
-                            blockType = .Normal
-                            insideCodeBlock = false
-                            paragraph = ""
-                            indent = ""
-                            prefix = ""
-                            startup = true
-                        }
-                        else {
-                            //----------------------------------------------------------------------------
-                            // Preformatted blocks just get passed through without any conversion or
-                            // formatting.
-                            //----------------------------------------------------------------------------
-                            paragraph += m.getSub(string: block, at: 0)
-                        }
-                    default:
-                        if s2.hasPrefix("<pre") {
-                            if startup { startup = false }
-                            else { output += processParagraph(prefix: prefix, indent: indent, paragraph: paragraph) }
-                            prefix = ""
-                            indent = ""
-                            //----------------------------------------------------------------------------
-                            // Preformatted blocks just get passed through without any conversion or
-                            // formatting.
-                            //----------------------------------------------------------------------------
-                            paragraph = m.getSub(string: block, at: 0)
-                            blockType = .Preformatted
-                            insideCodeBlock = true
-                        }
-                        else if s2.hasPrefix("<table") {
-                            if startup { startup = false }
-                            else { output += processParagraph(prefix: prefix, indent: indent, paragraph: paragraph) }
-                            prefix = s1
-                            indent = s3
-                            paragraph = s2
-                            blockType = .HTMLTable
-                        }
-                        else if s2.hasPrefix("<dl") {
-                            if startup { startup = false }
-                            else { output += processParagraph(prefix: prefix, indent: indent, paragraph: paragraph) }
-                            prefix = s1
-                            indent = s3
-                            paragraph = s2
-                            blockType = .DefList
-                        }
-                        else if s4 == "|" { // The start of a new table
-                            if startup { startup = false }
-                            else { output += processParagraph(prefix: prefix, indent: indent, paragraph: paragraph) }
-                            prefix = s1
-                            indent = s3
-                            paragraph = s5
-                            blockType = .MarkDownTable
-                        }
-                        else if s2 == "~~~" || s2 == "```" {
-                            if startup { startup = false }
-                            else { output += processParagraph(prefix: prefix, indent: indent, paragraph: paragraph) }
-                            prefix = ""
-                            indent = ""
-                            //----------------------------------------------------------------------------
-                            // Code blocks just get passed through without any conversion or formatting.
-                            //----------------------------------------------------------------------------
-                            paragraph = m.getSub(string: block, at: 0)
-                            blockType = .CodeBlock
-                            insideCodeBlock = true
-                        }
-                        else if s4 == "-" || s4 == "+" || s4 == "*" { // The start of a new paragraph
-                            if startup { startup = false }
-                            else { output += processParagraph(prefix: prefix, indent: indent, paragraph: paragraph) }
-                            prefix = s1
-                            indent = s3
-                            paragraph = s2
-                        }
-                        else if startup { // The continuation of the current paragraph
-                            prefix = s1
-                            indent = s3
-                            paragraph = s2
-                            startup = false
-                        }
-                        else {
-                            paragraph += (SPC + s2)
-                        }
-                }
-            }
-        }
-
-        if paragraph.count > 0 && !startup {
-            switch blockType {
-                case .MarkDownTable:
-                    output += processTable(prefix: prefix, table: paragraph)
-                case .HTMLTable:
-                    output += processHTMLTable(prefix: prefix, table: paragraph)
-                case .DefList:
-                    output += processDL(prefix: prefix, dl: paragraph)
-                case .CodeBlock:
-                    output += paragraph
-                default:
-                    output += processParagraph(prefix: prefix, indent: indent, paragraph: paragraph)
-            }
-        }
-
+        var q:      Workers = (paragraph: "", prefix: "", indent: "", startup: (blockType == .Normal))
+        var output: String  = ""
+        rx2.enumerateMatches(in: block) { (m: NSTextCheckingResult?, _, _) in if let m: NSTextCheckingResult = m { output += handleRawBlock(workers: &q,
+                                                                                                                                            blockParts: getBlockParts(match: m, block: block)) } }
+        output += closeFile(workers: q)
         return output
     }
 
-    //==========================================================================================================================================
+    //=============================================================================================================================
+    ///
+    ///
+    /// - Parameters:
+    ///   - q:
+    ///   - s:
+    /// - Returns:
+    ///
+    func handleRawBlock(workers q: inout Workers, blockParts s: BlockParts) -> String {
+        //@f:0
+        switch blockType {
+            case .MarkDownTable: return handleMarkDownTableBlock(workers: &q, blockParts: s)
+            case .HTMLTable:     return handleHTMLTableBlock(workers: &q, blockParts: s)
+            case .DefList:       return handleDefListBlock(workers: &q, blockParts: s)
+            case .CodeBlock:     return handleCodeBlock(workers: &q, blockParts: s)
+            case .Preformatted:  return handlePreformattedBlock(workers: &q, blockParts: s)
+            default:             return handleNormal(blockParts: s, workers: &q)
+        }
+        //@f:1
+    }
+
+    //=============================================================================================================================
+    ///
+    ///
+    /// - Parameters:
+    ///   - q:
+    ///   - s:
+    /// - Returns:
+    ///
+    func handleMarkDownTableBlock(workers q: inout Workers, blockParts s: BlockParts) -> String {
+        var output: String = ""
+        if s.s4 == "|" {
+            q.paragraph += CR + s.s5
+        }
+        else {
+            output = processTable(workers: q)
+            resetBlock(workers: &q, startup: q.startup, paragraph: s.s2, indent: s.s3, prefix: s.s1)
+        }
+        return output
+    }
+
+    //=============================================================================================================================
+    ///
+    ///
+    /// - Parameters:
+    ///   - q:
+    ///   - s:
+    /// - Returns:
+    ///
+    func handleHTMLTableBlock(workers q: inout Workers, blockParts s: BlockParts) -> String {
+        var output: String = ""
+        if s.s2.hasSuffix("</table>") {
+            output = processHTMLTable(workers: q)
+            resetBlock(workers: &q)
+        }
+        else {
+            q.paragraph += " " + s.s2
+        }
+        return output
+    }
+
+    //=============================================================================================================================
+    ///
+    ///
+    /// - Parameters:
+    ///   - q:
+    ///   - s:
+    /// - Returns:
+    ///
+    func handleDefListBlock(workers q: inout Workers, blockParts s: BlockParts) -> String {
+        var output: String = ""
+        if s.s2.hasSuffix("</dl>") {
+            output = processDL(workers: q)
+            resetBlock(workers: &q)
+        }
+        else {
+            q.paragraph += " " + s.s2
+        }
+        return output
+    }
+
+    //=============================================================================================================================
+    ///
+    ///
+    /// - Parameters:
+    ///   - q:
+    ///   - s:
+    /// - Returns:
+    ///
+    func handleCodeBlock(workers q: inout Workers, blockParts s: BlockParts) -> String {
+        var output: String = ""
+        if s.s2 == "```" || s.s2 == "~~~" {
+            output = q.paragraph + s.s0
+            resetBlock(workers: &q)
+        }
+        else {
+            q.paragraph += s.s0
+        }
+        return output
+    }
+
+    //=============================================================================================================================
+    ///
+    ///
+    /// - Parameters:
+    ///   - q:
+    ///   - s:
+    /// - Returns:
+    ///
+    func handlePreformattedBlock(workers q: inout Workers, blockParts s: BlockParts) -> String {
+        var output: String = ""
+        if s.s2.hasSuffix("</pre>") {
+            output = q.paragraph + s.s0
+            resetBlock(workers: &q)
+        }
+        else {
+            q.paragraph += s.s0
+        }
+        return output
+    }
+
+    //=============================================================================================================================
+    ///
+    ///
+    /// - Parameters:
+    ///   - m:
+    ///   - block:
+    /// - Returns:
+    ///
+    func getBlockParts(match m: NSTextCheckingResult, block: String) -> BlockParts {
+        (s0: m.getSub(string: block, at: 0),
+         s1: m.getSub(string: block, at: 1),
+         s2: m.getSub(string: block, at: 2),
+         s3: m.getSub(string: block, at: 3),
+         s4: m.getSub(string: block, at: 4),
+         s5: m.getSub(string: block, at: 5))
+    }
+
+    //=============================================================================================================================
+    ///
+    ///
+    /// - Parameters:
+    ///   - s:
+    ///   - q:
+    /// - Returns:
+    ///
+    private func handleNormal(blockParts s: BlockParts, workers q: inout Workers) -> String {
+        //@f:0
+        if s.s2.hasPrefix("<pre")                         { return closeParagraph(workers: &q, paragraph: s.s0, blockType: .Preformatted)                              }
+        else if s.s2 == "~~~" || s.s2 == "```"            { return closeParagraph(workers: &q, paragraph: s.s0, blockType: .CodeBlock)                                 }
+        else if s.s2.hasPrefix("<dl")                     { return closeParagraph(workers: &q, paragraph: s.s2, indent: s.s3, prefix: s.s1, blockType: .DefList)       }
+        else if s.s2.hasPrefix("<table")                  { return closeParagraph(workers: &q, paragraph: s.s2, indent: s.s3, prefix: s.s1, blockType: .HTMLTable)     }
+        else if s.s4 == "|"                               { return closeParagraph(workers: &q, paragraph: s.s5, indent: s.s3, prefix: s.s1, blockType: .MarkDownTable) }
+        else if s.s4 == "-" || s.s4 == "+" || s.s4 == "*" { return closeParagraph(workers: &q, paragraph: s.s2, indent: s.s3, prefix: s.s1, blockType: .Normal)        }
+        else if q.startup                                 { q = (prefix: s.s1, indent: s.s3, paragraph: s.s2, startup: false)                                          }
+        else                                              { q.paragraph += (SPC + s.s2)                                                                                }
+        //@f:1
+        blockType = .Normal
+        return ""
+    }
+
+    //=============================================================================================================================
+    ///
+    ///
+    /// - Parameter q:
+    /// - Returns:
+    ///
+    private func closeFile(workers q: Workers) -> String {
+        var outs: String = ""
+
+        if q.paragraph.count > 0 && !q.startup {
+            //@f:0
+            switch blockType {
+                case .MarkDownTable:            outs = processTable(workers: q)
+                case .HTMLTable:                outs = processHTMLTable(workers: q)
+                case .DefList:                  outs = processDL(workers: q)
+                case .CodeBlock, .Preformatted: outs = q.paragraph
+                default:                        outs = processParagraph(workers: q)
+            }
+            //@f:1
+        }
+
+        blockType = .Normal
+        return outs
+    }
+
+    //=============================================================================================================================
+    ///
+    ///
+    /// - Parameters:
+    ///   - q:
+    ///   - paragraph:
+    ///   - indent:
+    ///   - prefix:
+    ///   - btype:
+    /// - Returns:
+    ///
+    private func closeParagraph(workers q: inout Workers, paragraph: String = "", indent: String = "", prefix: String = "", blockType btype: BlockType) -> String {
+        var outs: String = ""
+
+        if q.startup {
+            q.startup = false
+        }
+        else {
+            outs = processParagraph(workers: q)
+        }
+
+        blockType = btype
+        q.paragraph = paragraph
+        q.indent = indent
+        q.prefix = prefix
+
+        return outs
+    }
+
+    //=============================================================================================================================
+    ///
+    ///
+    /// - Parameters:
+    ///   - q:
+    ///   - startup:
+    ///   - paragraph:
+    ///   - indent:
+    ///   - prefix:
+    ///
+    private func resetBlock(workers q: inout Workers, startup: Bool = true, paragraph: String = "", indent: String = "", prefix: String = "") {
+        blockType = .Normal
+        q.paragraph = paragraph
+        q.indent = indent
+        q.prefix = prefix
+        q.startup = startup
+    }
+
+    //=============================================================================================================================
     ///
     ///
     /// - Parameter str:
@@ -644,7 +753,7 @@ public class PGDocFixer {
         rxFinal.stringByReplacingMatches(in: doSimpleOnes(string: doSimpleOnes(string: str, findReplace: findReplace), findReplace: NORMAL_FIND_REPLACE), withTemplate: "`")
     }
 
-    //==========================================================================================================================================
+    //=============================================================================================================================
     ///
     ///
     /// - Parameters:
@@ -660,7 +769,7 @@ public class PGDocFixer {
         return s
     }
 
-    //==========================================================================================================================================
+    //=============================================================================================================================
     ///
     ///
     /// - Parameter filename:
@@ -674,9 +783,8 @@ public class PGDocFixer {
             rx1.enumerateMatches(in: data) {
                 (m: NSTextCheckingResult?, _, _) in
                 if let m: NSTextCheckingResult = m {
-                    let range: NSRange = m.range
-                    outs += data.getPreMatch(start: &indx, range: range)
-                    outs += processBlock(block: data.substr(range: range))
+                    let r: NSRange = m.range
+                    outs += data.getPreMatch(start: &indx, range: r) + processBlock(block: data.substr(range: r))
                 }
             }
 

@@ -15,7 +15,6 @@
 		1117DAC74125389822CE1CFF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D6965A311ACEE3A083C0 /* Extensions.swift */; };
 		1117DB75B1882950FFC424B1 /* Stuff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D7FAE545175D2FDBF113 /* Stuff.swift */; };
 		1117DCF7B7092AD263E86594 /* DLItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DE88199E943212B2FB40 /* DLItem.swift */; };
-		1117DE505F8D56989715A27B /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 1117D6D3214BF146E16C40A8 /* README.md */; };
 		1117DE57603C53114778A63F /* WordWrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D286AD84791468A340DA /* WordWrap.swift */; };
 		83ECEA65243F7B42004BB0FD /* PGDocFixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83ECEA5B243F7B42004BB0FD /* PGDocFixer.framework */; };
 		83ECEA6A243F7B42004BB0FD /* PGDocFixerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83ECEA69243F7B42004BB0FD /* PGDocFixerTests.swift */; };
@@ -243,7 +242,6 @@
 				1117D5A6422065F8F9B5B54D /* Alignment.swift in Sources */,
 				1117D5F2A7988B283B3166BF /* RegexRepl.swift in Sources */,
 				1117DCF7B7092AD263E86594 /* DLItem.swift in Sources */,
-				1117DE505F8D56989715A27B /* README.md in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

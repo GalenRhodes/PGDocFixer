@@ -1,6 +1,6 @@
 version: "Apple Swift version 5.2.2 (swiftlang-1103.0.32.6 clang-1103.0.32.51)"
 options: "03951cc3edf3932157048f0ade74c454"
-build_time: [1587156204, 357038000]
+build_time: [1587348170, 567963000]
 inputs:
   "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/PGDocFixer/Source/DocFixer.swift": [9223372036, 854775807]
   "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/PGDocFixer/Source/html.swift": [9223372036, 854775807]
