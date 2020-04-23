@@ -22,8 +22,9 @@
 
 import Foundation
 
-let CR:  String = "\n"
-let SPC: String = " "
+let CR:     String = "\n"
+let SPC:    String = " "
+let BELEMS: String = "(p|div|table|dl|ol|ul|h1|h2|h3|h4|h5|h6|pre|dt|dd|li|dir|address|article|aside|blockquote|center|del|figure|figcaption|footer|header|hr|ins|main|menu|nav|noscript|section|script)"
 
 //=================================================================================================================================
 ///
@@ -62,6 +63,65 @@ public enum DocFixerErrors: Error {
     case FileNotFound(description: String)
 }
 
+//=============================================================================================================================
+///
+///
+/// - Normal:
+/// - MarkDownTable:
+/// - HTMLTable:
+/// - DefList:
+/// - CodeBlock:
+/// - Preformatted:
+///
+enum ParagraphType {
+    case Normal
+    case MarkDownTable
+    case HTMLTable
+    case DefList
+    case CodeBlock
+    case Preformatted
+    case OrderedList
+    case UnorderedList
+}
+
+//=============================================================================================================================
+///
+///
+struct LineParts {
+    let s0: String
+    let s1: String
+    let s2: String
+    let s3: String
+    let s4: String
+    let s5: String
+
+    init(match m: NSTextCheckingResult, block: String) {
+        s0 = m.getSub(string: block, at: 0)
+        s1 = m.getSub(string: block, at: 1)
+        s2 = m.getSub(string: block, at: 2)
+        s3 = m.getSub(string: block, at: 3)
+        s4 = m.getSub(string: block, at: 4)
+        s5 = m.getSub(string: block, at: 5)
+    }
+}
+
+//=============================================================================================================================
+///
+///
+class ParagraphInfo {
+    var paragraph: String
+    var prefix:    String
+    var indent:    String
+    var startup:   Bool
+
+    init(paragraph: String, prefix: String, indent: String, startup: Bool) {
+        self.paragraph = paragraph
+        self.prefix = prefix
+        self.indent = indent
+        self.startup = startup
+    }
+}
+
 public class PGDocFixer {
     static let rxLead: String = "^([ \\t]*///[ \\t]+)"
     static let rxLine: String = "\(rxLead)((([|+*-])[ \\t]?)?(.+?))[ \\t]*\\R"
@@ -81,13 +141,11 @@ public class PGDocFixer {
     let findReplace:            [RegexRepl]
 
     //=============================================================================================================================
-    /// Code blocks can extend across several blocks so we need to
-    /// let the code that only knows about a single block know that
-    /// it is in the middle of a possibly larger code block. This
-    /// field holds a flag to do just that. 'true' means we're in
-    /// the middle of a code block and 'false' means we aren't.
+    /// <code> and <pre> sections can extend across several blocks so we need to let the code that only knows about a single block
+    /// know that it is in the middle of a possibly larger multi-block section. This field holds a flag to do just that by holding
+    /// the type of section we're in.
     ///
-    var blockType:              BlockType = .Normal
+    var paraType:               ParagraphType = .Normal
 
     //=============================================================================================================================
     ///
@@ -108,12 +166,12 @@ public class PGDocFixer {
     ///
     /// - Parameters:
     ///   - indent:
-    ///   - para:
+    ///   - paragraph:
     /// - Returns:
     ///
-    func adjustIndent(indent: String, para: String) -> Int {
-        if let m: NSTextCheckingResult = rx4.firstMatch(in: para) {
-            let ic: Int = para.substr(range: m.range).count
+    func adjustIndent(indent: String, paragraph: String) -> Int {
+        if let m: NSTextCheckingResult = rx4.firstMatch(in: paragraph) {
+            let ic: Int = paragraph.substr(range: m.range).count
             return ((ic >= maxLineLength) ? indent.count : (ic >= twoThirdsMaxLineLength ? indent.count + 4 : ic))
         }
         return indent.count
@@ -314,7 +372,7 @@ public class PGDocFixer {
     ///   - columnWidths:
     ///   - columnAligns:
     ///
-    func processHTMLSub(_ elem: HTMLElement, _ table: inout [[String]], _ headerIndex: inout Int, _ columnWidths: inout [Int], _ columnAligns: inout [Alignment]) {
+    func parseHTMLTree(_ elem: HTMLElement, _ table: inout [[String]], _ headerIndex: inout Int, _ columnWidths: inout [Int], _ columnAligns: inout [Alignment]) {
         if elem.name == "tr" {
             var ci:  Int      = 0
             var row: [String] = []
@@ -336,7 +394,7 @@ public class PGDocFixer {
         }
         else {
             for e: HTMLElement in elem.children {
-                processHTMLSub(e, &table, &headerIndex, &columnWidths, &columnAligns)
+                parseHTMLTree(e, &table, &headerIndex, &columnWidths, &columnAligns)
             }
         }
     }
@@ -345,88 +403,181 @@ public class PGDocFixer {
     ///
     ///
     /// - Parameters:
+    ///   - elem:
     ///   - prefix:
-    ///   - tabstr:
     /// - Returns:
     ///
-    func processHTMLTable(workers q: Workers) -> String {
-        if let elem: HTMLElement = scanHTML(string: q.paragraph) {
-            if elem.name == "table" {
-                var table:        [[String]]  = []
-                var headerIndex:  Int         = -1
-                var columnWidths: [Int]       = []
-                var columnAligns: [Alignment] = []
+    func renderHTMLTable2(elem: HTMLElement, prefix: String) -> String {
+        var table:        [[String]]  = []
+        var headerIndex:  Int         = -1
+        var columnWidths: [Int]       = []
+        var columnAligns: [Alignment] = []
 
-                for e: HTMLElement in elem.children {
-                    processHTMLSub(e, &table, &headerIndex, &columnWidths, &columnAligns)
-                }
-
-                return dumpTable(q.prefix, table, headerIndex, columnWidths, columnAligns)
-            }
+        for e: HTMLElement in elem.children {
+            parseHTMLTree(e, &table, &headerIndex, &columnWidths, &columnAligns)
         }
 
-        return q.prefix + q.paragraph
+        return dumpTable(prefix, table, headerIndex, columnWidths, columnAligns)
+    }
+
+    //=============================================================================================================================
+    ///
+    ///
+    /// - Parameter info:
+    /// - Returns:
+    ///
+    func renderHTMLTable(paragraphInfo info: ParagraphInfo) -> String {
+        let pfx:  String = info.prefix
+        let para: String = info.paragraph
+
+        if let elem: HTMLElement = scanHTML(string: para), elem.name == "table" {
+            return renderHTMLTable2(elem: elem, prefix: pfx)
+        }
+        else {
+            return pfx + para
+        }
     }
 
     //=============================================================================================================================
     ///
     ///
     /// - Parameters:
+    ///   - elem:
     ///   - prefix:
-    ///   - dlStr:
     /// - Returns:
     ///
-    func processDL(workers q: Workers) -> String {
-        if let elem: HTMLElement = scanHTML(string: q.paragraph) {
-            if elem.name == "dl" {
-                var f: Bool     = true
-                var t: String   = ""
-                var d: String   = ""
-                var l: [DLItem] = []
+    func renderHTMLElement(elem: HTMLElement, prefix: String) -> String {
+        var o: String   = "\(prefix)<\(elem.name)>"
+        var x: String   = ""
+        let p: String   = "\(prefix)    "
+        let w: WordWrap = WordWrap(prefix1: "", prefix2: p, lineLength: maxLineLength)
 
-                for e: HTMLElement in elem.children {
-                    if f {
-                        if e.name == "dt" {
-                            t = e.innerHtml
-                            f = false
-                        }
+        for child: HTMLElement in elem.children {
+            switch child.name {
+                case "dl":
+                    o += ("\(w.wrap(str: x))\n\(renderDefList2(elem: child, prefix: p))\(prefix)")
+                    x = ""
+                case "ol", "ul":
+                    o += ("\(w.wrap(str: x))\n\(renderList2(elem: child, prefix: p))\(prefix)")
+                    x = ""
+                case "table":
+                    o += ("\(w.wrap(str: x))\n\(renderHTMLTable2(elem: child, prefix: p))\(prefix)")
+                    x = ""
+                default:
+                    if child.isBlock {
+                        if x.count > 0 { o += w.wrap(str: x) }
+                        o += "\n\(renderHTMLElement(elem: child, prefix: p))\(prefix)"
+                        x = ""
                     }
                     else {
-                        if e.name == "dd" {
-                            d = e.innerHtml
-                            f = true
-                            l.append(DLItem(dt: t, dd: d))
-                            t = ""
-                            d = ""
-                        }
+                        x += child.html
                     }
-                }
-
-                var outs: String = "\(q.prefix)<dl>\n"
-                for i: DLItem in l { outs += i.getHTML(prefix: q.prefix, lineLength: maxLineLength) }
-                return outs + "\(q.prefix)</dl>\n"
             }
         }
 
-        return q.prefix + q.paragraph
+        if x.count > 0 { o += w.wrap(str: x) }
+        return "\(o)</\(elem.name)>\n"
     }
 
     //=============================================================================================================================
     ///
     ///
     /// - Parameters:
+    ///   - elem:
     ///   - prefix:
-    ///   - tabstr:
     /// - Returns:
     ///
-    func processTable(workers q: Workers) -> String {
+    func renderList2(elem: HTMLElement, prefix: String) -> String {
+        var o: String = "\(prefix)<\(elem.name)>\n"
+
+        for child: HTMLElement in elem.children {
+            if child.name == "li" {
+                o += renderHTMLElement(elem: child, prefix: prefix + "    ")
+            }
+        }
+
+        return "\(o)\(prefix)</\(elem.name)>\n"
+    }
+
+    //=============================================================================================================================
+    ///
+    ///
+    /// - Parameters:
+    ///   - info:
+    ///   - tagName:
+    /// - Returns:
+    ///
+    func renderList(paragraphInfo info: ParagraphInfo, tagName: String) -> String {
+        if let elem: HTMLElement = scanHTML(string: info.paragraph), elem.name == tagName {
+            return renderList2(elem: elem, prefix: info.prefix + info.indent)
+        }
+        else {
+            return info.prefix + info.indent + info.paragraph
+        }
+    }
+
+    //=============================================================================================================================
+    ///
+    ///
+    /// - Parameters:
+    ///   - elem:
+    ///   - pfx:
+    /// - Returns:
+    ///
+    func renderDefList2(elem: HTMLElement, prefix: String) -> String {
+        var f: Bool     = true
+        var t: String   = ""
+        var d: String   = ""
+        var l: [DLItem] = []
+
+        for e: HTMLElement in elem.children {
+            if f {
+                if e.name == "dt" {
+                    t = e.innerHtml
+                    f = false
+                }
+            }
+            else {
+                if e.name == "dd" {
+                    d = e.innerHtml
+                    f = true
+                    l.append(DLItem(dt: t, dd: d))
+                    t = ""
+                    d = ""
+                }
+            }
+        }
+
+        var outs: String = ""
+        for i: DLItem in l { outs += i.getHTML(prefix: prefix, lineLength: maxLineLength) }
+        return "\(prefix)<dl>\n\(outs)\(prefix)</dl>\n"
+    }
+
+    //=============================================================================================================================
+    ///
+    ///
+    /// - Parameter info:
+    /// - Returns:
+    ///
+    func renderDefList(paragraphInfo info: ParagraphInfo) -> String {
+        if let elem: HTMLElement = scanHTML(string: info.paragraph), elem.name == "dl" { return renderDefList2(elem: elem, prefix: info.prefix) }
+        else { return info.prefix + info.paragraph }
+    }
+
+    //=============================================================================================================================
+    ///
+    ///
+    /// - Parameter info:
+    /// - Returns:
+    ///
+    func renderTable(paragraphInfo info: ParagraphInfo) -> String {
         var table:        [[String]]  = []
         var idx01:        Int         = 0
         var maxColumns:   Int         = 0
         var headerIndex:  Int         = -1
         var columnWidths: [Int]       = []
         var columnAligns: [Alignment] = []
-        let fixedStr:     String      = doSimpleOnes(string: q.paragraph)
+        let fixedStr:     String      = doSimpleOnes(string: info.paragraph)
 
         rx7.enumerateMatches(in: fixedStr) {
             (m: NSTextCheckingResult?, _, _) in
@@ -436,58 +587,26 @@ public class PGDocFixer {
         }
 
         if idx01 < fixedStr.count { stripTableRow(fixedStr.substr(from: idx01), &headerIndex, &maxColumns, &columnWidths, &columnAligns, &table) }
-        return dumpTable(q.prefix, table, headerIndex, columnWidths, columnAligns)
+        return dumpTable(info.prefix, table, headerIndex, columnWidths, columnAligns)
     }
 
     //=============================================================================================================================
     ///
     ///
-    /// - Parameters:
-    ///   - prefix:
-    ///   - indent:
-    ///   - para:
+    /// - Parameter info:
     /// - Returns:
     ///
-    func processParagraph(workers q: Workers) -> String {
-        let cleansed: String = doSimpleOnes(string: q.paragraph)
+    func renderParagraph(paragraphInfo info: ParagraphInfo) -> String {
+        let cleansed: String = doSimpleOnes(string: info.paragraph)
 
-        if (q.prefix.count + cleansed.count) <= maxLineLength {
-            return q.prefix + cleansed + CR
+        if (info.prefix.count + cleansed.count) <= maxLineLength {
+            return info.prefix + cleansed + CR
         }
         else {
-            let pfx: String = q.prefix.padding(toLength: (q.prefix.count + adjustIndent(indent: q.indent, para: cleansed)))
-            return WordWrap(prefix1: q.prefix, prefix2: pfx, lineLength: maxLineLength).wrap(str: cleansed) + CR
+            let pfx: String = info.prefix.padding(toLength: (info.prefix.count + adjustIndent(indent: info.indent, paragraph: cleansed)))
+            return WordWrap(prefix1: info.prefix, prefix2: pfx, lineLength: maxLineLength).wrap(str: cleansed) + CR
         }
     }
-
-    //=============================================================================================================================
-    ///
-    ///
-    /// - Normal:
-    /// - MarkDownTable:
-    /// - HTMLTable:
-    /// - DefList:
-    /// - CodeBlock:
-    /// - Preformatted:
-    ///
-    enum BlockType {
-        case Normal
-        case MarkDownTable
-        case HTMLTable
-        case DefList
-        case CodeBlock
-        case Preformatted
-    }
-
-    //=============================================================================================================================
-    ///
-    ///
-    typealias BlockParts = (s0: String, s1: String, s2: String, s3: String, s4: String, s5: String)
-
-    //=============================================================================================================================
-    ///
-    ///
-    typealias Workers = (paragraph: String, prefix: String, indent: String, startup: Bool)
 
     //=============================================================================================================================
     //    Range #0: `/// - Document: `PGDOMDocument``
@@ -502,31 +621,37 @@ public class PGDocFixer {
     /// - Returns:
     ///
     func processBlock(block: String) -> String {
-        var q:      Workers = (paragraph: "", prefix: "", indent: "", startup: (blockType == .Normal))
-        var output: String  = ""
-        rx2.enumerateMatches(in: block) { (m: NSTextCheckingResult?, _, _) in if let m: NSTextCheckingResult = m { output += handleRawBlock(workers: &q,
-                                                                                                                                            blockParts: getBlockParts(match: m, block: block)) } }
-        output += closeFile(workers: q)
-        return output
+        let info: ParagraphInfo = ParagraphInfo(paragraph: "", prefix: "", indent: "", startup: (self.paraType == .Normal))
+        var o:    String        = ""
+
+        rx2.enumerateMatches(in: block) {
+            (m: NSTextCheckingResult?, _, _) in
+            if let m: NSTextCheckingResult = m { o += handleRawBlock(paragraphInfo: info, line: LineParts(match: m, block: block)) }
+        }
+
+        return o + closeBlock(paragraphInfo: info)
     }
 
     //=============================================================================================================================
     ///
     ///
     /// - Parameters:
-    ///   - q:
+    ///   - info:
     ///   - s:
+    ///
     /// - Returns:
     ///
-    func handleRawBlock(workers q: inout Workers, blockParts s: BlockParts) -> String {
+    func handleRawBlock(paragraphInfo info: ParagraphInfo, line: LineParts) -> String {
         //@f:0
-        switch blockType {
-            case .MarkDownTable: return handleMarkDownTableBlock(workers: &q, blockParts: s)
-            case .HTMLTable:     return handleHTMLTableBlock(workers: &q, blockParts: s)
-            case .DefList:       return handleDefListBlock(workers: &q, blockParts: s)
-            case .CodeBlock:     return handleCodeBlock(workers: &q, blockParts: s)
-            case .Preformatted:  return handlePreformattedBlock(workers: &q, blockParts: s)
-            default:             return handleNormal(blockParts: s, workers: &q)
+        switch self.paraType {
+            case .MarkDownTable: return handleMarkDownTableBlock(paragraphInfo: info, line: line)
+            case .HTMLTable:     return handleHTMLTableBlock(paragraphInfo: info, line: line)
+            case .DefList:       return handleDefListBlock(paragraphInfo: info, line: line)
+            case .CodeBlock:     return handleCodeBlock(paragraphInfo: info, line: line)
+            case .Preformatted:  return handlePreformattedBlock(paragraphInfo: info, line: line)
+            case .OrderedList:   return handleListBlock(paragraphInfo: info, line: line, tagName: "ol")
+            case .UnorderedList: return handleListBlock(paragraphInfo: info, line: line, tagName: "ul")
+            default:             return handleNormal(paragraphInfo: info, line: line)
         }
         //@f:1
     }
@@ -535,117 +660,124 @@ public class PGDocFixer {
     ///
     ///
     /// - Parameters:
-    ///   - q:
+    ///   - info:
     ///   - s:
     /// - Returns:
     ///
-    func handleMarkDownTableBlock(workers q: inout Workers, blockParts s: BlockParts) -> String {
-        var output: String = ""
-        if s.s4 == "|" {
-            q.paragraph += CR + s.s5
+    func handleMarkDownTableBlock(paragraphInfo info: ParagraphInfo, line: LineParts) -> String {
+        var o: String = ""
+
+        if line.s4 == "|" {
+            info.paragraph += CR + line.s5
         }
         else {
-            output = processTable(workers: q)
-            resetBlock(workers: &q, startup: q.startup, paragraph: s.s2, indent: s.s3, prefix: s.s1)
+            o = renderTable(paragraphInfo: info)
+            resetParagraph(paragraphInfo: info, startup: info.startup, paragraph: line.s2, indent: line.s3, prefix: line.s1)
         }
-        return output
+
+        return o
     }
 
-    //=============================================================================================================================
-    ///
-    ///
-    /// - Parameters:
-    ///   - q:
-    ///   - s:
-    /// - Returns:
-    ///
-    func handleHTMLTableBlock(workers q: inout Workers, blockParts s: BlockParts) -> String {
-        var output: String = ""
-        if s.s2.hasSuffix("</table>") {
-            output = processHTMLTable(workers: q)
-            resetBlock(workers: &q)
+    func handleListBlock(paragraphInfo info: ParagraphInfo, line: LineParts, tagName: String) -> String {
+        var o: String = ""
+
+        if line.s2.hasSuffix("</\(tagName)>") {
+            o = renderList(paragraphInfo: info, tagName: tagName)
+            resetParagraph(paragraphInfo: info)
         }
         else {
-            q.paragraph += " " + s.s2
+            info.paragraph += " " + line.s2
         }
-        return output
+
+        return o
     }
 
     //=============================================================================================================================
     ///
     ///
     /// - Parameters:
-    ///   - q:
+    ///   - info:
     ///   - s:
     /// - Returns:
     ///
-    func handleDefListBlock(workers q: inout Workers, blockParts s: BlockParts) -> String {
-        var output: String = ""
-        if s.s2.hasSuffix("</dl>") {
-            output = processDL(workers: q)
-            resetBlock(workers: &q)
+    func handleHTMLTableBlock(paragraphInfo info: ParagraphInfo, line: LineParts) -> String {
+        var o: String = ""
+
+        if line.s2.hasSuffix("</table>") {
+            o = renderHTMLTable(paragraphInfo: info)
+            resetParagraph(paragraphInfo: info)
         }
         else {
-            q.paragraph += " " + s.s2
+            info.paragraph += " " + line.s2
         }
-        return output
+
+        return o
     }
 
     //=============================================================================================================================
     ///
     ///
     /// - Parameters:
-    ///   - q:
+    ///   - info:
     ///   - s:
     /// - Returns:
     ///
-    func handleCodeBlock(workers q: inout Workers, blockParts s: BlockParts) -> String {
-        var output: String = ""
-        if s.s2 == "```" || s.s2 == "~~~" {
-            output = q.paragraph + s.s0
-            resetBlock(workers: &q)
+    func handleDefListBlock(paragraphInfo info: ParagraphInfo, line: LineParts) -> String {
+        var o: String = ""
+
+        if line.s2.hasSuffix("</dl>") {
+            o = renderDefList(paragraphInfo: info)
+            resetParagraph(paragraphInfo: info)
         }
         else {
-            q.paragraph += s.s0
+            info.paragraph += " " + line.s2
         }
-        return output
+
+        return o
     }
 
     //=============================================================================================================================
     ///
     ///
     /// - Parameters:
-    ///   - q:
+    ///   - info:
     ///   - s:
     /// - Returns:
     ///
-    func handlePreformattedBlock(workers q: inout Workers, blockParts s: BlockParts) -> String {
-        var output: String = ""
-        if s.s2.hasSuffix("</pre>") {
-            output = q.paragraph + s.s0
-            resetBlock(workers: &q)
+    func handleCodeBlock(paragraphInfo info: ParagraphInfo, line: LineParts) -> String {
+        var o: String = ""
+
+        if line.s2 == "```" || line.s2 == "~~~" {
+            o = info.paragraph + line.s0
+            resetParagraph(paragraphInfo: info)
         }
         else {
-            q.paragraph += s.s0
+            info.paragraph += line.s0
         }
-        return output
+
+        return o
     }
 
     //=============================================================================================================================
     ///
     ///
     /// - Parameters:
-    ///   - m:
-    ///   - block:
+    ///   - info:
+    ///   - s:
     /// - Returns:
     ///
-    func getBlockParts(match m: NSTextCheckingResult, block: String) -> BlockParts {
-        (s0: m.getSub(string: block, at: 0),
-         s1: m.getSub(string: block, at: 1),
-         s2: m.getSub(string: block, at: 2),
-         s3: m.getSub(string: block, at: 3),
-         s4: m.getSub(string: block, at: 4),
-         s5: m.getSub(string: block, at: 5))
+    func handlePreformattedBlock(paragraphInfo info: ParagraphInfo, line: LineParts) -> String {
+        var o: String = ""
+
+        if line.s2.hasSuffix("</pre>") {
+            o = info.paragraph + line.s0
+            resetParagraph(paragraphInfo: info)
+        }
+        else {
+            info.paragraph += line.s0
+        }
+
+        return o
     }
 
     //=============================================================================================================================
@@ -653,94 +785,98 @@ public class PGDocFixer {
     ///
     /// - Parameters:
     ///   - s:
-    ///   - q:
+    ///   - info:
     /// - Returns:
     ///
-    private func handleNormal(blockParts s: BlockParts, workers q: inout Workers) -> String {
-        //@f:0
-        if s.s2.hasPrefix("<pre")                         { return closeParagraph(workers: &q, paragraph: s.s0, blockType: .Preformatted)                              }
-        else if s.s2 == "~~~" || s.s2 == "```"            { return closeParagraph(workers: &q, paragraph: s.s0, blockType: .CodeBlock)                                 }
-        else if s.s2.hasPrefix("<dl")                     { return closeParagraph(workers: &q, paragraph: s.s2, indent: s.s3, prefix: s.s1, blockType: .DefList)       }
-        else if s.s2.hasPrefix("<table")                  { return closeParagraph(workers: &q, paragraph: s.s2, indent: s.s3, prefix: s.s1, blockType: .HTMLTable)     }
-        else if s.s4 == "|"                               { return closeParagraph(workers: &q, paragraph: s.s5, indent: s.s3, prefix: s.s1, blockType: .MarkDownTable) }
-        else if s.s4 == "-" || s.s4 == "+" || s.s4 == "*" { return closeParagraph(workers: &q, paragraph: s.s2, indent: s.s3, prefix: s.s1, blockType: .Normal)        }
-        else if q.startup                                 { q = (prefix: s.s1, indent: s.s3, paragraph: s.s2, startup: false)                                          }
-        else                                              { q.paragraph += (SPC + s.s2)                                                                                }
-        //@f:1
-        blockType = .Normal
+    private func handleNormal(paragraphInfo info: ParagraphInfo, line: LineParts) -> String {
+        if line.s2.hasPrefix("<pre") {
+            return closeParagraph(paragraphInfo: info, paragraph: line.s0, paraType: .Preformatted)
+        }
+        else if line.s2.hasPrefix("<ol") {
+            return closeParagraph(paragraphInfo: info, paragraph: line.s2, prefix: line.s1, paraType: .OrderedList)
+        }
+        else if line.s2.hasPrefix("<ul") {
+            return closeParagraph(paragraphInfo: info, paragraph: line.s2, prefix: line.s1, paraType: .UnorderedList)
+        }
+        else if line.s2 == "~~~" || line.s2 == "```" {
+            return closeParagraph(paragraphInfo: info, paragraph: line.s0, paraType: .CodeBlock)
+        }
+        else if line.s2.hasPrefix("<dl") {
+            return closeParagraph(paragraphInfo: info, paragraph: line.s2, indent: line.s3, prefix: line.s1, paraType: .DefList)
+        }
+        else if line.s2.hasPrefix("<table") {
+            return closeParagraph(paragraphInfo: info, paragraph: line.s2, indent: line.s3, prefix: line.s1, paraType: .HTMLTable)
+        }
+        else if line.s4 == "|" {
+            return closeParagraph(paragraphInfo: info, paragraph: line.s5, indent: line.s3, prefix: line.s1, paraType: .MarkDownTable)
+        }
+        else if line.s4 == "-" || line.s4 == "+" || line.s4 == "*" {
+            return closeParagraph(paragraphInfo: info, paragraph: line.s2, indent: line.s3, prefix: line.s1, paraType: .Normal)
+        }
+        else if info.startup {
+            resetParagraph(paragraphInfo: info, startup: false, paragraph: line.s2, indent: line.s3, prefix: line.s1)
+        }
+        else {
+            info.paragraph += (SPC + line.s2)
+        }
         return ""
     }
 
     //=============================================================================================================================
     ///
     ///
-    /// - Parameter q:
+    /// - Parameter info:
     /// - Returns:
     ///
-    private func closeFile(workers q: Workers) -> String {
-        var outs: String = ""
-
-        if q.paragraph.count > 0 && !q.startup {
+    private func closeBlock(paragraphInfo info: ParagraphInfo) -> String {
+        if info.paragraph.count > 0 && !info.startup {
             //@f:0
-            switch blockType {
-                case .MarkDownTable:            outs = processTable(workers: q)
-                case .HTMLTable:                outs = processHTMLTable(workers: q)
-                case .DefList:                  outs = processDL(workers: q)
-                case .CodeBlock, .Preformatted: outs = q.paragraph
-                default:                        outs = processParagraph(workers: q)
+            switch self.paraType {
+                case .CodeBlock, .Preformatted: return info.paragraph
+                case .MarkDownTable:            return renderTable(paragraphInfo: info)
+                case .HTMLTable:                return renderHTMLTable(paragraphInfo: info)
+                case .DefList:                  return renderDefList(paragraphInfo: info)
+                default:                        return renderParagraph(paragraphInfo: info)
             }
             //@f:1
         }
-
-        blockType = .Normal
-        return outs
+        return ""
     }
 
     //=============================================================================================================================
     ///
     ///
     /// - Parameters:
-    ///   - q:
+    ///   - info:
     ///   - paragraph:
     ///   - indent:
     ///   - prefix:
     ///   - btype:
     /// - Returns:
     ///
-    private func closeParagraph(workers q: inout Workers, paragraph: String = "", indent: String = "", prefix: String = "", blockType btype: BlockType) -> String {
-        var outs: String = ""
-
-        if q.startup {
-            q.startup = false
-        }
-        else {
-            outs = processParagraph(workers: q)
-        }
-
-        blockType = btype
-        q.paragraph = paragraph
-        q.indent = indent
-        q.prefix = prefix
-
-        return outs
+    private func closeParagraph(paragraphInfo info: ParagraphInfo, paragraph: String = "", indent: String = "", prefix: String = "", paraType: ParagraphType) -> String {
+        var o: String = ""
+        if !info.startup { o = renderParagraph(paragraphInfo: info) }
+        resetParagraph(paragraphInfo: info, startup: false, paragraph: paragraph, indent: indent, prefix: prefix, paraType: paraType)
+        return o
     }
 
     //=============================================================================================================================
     ///
     ///
     /// - Parameters:
-    ///   - q:
+    ///   - info:
     ///   - startup:
     ///   - paragraph:
     ///   - indent:
     ///   - prefix:
     ///
-    private func resetBlock(workers q: inout Workers, startup: Bool = true, paragraph: String = "", indent: String = "", prefix: String = "") {
-        blockType = .Normal
-        q.paragraph = paragraph
-        q.indent = indent
-        q.prefix = prefix
-        q.startup = startup
+    private func resetParagraph(paragraphInfo info: ParagraphInfo, startup: Bool = true, paragraph: String = "", indent: String = "", prefix: String = "", paraType: ParagraphType = .Normal) {
+        self.paraType = paraType
+        info.paragraph = paragraph
+        info.prefix = prefix
+        info.indent = indent
+        info.startup = startup
     }
 
     //=============================================================================================================================

@@ -27,10 +27,19 @@ let htmlRx2: NSRegularExpression = try! regexML(pattern: "(\\w+)=\"([^\"]*)\"")
 let htmlRx3: NSRegularExpression = try! regexML(pattern: #"([&<>"]|(?:\r\n?|\n)|[\u0000-\u001f\u0026\u003c\u003e\u007f\u00a0-\u00b6\u00b8-\u00ff\u0152-\u0153\u0160-\u0161\u0178\u0192\u02c6\u02dc\u0391-\u03a1\u03a3-\u03a9\u03b1-\u03c9\u03d1-\u03d2\u03d6\u2002-\u2003\u2009\u200c-\u200f\u2013-\u2014\u2018-\u201a\u201c-\u201e\u2020-\u2022\u2026\u2030\u2032-\u2033\u2039-\u203a\u203e\u20ac\u2122\u2190-\u2194\u21b5\u2200\u2202-\u2203\u2205\u2207-\u2209\u220b\u220f\u2211-\u2212\u2217\u221a\u221d-\u221e\u2220\u2227-\u222b\u2234\u223c\u2245\u2248\u2260-\u2261\u2264-\u2265\u2282-\u2284\u2286-\u2287\u2295\u2297\u22a5\u22c5\u2308-\u230b\u25ca\u2660\u2663\u2665-\u2666])"#)
 let htmlRx4: NSRegularExpression = try! regexML(pattern: #"&(#([0-9]{1,3})|[^;]+);"#)
 
+let htmlRx5: NSRegularExpression = try! regexML(pattern: "\\R")
+let htmlRx6: NSRegularExpression = try! regexML(pattern: "\\s+(<\(BELEMS))(?=\\s|>)")
+let htmlRx7: NSRegularExpression = try! regexML(pattern: "(</\(BELEMS)>)\\s+")
+
 let htmlSymbols: [String: String] = [
     "lt": "<", "gt": ">", "amp": "&", "quot": "\"",
 ]
 
+let blockElements: [String] = [
+    "p", "div", "table", "dl", "ol", "ul", "h1", "h2", "h3", "h4", "h5", "h6", "pre", "dt", "dd", "li", "dir", "address", "article", "aside", "blockquote", "center", "del", "figure",
+    "figcaption", "footer", "header", "hr", "ins", "main", "menu", "nav", "noscript", "section", "script"
+]
+// (p|div|table|dl|ol|ul|h1|h2|h3|h4|h5|h6|pre|dt|dd|li|dir|address|article|aside|blockquote|center|del|figure|figcaption|footer|header|hr|ins|main|menu|nav|noscript|section|script)
 //=================================================================================================================================
 ///
 /// HTML
@@ -64,6 +73,8 @@ class HTMLElement {
         }
     }
 
+    var isBlock: Bool { blockElements.contains(name) }
+
     func addChild(child: HTMLElement) {
         children.append(child)
         child.parent = self
@@ -92,10 +103,11 @@ class HTMLText: HTMLElement {
 /// - Parameter string:
 /// - Returns:
 ///
-func scanHTML(string: String) -> HTMLElement? {
-    var index: Int           = 0
-    var curr:  HTMLElement?  = nil
-    var stack: [HTMLElement] = []
+func scanHTML(string str: String) -> HTMLElement? {
+    var index:  Int           = 0
+    var curr:   HTMLElement?  = nil
+    var stack:  [HTMLElement] = []
+    let string: String        = htmlRx7.stringByReplacingMatches(in: htmlRx6.stringByReplacingMatches(in: htmlRx5.stringByReplacingMatches(in: str, withTemplate: " "), withTemplate: "$1"), withTemplate: "$1")
 
     htmlRx1.enumerateMatches(in: string) {
         (m: NSTextCheckingResult?, _, _) in

@@ -16,7 +16,7 @@ class PGDocFixerTests: XCTestCase {
     override func tearDownWithError() throws {}
 
     func testProcessDocument() throws {
-        let results: [String] = try! processDocument(filenames: [ "/Users/grhodes/Projects/2020/SwiftProjects/PGSwiftDOM/PGSwiftDOM/Source/PGDOMDocument.swift" ],
+        let results: [String] = try! processDocument(filenames: [ "/Users/grhodes/Projects/2020/SwiftProjects/PGSwiftDOM/PGSwiftDOM/Source/DTD.swift" ],
                                                      findsAndReplacements: SIMPLEONES,
                                                      lineLength: 132)
 
