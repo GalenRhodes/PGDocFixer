@@ -1,9 +1,9 @@
 /************************************************************************//**
  *     PROJECT: PGDocFixer
- *    FILENAME: RegexRepl.swift
+ *    FILENAME: DocFixerErrors.swift
  *         IDE: AppCode
  *      AUTHOR: Galen Rhodes
- *        DATE: 4/15/20
+ *        DATE: 4/28/20
  *
  * Copyright © 2020 Project Galen. All rights reserved.
  *
@@ -22,31 +22,17 @@
 
 import Foundation
 
-//=================================================================================================================================
 ///
 ///
-public class RegexRepl {
-    public let regex: NSRegularExpression
-    public let repl:  String
-
-    //=============================================================================================================================
-    ///
-    ///
-    /// - Parameters:
-    ///   - pattern:
-    ///   - repl:
-    ///
-    public init(pattern: String, repl: String) {
-        self.regex = try! regexML(pattern: pattern)
-        self.repl = repl
-    }
-
-    //=============================================================================================================================
-    ///
-    ///
-    /// - Parameter str:
-    /// - Returns:
-    ///
-    public func replace(string str: String) -> String { regex.stringByReplacingMatches(in: str, withTemplate: repl) }
+/// - FileNotFound:
+///
+public enum DocFixerErrors: Error {
+    case FileNotFound(description: String)
+    case FailedProc(description: String)
+    case FailedArchive(description: String)
+    case FailedUnarchive(description: String)
+    case FailedSave(description: String)
+    case FailedLoad(description: String)
+    case UnknownError(description: String)
 }
 

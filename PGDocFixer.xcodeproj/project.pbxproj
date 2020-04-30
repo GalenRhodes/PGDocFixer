@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1117D0E3BB197AD2FD9E05F0 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D968994A4DED5D37C704 /* Data.swift */; };
+		1117D22A24E2EE0138D1DCAE /* DocFixerErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D7A9628DA2A4CCEE56FD /* DocFixerErrors.swift */; };
 		1117D51E7E6725893C595B2B /* DocFixer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D443A634A0C26EA17BE4 /* DocFixer.swift */; };
 		1117D5A6422065F8F9B5B54D /* Alignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DE06CDA5579752C47756 /* Alignment.swift */; };
 		1117D5F2A7988B283B3166BF /* RegexRepl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DB9E1DFAE6BB7F0DB50C /* RegexRepl.swift */; };
 		1117D96D85DFEF14F3C41A9D /* html.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DA7ADB70E03186030641 /* html.swift */; };
+		1117DA6154774A8277A5B7E5 /* SwiftSourceDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D0A404256D220788F60F /* SwiftSourceDocument.swift */; };
 		1117DAC74125389822CE1CFF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D6965A311ACEE3A083C0 /* Extensions.swift */; };
 		1117DB75B1882950FFC424B1 /* Stuff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D7FAE545175D2FDBF113 /* Stuff.swift */; };
 		1117DCF7B7092AD263E86594 /* DLItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DE88199E943212B2FB40 /* DLItem.swift */; };
@@ -32,11 +34,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1117D0A404256D220788F60F /* SwiftSourceDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSourceDocument.swift; sourceTree = "<group>"; };
 		1117D1BBF5134CFA7C12C568 /* build.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
 		1117D286AD84791468A340DA /* WordWrap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordWrap.swift; sourceTree = "<group>"; };
 		1117D443A634A0C26EA17BE4 /* DocFixer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocFixer.swift; sourceTree = "<group>"; };
 		1117D6965A311ACEE3A083C0 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1117D6D3214BF146E16C40A8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		1117D7A9628DA2A4CCEE56FD /* DocFixerErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocFixerErrors.swift; sourceTree = "<group>"; };
 		1117D7FAE545175D2FDBF113 /* Stuff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stuff.swift; sourceTree = "<group>"; };
 		1117D968994A4DED5D37C704 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		1117DA7ADB70E03186030641 /* html.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = html.swift; sourceTree = "<group>"; };
@@ -81,6 +85,8 @@
 				1117DE06CDA5579752C47756 /* Alignment.swift */,
 				1117DB9E1DFAE6BB7F0DB50C /* RegexRepl.swift */,
 				1117DE88199E943212B2FB40 /* DLItem.swift */,
+				1117D0A404256D220788F60F /* SwiftSourceDocument.swift */,
+				1117D7A9628DA2A4CCEE56FD /* DocFixerErrors.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -242,6 +248,8 @@
 				1117D5A6422065F8F9B5B54D /* Alignment.swift in Sources */,
 				1117D5F2A7988B283B3166BF /* RegexRepl.swift in Sources */,
 				1117DCF7B7092AD263E86594 /* DLItem.swift in Sources */,
+				1117DA6154774A8277A5B7E5 /* SwiftSourceDocument.swift in Sources */,
+				1117D22A24E2EE0138D1DCAE /* DocFixerErrors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +409,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = com.projectgalen.PGDocFixer;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -425,6 +434,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = com.projectgalen.PGDocFixer;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

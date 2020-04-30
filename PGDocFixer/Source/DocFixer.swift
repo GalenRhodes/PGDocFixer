@@ -54,15 +54,6 @@ let NORMAL_FIND_REPLACE: [RegexRepl] = [
 ]
 //@f:1
 
-///
-///
-/// - FileNotFound:
-///
-public enum DocFixerErrors: Error {
-    ///
-    case FileNotFound(description: String)
-}
-
 //=============================================================================================================================
 ///
 ///
@@ -122,6 +113,9 @@ class ParagraphInfo {
     }
 }
 
+///
+/// The main guy.
+///
 public class PGDocFixer {
     static let rxLead: String = "^([ \\t]*///[ \\t]+)"
     static let rxLine: String = "\(rxLead)((([|+*-])[ \\t]?)?(.+?))[ \\t]*\\R"
@@ -139,6 +133,7 @@ public class PGDocFixer {
     let twoThirdsMaxLineLength: Int
     let tablesAsMarkdown:       Bool
     let findReplace:            [RegexRepl]
+    let docOutput:              CommentDocType
 
     //=============================================================================================================================
     /// <code> and <pre> sections can extend across several blocks so we need to let the code that only knows about a single block
@@ -154,11 +149,12 @@ public class PGDocFixer {
     ///   - findAndReplace:
     ///   - lineLength:
     ///
-    init(findAndReplace: [RegexRepl], lineLength: Int = 132) {
+    init(findAndReplace: [RegexRepl], tablesAsMarkdown: Bool = false, docOutput: CommentDocType = .Slashes, lineLength: Int = 132) {
         self.maxLineLength = lineLength
         self.twoThirdsMaxLineLength = ((lineLength * 2) / 3)
         self.findReplace = findAndReplace
-        self.tablesAsMarkdown = false
+        self.tablesAsMarkdown = tablesAsMarkdown
+        self.docOutput = docOutput
     }
 
     //=============================================================================================================================
@@ -912,22 +908,140 @@ public class PGDocFixer {
     ///
     func processDocument(filename: String) throws -> String {
         do {
-            var indx: Int    = 0
-            var outs: String = ""
-            let data: String = try String(contentsOfFile: filename, encoding: String.Encoding.utf8)
-
-            rx1.enumerateMatches(in: data) {
-                (m: NSTextCheckingResult?, _, _) in
-                if let m: NSTextCheckingResult = m {
-                    let r: NSRange = m.range
-                    outs += data.getPreMatch(start: &indx, range: r) + processBlock(block: data.substr(range: r))
-                }
-            }
-
-            return outs + data.substr(from: indx)
+            let rx:   NSRegularExpression = try! regexML(pattern: #"^([ \t]*)//\*{20,}\R"#)
+            let data: String              = convertCommentBlocks(data: rx.stringByReplacingMatches(in: try String(contentsOfFile: filename, encoding: String.Encoding.utf8), withTemplate: ""))
+            let outs: String              = processDocument(data: data)
+            return (docOutput == .Slashes ? outs : restoreCommentBlocks(data: outs, empty: (docOutput == .StarsEmpty)))
         }
         catch {
             throw DocFixerErrors.FileNotFound(description: "The file could not be found: \(filename)")
         }
+    }
+
+    //=============================================================================================================================
+    ///
+    ///
+    /// - Parameter data:
+    /// - Returns:
+    ///
+    func processDocument(data: String) -> String {
+        var indx: Int    = 0
+        var outs: String = ""
+
+        rx1.enumerateMatches(in: data) {
+            (m: NSTextCheckingResult?, _, _) in
+            if let m: NSTextCheckingResult = m {
+                let r: NSRange = m.range
+                outs += data.getPreMatch(start: &indx, range: r) + processBlock(block: data.substr(range: r))
+            }
+        }
+
+        return outs + data.substr(from: indx)
+    }
+
+    //=============================================================================================================================
+    private func convertCommentBlocks(data: String) -> String {
+        var indx: Int                 = 0
+        var outs: String              = ""
+        let rx:   NSRegularExpression = try! regexML(pattern: #"^([ \t]*)(?:/\*={20,}\*/(?:\R[ \t]*)?)?/\*\*\R((.*\R)*?)\1 \*/\R"#)
+
+        rx.enumerateMatches(in: data) {
+            (m: NSTextCheckingResult?, _, _) in
+            if let m: NSTextCheckingResult = m {
+                let indent:  String = data.substr(range: m.range(at: 1))
+                let subData: String = data.substr(range: m.range(at: 2))
+
+                outs += data.getPreMatch(start: &indx, range: m.range) + "\(indent)///\n"
+                outs += convertCommentBlocks01(indent: indent, blockString: subData)
+                outs += "\(indent)///\n"
+            }
+        }
+
+        return outs + data.substr(from: indx)
+    }
+
+    //=============================================================================================================================
+    private func convertCommentBlocks01(indent: String, blockString str: String) -> String {
+        var outs: String              = ""
+        let rx:   NSRegularExpression = try! regexML(pattern: "^(?:\(indent)(?:   (.+)| \\* (.+)| \\*))?$")
+
+        rx.enumerateMatches(in: str) {
+            (m: NSTextCheckingResult?, _, _) in
+            if let m: NSTextCheckingResult = m {
+                let r1:    NSRange = m.range(at: 1)
+                let r2:    NSRange = m.range(at: 2)
+                let r1Bad: Bool    = (r1.location == NSNotFound)
+                let r2Bad: Bool    = (r2.location == NSNotFound)
+                let s:     String  = ((r1Bad && r2Bad) ? "" : str.substr(range: (r1Bad ? r2 : r1)))
+
+                outs += "\(indent)/// \(s)\n"
+            }
+        }
+
+        return outs
+    }
+
+    //=============================================================================================================================
+    private func restoreCommentBlocks(data: String, empty: Bool = false) -> String {
+        var indx: Int                 = 0
+        var outs: String              = ""
+        let rxz:  NSRegularExpression = try! regexML(pattern: "^(([ \\t]*)///).*\\R(\\1.*\\R)*")
+
+        rxz.enumerateMatches(in: data) {
+            (m: NSTextCheckingResult?, _, _) in
+            if let m: NSTextCheckingResult = m {
+                let r: NSRange = m.range
+                outs += data.getPreMatch(start: &indx, range: r)
+                outs += restoreCommentBlocks01(indent: data.substr(range: m.range(at: 2)), blockString: data.substr(range: r), empty: empty)
+            }
+        }
+
+        return outs + data.substr(from: indx)
+    }
+
+    //=============================================================================================================================
+    private func restoreCommentBlocks01(indent: String, blockString str: String, empty: Bool = false) -> String {
+        let rxy:       NSRegularExpression = try! regexML(pattern: "^([ \\t]*)///[ \\t]?(.*)")
+        var doLeading: Bool                = true
+        var skipNext:  Bool                = false
+        var lastLine:  String              = ""
+        var _outs:     String              = ""
+        let zzTop:     String              = "\(indent)/*".padding(toLength: 127, withPad: "==========")
+
+        _outs += "\(zzTop)*//**\n"
+
+        rxy.enumerateMatches(in: str) {
+            (m2: NSTextCheckingResult?, _, _) in
+            if let m2: NSTextCheckingResult = m2 {
+                let content: String = str.substr(range: m2.range(at: 2))
+
+                if doLeading {
+                    doLeading = false
+                    if content != "" {
+                        lastLine = content
+                    }
+                    else {
+                        skipNext = true
+                    }
+                }
+                else {
+                    if skipNext {
+                        skipNext = false
+                    }
+                    else if lastLine == "" {
+                        _outs += empty ? "\n" : "\(indent) *\n"
+                    }
+                    else {
+                        _outs += empty ? "\(indent)   \(lastLine)\n" : "\(indent) * \(lastLine)\n"
+                    }
+                    lastLine = content
+                }
+            }
+        }
+
+        if lastLine != "" {
+            _outs += "\(indent)   \(lastLine)\n"
+        }
+        return _outs + "\(indent) */\n"
     }
 }

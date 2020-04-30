@@ -22,6 +22,12 @@
 
 import Foundation
 
+public enum CommentDocType {
+    case Slashes
+    case Stars
+    case StarsEmpty
+}
+
 //=================================================================================================================================
 ///
 /// Get all of the Swift source files under the given directory `workPath`.  Each file must be older than the file at the given
@@ -91,6 +97,21 @@ func regexML(pattern: String) throws -> NSRegularExpression {
 ///
 ///
 /// - Parameters:
+///   - filename: the filename of the source code file to process.
+///   - findsAndReplacements: any extra matches and replacements to use.
+///   - lineLength: the max line length used for word wrapping.
+///
+/// - Returns: The processed file.
+/// - Throws: `DocFixerErrors.FileNotFound(description:)` if the file was not found or could not be loaded.
+///
+func processDocument(filename: String, findsAndReplacements: [RegexRepl] = [], docOutput: CommentDocType = .Slashes, lineLength: Int = 132) throws -> String {
+    try processDocument(filenames: [ filename ], findsAndReplacements: findsAndReplacements, docOutput: docOutput, lineLength: lineLength)[0]
+}
+
+//==========================================================================================================================================
+///
+///
+/// - Parameters:
 ///   - filenames: the filenames of the source code files to process.
 ///   - findsAndReplacements: any extra matches and replacements to use.
 ///   - lineLength: the max line length used for word wrapping.
@@ -98,8 +119,8 @@ func regexML(pattern: String) throws -> NSRegularExpression {
 /// - Returns: The processed files in the same order that their filenames were given.
 /// - Throws: `DocFixerErrors.FileNotFound(description:)` if the file was not found or could not be loaded.
 ///
-public func processDocument(filenames: [String], findsAndReplacements: [RegexRepl] = [], lineLength: Int = 132) throws -> [String] {
-    let docFixer: PGDocFixer = PGDocFixer(findAndReplace: findsAndReplacements, lineLength: lineLength)
+func processDocument(filenames: [String], findsAndReplacements: [RegexRepl] = [], docOutput: CommentDocType = .Slashes, lineLength: Int = 132) throws -> [String] {
+    let docFixer: PGDocFixer = PGDocFixer(findAndReplace: findsAndReplacements, docOutput: docOutput, lineLength: lineLength)
     var output:   [String]   = []
 
     for filename: String in filenames {
@@ -113,32 +134,142 @@ public func processDocument(filenames: [String], findsAndReplacements: [RegexRep
 ///
 ///
 /// - Parameters:
-///   - filename: the filename of the source code file to process.
-///   - findsAndReplacements: any extra matches and replacements to use.
-///   - lineLength: the max line length used for word wrapping.
-///
-/// - Returns: The processed file.
-/// - Throws: `DocFixerErrors.FileNotFound(description:)` if the file was not found or could not be loaded.
-///
-public func processDocument(filename: String, findsAndReplacements: [RegexRepl] = [], lineLength: Int = 132) throws -> String {
-    try processDocument(filenames: [ filename ], findsAndReplacements: findsAndReplacements, lineLength: lineLength)[0]
-}
-
-//==========================================================================================================================================
-///
-///
-/// - Parameters:
 ///   - path:
 ///   - matchAndReplace:
 ///   - lineLength:
 /// - Throws: `DocFixerErrors.FileNotFound(description:)` if the file was not found or could not be loaded.
 ///
-public func docFixer(path: String, matchAndReplace: [RegexRepl] = [], lineLength: Int = 132) throws {
-    let logFile:  String          = "./runlog.txt"
-    let encoding: String.Encoding = String.Encoding.utf8
-    let list:     [String]        = getFileList(path: path, logFile: logFile)
-    let results:  [String]        = try processDocument(filenames: list, findsAndReplacements: matchAndReplace, lineLength: lineLength)
+public func docFixer(path: String,
+                     matchAndReplace: [RegexRepl] = [],
+                     encoding: String.Encoding = String.Encoding.utf8,
+                     logFile: String = "./runlog.txt",
+                     docOutput: CommentDocType = .Slashes,
+                     lineLength: Int = 132) throws {
+    try docFixerII(path: path, matchAndReplace: matchAndReplace, encoding: encoding, logFile: logFile, archive: "./SourceArchive.tar", docOutput: docOutput, lineLength: lineLength)
+}
 
-    for (i, str): (Int, String) in results.enumerated() { try str.write(toFile: list[i], atomically: true, encoding: encoding) }
-    try "\(NSDate())".write(toFile: logFile, atomically: true, encoding: encoding)
+func archiveSources(documents: SwiftSourceDocumentList, archive: String = "./DocumentArchive.tar") throws {
+    let exec: String   = try which(prg: "tar")
+    var args: [String] = [ "cvf", archive ]
+
+    for source: SwiftSourceDocument in documents {
+        args.append(source.filename)
+    }
+
+    if !execute(exec: exec, args: args) { throw DocFixerErrors.FailedArchive(description: "Failed to archive documents before fixing") }
+}
+
+func unarchiveSources(archive: String = "./DocumentArchive.tar") throws {
+    let exec: String = try which(prg: "tar")
+    if !execute(exec: exec, args: [ "xvf", archive ]) { throw DocFixerErrors.FailedArchive(description: "Failed to unarchive documents after error.") }
+
+    do { try FileManager.default.removeItem(at: URL(fileURLWithPath: archive)) }
+    catch let e { print("\(e)") }
+}
+
+func execute(exec: String, args: [String], stderr: inout String, stdout: inout String) -> Bool {
+    stderr = ""
+    stdout = ""
+
+    let proc: Process = Process()
+    proc.executableURL = URL(fileURLWithPath: exec)
+    proc.arguments = args
+    proc.standardError = Pipe()
+    proc.standardOutput = Pipe()
+
+    do {
+        try proc.run()
+    }
+    catch let e {
+        stderr = "\(e)"
+        return false
+    }
+
+    proc.waitUntilExit()
+
+    stderr = String(data: (proc.standardError! as! Pipe).fileHandleForReading.readDataToEndOfFile(), encoding: String.Encoding.utf8) ?? ""
+    stdout = String(data: (proc.standardOutput! as! Pipe).fileHandleForReading.readDataToEndOfFile(), encoding: String.Encoding.utf8) ?? ""
+
+    return (proc.terminationStatus == 0)
+}
+
+func execute(exec: String, args: [String]) -> Bool {
+    let proc: Process = Process()
+    proc.executableURL = URL(fileURLWithPath: exec)
+    proc.arguments = args
+    proc.standardError = FileHandle.standardError
+    proc.standardOutput = FileHandle.standardOutput
+
+    do {
+        try proc.run()
+    }
+    catch let e {
+        try? "\(e)".write(toFile: "/dev/stderr", atomically: false, encoding: String.Encoding.utf8)
+        return false
+    }
+
+    proc.waitUntilExit()
+
+    return (proc.terminationStatus == 0)
+}
+
+func dumpOutput(stdout: String, stderr: String) {
+    print(stdout)
+    try? stderr.write(toFile: "/dev/stderr", atomically: false, encoding: String.Encoding.utf8)
+}
+
+func which(prg: String) throws -> String {
+    var stdout: String = ""
+    var stderr: String = ""
+    if !execute(exec: "/bin/bash", args: [ "-c", "which \(prg)" ], stderr: &stderr, stdout: &stdout) { throw DocFixerErrors.FailedProc(description: "Failed to locate \"\(prg)\": \(stderr)") }
+    return stdout.trimmed
+}
+
+func executeJazzy() throws {
+    let jazzy: String = try which(prg: "jazzy")
+    print("Executing: \(jazzy)")
+    guard execute(exec: jazzy, args: []) else { throw DocFixerErrors.FailedProc(description: "Failed to execute Jazzy") }
+}
+
+public func docFixerII(path: String,
+                       matchAndReplace: [RegexRepl] = [],
+                       encoding: String.Encoding = String.Encoding.utf8,
+                       logFile: String = "./runlog.txt",
+                       archive: String = "./DocumentArchive.tar",
+                       docOutput: CommentDocType = .Slashes,
+                       lineLength: Int = 132) throws {
+    let list:      [String]                = getFileList(path: path, logFile: logFile)
+    var documents: SwiftSourceDocumentList = []
+
+    for filename in list {
+        documents.append(try SwiftSourceDocument(filename: filename))
+    }
+
+    try archiveSources(documents: documents)
+
+    do {
+        let docFixer: PGDocFixer = PGDocFixer(findAndReplace: matchAndReplace, docOutput: docOutput, lineLength: lineLength)
+
+        for document: SwiftSourceDocument in documents {
+            document.fixDocComments(fixer: docFixer)
+            try document.save()
+        }
+
+        try executeJazzy()
+
+        for document: SwiftSourceDocument in documents {
+            document.convertCommentDocs(to: docOutput, lineLength: lineLength)
+            try document.save()
+        }
+
+        try "\(NSDate())\n".write(toFile: logFile, atomically: true, encoding: encoding)
+    }
+    catch let e as DocFixerErrors {
+        try unarchiveSources()
+        throw e
+    }
+    catch let e {
+        try unarchiveSources()
+        throw DocFixerErrors.UnknownError(description: "\(e)")
+    }
 }

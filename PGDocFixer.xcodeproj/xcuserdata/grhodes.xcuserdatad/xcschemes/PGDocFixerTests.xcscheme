@@ -30,8 +30,9 @@
       </Testables>
    </TestAction>
    <LaunchAction
-      useCustomWorkingDirectory = "NO"
-      allowLocationSimulation = "YES">
+      useCustomWorkingDirectory = "YES"
+      allowLocationSimulation = "YES"
+      customWorkingDirectory = "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon">
       <LocationScenarioReference
          identifier = "com.apple.dt.IDEFoundation.CurrentLocationScenarioIdentifier"
          referenceType = "1">

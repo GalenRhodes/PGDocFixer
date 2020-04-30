@@ -42,7 +42,7 @@ fileprivate final class LineBuilder {
     }
 
     private func addWord(_ str: String) {
-        if (line.count + str.count + 1) <= lineLength {
+        if (line.count + str.count + 1) < lineLength {
             if f {
                 line += str
                 f = false
