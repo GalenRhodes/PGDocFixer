@@ -45,15 +45,98 @@ final public class LogDestination: TextOutputStream {
 
 public var errorLog: LogDestination = LogDestination()
 
+let a:                   String      = "(?<!\\w|\\.|/|\\[|@link[01] )\\`?"
+let b:                   String      = "\\`?(?!\\w|\\]|\\)|\\})"
+let u1:                  String      = "https://developer.apple.com/documentation/swift/"
+let u2:                  String      = "https://developer.apple.com/documentation/foundation/"
+
 //@f:0
 let NORMAL_FIND_REPLACE: [RegexRepl] = [
-    RegexRepl(pattern: "<code>([^<]+)</code>",                      repl: "`$1`"),
-    RegexRepl(pattern: "(?<!\\w)(null)(?!\\w)",                     repl: "`nil`"),
-    RegexRepl(pattern: "(?<!\\w|`)([Tt]rue|[Ff]alse)(?!\\w|`)",     repl: "`$1`"),
-    RegexRepl(pattern: "\\`(\\[[^]]+\\]\\([^)]+\\))\\`",            repl: "<code>$1</code>"),
-    RegexRepl(pattern: "", repl: "[]()")
+    RegexRepl(pattern: "<code>([^<]+)</code>"                 , repl: "`$1`")           ,
+    RegexRepl(pattern: "(?<!\\w)(null)(?!\\w)"                , repl: "`nil`")          ,
+    RegexRepl(pattern: "(?<!\\w|`)([Tt]rue|[Ff]alse)(?!\\w|`)", repl: "`$1`")           ,
+    RegexRepl(pattern: "\\`(\\[[^]]+\\]\\([^)]+\\))\\`"       , repl: "<code>$1</code>"),
+    RegexRepl(pattern: "\\{\\@link0 ([^}]+)\\}"               , repl: "<code>[$1](https://developer.apple.com/documentation/swift/$1)</code>"),
+    RegexRepl(pattern: "\\{\\@link1 ([^}]+)\\}"               , repl: "<code>[$1](https://developer.apple.com/documentation/foundation/$1)</code>"),
+]
+
+/// {@link0 String}
+let URL_PREFIX: [String] = [ u1, u2 ]
+
+let URL_REPLACEMENTS: [String: Int] = [
+    "String"                       : 0,
+    "Data"                         : 1,
+    "Int"                          : 0,
+    "Int32"                        : 0,
+    "Int64"                        : 0,
+    "Int16"                        : 0,
+    "Int8"                         : 0,
+    "UInt"                         : 0,
+    "UInt32"                       : 0,
+    "UInt64"                       : 0,
+    "UInt16"                       : 0,
+    "UInt8"                        : 0,
+    "Float"                        : 0,
+    "Float80"                      : 0,
+    "Float16"                      : 0,
+    "Double"                       : 0,
+    "Array"                        : 0,
+    "Dictionary"                   : 0,
+    "Set"                          : 0,
+    "Bool"                         : 0,
+    "Range"                        : 0,
+    "ClosedRange"                  : 0,
+    "Error"                        : 0,
+    "Result"                       : 0,
+    "Optional"                     : 0,
+    "SystemRandomNumberGenerator"  : 0,
+    "RandomNumberGenerator"        : 0,
+    "Character"                    : 0,
+    "Unicode"                      : 0,
+    "Unicode.Scalar"               : 0,
+    "Unicode.ASCII"                : 0,
+    "Unicode.UTF8"                 : 0,
+    "Unicode.UTF16"                : 0,
+    "Unicode.UTF32"                : 0,
+    "Unicode.Encoding"             : 0,
+    "UTF8"                         : 0,
+    "UTF16"                        : 0,
+    "UTF32"                        : 0,
+    "UnicodeScalar"                : 0,
+    "NSRegularExpression"          : 1,
+    "InputStream"                  : 1,
+    "OutputStream"                 : 1,
+    "Stream"                       : 1,
+    "UnsafePoint"                  : 0,
+    "UnsafeMutablePointer"         : 0,
+    "UnsafeBufferPointer"          : 0,
+    "UnsafeMutableBufferPointer"   : 0,
+    "UnsafeRawPoint"               : 0,
+    "UnsafeMutableRawPointer"      : 0,
+    "UnsafeRawBufferPointer"       : 0,
+    "UnsafeMutableRawBufferPointer": 0,
 ]
 //@f:1
+
+func addUrlsToFindAndReplace() -> [RegexRepl] {
+    var list: [RegexRepl]         = NORMAL_FIND_REPLACE
+    let rx:   NSRegularExpression = try! NSRegularExpression(pattern: "\\.")
+    let keys: [String] = URL_REPLACEMENTS.keys.sorted { (s1: String, s2: String) in s1.count > s2.count }
+
+    for name in keys {
+        let patt: String = "\(a)\(NSRegularExpression.escapedPattern(for: name))\(b)"
+
+        if let i: Int = URL_REPLACEMENTS[name] {
+            let pfx: String = URL_PREFIX[i]
+            let sfx: String = rx.stringByReplacingMatches(in: name.lowercased(), withTemplate: "/")
+            let rep: String = NSRegularExpression.escapedTemplate(for: "<code>[\(name)](\(pfx)\(sfx)/)</code>")
+
+            list.append(RegexRepl(pattern: patt, repl: rep))
+        }
+    }
+
+    return list
+}
 
 //=============================================================================================================================
 ///
@@ -883,7 +966,7 @@ public class PGDocFixer {
     /// - Returns:
     ///
     func doSimpleOnes(string str: String) -> String {
-        rxFinal.stringByReplacingMatches(in: doSimpleOnes(string: doSimpleOnes(string: str, findReplace: findReplace), findReplace: NORMAL_FIND_REPLACE), withTemplate: "`")
+        rxFinal.stringByReplacingMatches(in: doSimpleOnes(string: doSimpleOnes(string: str, findReplace: findReplace), findReplace: addUrlsToFindAndReplace()), withTemplate: "`")
     }
 
     //=============================================================================================================================

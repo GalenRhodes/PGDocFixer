@@ -188,7 +188,7 @@ public func docFixer(path: String,
     if list.count > 0 {
         var documents: SwiftSourceDocumentList = []
 
-        for filename in list {
+        for filename: String in list {
             documents.append(try SwiftSourceDocument(filename: filename))
         }
 
