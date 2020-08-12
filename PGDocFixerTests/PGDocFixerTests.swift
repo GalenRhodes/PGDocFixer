@@ -16,6 +16,6 @@ class PGDocFixerTests: XCTestCase {
     override func tearDownWithError() throws {}
 
     func testProcessDocument() throws {
-        try docFixerII(path: "Rubicon", matchAndReplace: [], logFile: "./runlogtest.txt", docOutput: .Slashes, lineLength: 132)
+        try docFixer(path: "Rubicon", matchAndReplace: [], logFile: "./runlogtest.txt", docOutput: .Slashes, lineLength: 132)
     }
 }

@@ -406,6 +406,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
+					"@executable_path",
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
@@ -431,6 +432,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
+					"@executable_path",
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);

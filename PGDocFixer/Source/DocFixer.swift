@@ -51,6 +51,7 @@ let NORMAL_FIND_REPLACE: [RegexRepl] = [
     RegexRepl(pattern: "(?<!\\w)(null)(?!\\w)",                     repl: "`nil`"),
     RegexRepl(pattern: "(?<!\\w|`)([Tt]rue|[Ff]alse)(?!\\w|`)",     repl: "`$1`"),
     RegexRepl(pattern: "\\`(\\[[^]]+\\]\\([^)]+\\))\\`",            repl: "<code>$1</code>"),
+    RegexRepl(pattern: "", repl: "[]()")
 ]
 //@f:1
 
