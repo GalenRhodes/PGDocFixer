@@ -3,156 +3,174 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		"PGDocFixer::PGDocFixerPackageTests::ProductTarget" /* PGDocFixerPackageTests */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = OBJ_51 /* Build configuration list for PBXAggregateTarget "PGDocFixerPackageTests" */;
+			buildPhases = (
+			);
+			dependencies = (
+				OBJ_54 /* PBXTargetDependency */,
+			);
+			name = PGDocFixerPackageTests;
+			productName = PGDocFixerPackageTests;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
-		1117D0E3BB197AD2FD9E05F0 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D968994A4DED5D37C704 /* Data.swift */; };
-		1117D22A24E2EE0138D1DCAE /* DocFixerErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D7A9628DA2A4CCEE56FD /* DocFixerErrors.swift */; };
-		1117D51E7E6725893C595B2B /* DocFixer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D443A634A0C26EA17BE4 /* DocFixer.swift */; };
-		1117D5A6422065F8F9B5B54D /* Alignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DE06CDA5579752C47756 /* Alignment.swift */; };
-		1117D5F2A7988B283B3166BF /* RegexRepl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DB9E1DFAE6BB7F0DB50C /* RegexRepl.swift */; };
-		1117D96D85DFEF14F3C41A9D /* html.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DA7ADB70E03186030641 /* html.swift */; };
-		1117DA6154774A8277A5B7E5 /* SwiftSourceDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D0A404256D220788F60F /* SwiftSourceDocument.swift */; };
-		1117DAC74125389822CE1CFF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D6965A311ACEE3A083C0 /* Extensions.swift */; };
-		1117DB75B1882950FFC424B1 /* Stuff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D7FAE545175D2FDBF113 /* Stuff.swift */; };
-		1117DCF7B7092AD263E86594 /* DLItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DE88199E943212B2FB40 /* DLItem.swift */; };
-		1117DE57603C53114778A63F /* WordWrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D286AD84791468A340DA /* WordWrap.swift */; };
-		83ECEA65243F7B42004BB0FD /* PGDocFixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83ECEA5B243F7B42004BB0FD /* PGDocFixer.framework */; };
-		83ECEA6A243F7B42004BB0FD /* PGDocFixerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83ECEA69243F7B42004BB0FD /* PGDocFixerTests.swift */; };
-		83ECEA6C243F7B42004BB0FD /* PGDocFixer.h in Headers */ = {isa = PBXBuildFile; fileRef = 83ECEA5E243F7B42004BB0FD /* PGDocFixer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		OBJ_33 /* Alignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Alignment.swift */; };
+		OBJ_34 /* DLItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* DLItem.swift */; };
+		OBJ_35 /* DocFixer.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* DocFixer.swift */; };
+		OBJ_36 /* DocFixerErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* DocFixerErrors.swift */; };
+		OBJ_37 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* Extensions.swift */; };
+		OBJ_38 /* RegexRepl.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* RegexRepl.swift */; };
+		OBJ_39 /* Stuff.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* Stuff.swift */; };
+		OBJ_40 /* SwiftSourceDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* SwiftSourceDocument.swift */; };
+		OBJ_41 /* WordWrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* WordWrap.swift */; };
+		OBJ_42 /* html.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* html.swift */; };
+		OBJ_49 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
+		OBJ_60 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* Data.swift */; };
+		OBJ_61 /* PGDocFixerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* PGDocFixerTests.swift */; };
+		OBJ_62 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* XCTestManifests.swift */; };
+		OBJ_64 /* PGDocFixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "PGDocFixer::PGDocFixer::Product" /* PGDocFixer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		83ECEA66243F7B42004BB0FD /* PBXContainerItemProxy */ = {
+		8372518A250C1605000921B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 83ECEA52243F7B42004BB0FD /* Project object */;
+			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 83ECEA5A243F7B42004BB0FD;
+			remoteGlobalIDString = "PGDocFixer::PGDocFixer";
 			remoteInfo = PGDocFixer;
+		};
+		8372518B250C1607000921B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "PGDocFixer::PGDocFixerTests";
+			remoteInfo = PGDocFixerTests;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1117D0A404256D220788F60F /* SwiftSourceDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSourceDocument.swift; sourceTree = "<group>"; };
-		1117D1BBF5134CFA7C12C568 /* build.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
-		1117D286AD84791468A340DA /* WordWrap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordWrap.swift; sourceTree = "<group>"; };
-		1117D443A634A0C26EA17BE4 /* DocFixer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocFixer.swift; sourceTree = "<group>"; };
-		1117D6965A311ACEE3A083C0 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		1117D6D3214BF146E16C40A8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		1117D7A9628DA2A4CCEE56FD /* DocFixerErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocFixerErrors.swift; sourceTree = "<group>"; };
-		1117D7FAE545175D2FDBF113 /* Stuff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stuff.swift; sourceTree = "<group>"; };
-		1117D968994A4DED5D37C704 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
-		1117DA7ADB70E03186030641 /* html.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = html.swift; sourceTree = "<group>"; };
-		1117DB9E1DFAE6BB7F0DB50C /* RegexRepl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegexRepl.swift; sourceTree = "<group>"; };
-		1117DE06CDA5579752C47756 /* Alignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alignment.swift; sourceTree = "<group>"; };
-		1117DE88199E943212B2FB40 /* DLItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DLItem.swift; sourceTree = "<group>"; };
-		83ECEA5B243F7B42004BB0FD /* PGDocFixer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PGDocFixer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		83ECEA5E243F7B42004BB0FD /* PGDocFixer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PGDocFixer.h; sourceTree = "<group>"; };
-		83ECEA5F243F7B42004BB0FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		83ECEA64243F7B42004BB0FD /* PGDocFixerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PGDocFixerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		83ECEA69243F7B42004BB0FD /* PGDocFixerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PGDocFixerTests.swift; sourceTree = "<group>"; };
-		83ECEA6B243F7B42004BB0FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8372518C250C16B2000921B4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		8372518D250C16B2000921B4 /* build.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
+		OBJ_10 /* Alignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Alignment.swift; path = Source/Alignment.swift; sourceTree = "<group>"; };
+		OBJ_11 /* DLItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DLItem.swift; path = Source/DLItem.swift; sourceTree = "<group>"; };
+		OBJ_12 /* DocFixer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DocFixer.swift; path = Source/DocFixer.swift; sourceTree = "<group>"; };
+		OBJ_13 /* DocFixerErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DocFixerErrors.swift; path = Source/DocFixerErrors.swift; sourceTree = "<group>"; };
+		OBJ_14 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Source/Extensions.swift; sourceTree = "<group>"; };
+		OBJ_15 /* RegexRepl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegexRepl.swift; path = Source/RegexRepl.swift; sourceTree = "<group>"; };
+		OBJ_16 /* Stuff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Stuff.swift; path = Source/Stuff.swift; sourceTree = "<group>"; };
+		OBJ_17 /* SwiftSourceDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SwiftSourceDocument.swift; path = Source/SwiftSourceDocument.swift; sourceTree = "<group>"; };
+		OBJ_18 /* WordWrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WordWrap.swift; path = Source/WordWrap.swift; sourceTree = "<group>"; };
+		OBJ_19 /* html.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = html.swift; path = Source/html.swift; sourceTree = "<group>"; };
+		OBJ_22 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		OBJ_23 /* PGDocFixerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PGDocFixerTests.swift; sourceTree = "<group>"; };
+		OBJ_24 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
+		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		"PGDocFixer::PGDocFixer::Product" /* PGDocFixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PGDocFixer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"PGDocFixer::PGDocFixerTests::Product" /* PGDocFixerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = PGDocFixerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		83ECEA58243F7B42004BB0FD /* Frameworks */ = {
+		OBJ_43 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 0;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		83ECEA61243F7B42004BB0FD /* Frameworks */ = {
+		OBJ_63 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 0;
 			files = (
-				83ECEA65243F7B42004BB0FD /* PGDocFixer.framework in Frameworks */,
+				OBJ_64 /* PGDocFixer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1117DF57D63FABB23E7EA904 /* Source */ = {
+		OBJ_20 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				1117D443A634A0C26EA17BE4 /* DocFixer.swift */,
-				1117DA7ADB70E03186030641 /* html.swift */,
-				1117D7FAE545175D2FDBF113 /* Stuff.swift */,
-				1117D6965A311ACEE3A083C0 /* Extensions.swift */,
-				1117D286AD84791468A340DA /* WordWrap.swift */,
-				1117DE06CDA5579752C47756 /* Alignment.swift */,
-				1117DB9E1DFAE6BB7F0DB50C /* RegexRepl.swift */,
-				1117DE88199E943212B2FB40 /* DLItem.swift */,
-				1117D0A404256D220788F60F /* SwiftSourceDocument.swift */,
-				1117D7A9628DA2A4CCEE56FD /* DocFixerErrors.swift */,
+				OBJ_21 /* PGDocFixerTests */,
 			);
-			path = Source;
-			sourceTree = "<group>";
+			name = Tests;
+			sourceTree = SOURCE_ROOT;
 		};
-		83ECEA51243F7B42004BB0FD = {
+		OBJ_21 /* PGDocFixerTests */ = {
 			isa = PBXGroup;
 			children = (
-				83ECEA5D243F7B42004BB0FD /* PGDocFixer */,
-				83ECEA68243F7B42004BB0FD /* PGDocFixerTests */,
-				83ECEA5C243F7B42004BB0FD /* Products */,
-				1117D1BBF5134CFA7C12C568 /* build.sh */,
-				1117D6D3214BF146E16C40A8 /* README.md */,
+				OBJ_22 /* Data.swift */,
+				OBJ_23 /* PGDocFixerTests.swift */,
+				OBJ_24 /* XCTestManifests.swift */,
 			);
-			sourceTree = "<group>";
+			name = PGDocFixerTests;
+			path = Tests/PGDocFixerTests;
+			sourceTree = SOURCE_ROOT;
 		};
-		83ECEA5C243F7B42004BB0FD /* Products */ = {
+		OBJ_25 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				83ECEA5B243F7B42004BB0FD /* PGDocFixer.framework */,
-				83ECEA64243F7B42004BB0FD /* PGDocFixerTests.xctest */,
+				"PGDocFixer::PGDocFixer::Product" /* PGDocFixer.framework */,
+				"PGDocFixer::PGDocFixerTests::Product" /* PGDocFixerTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
+			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		83ECEA5D243F7B42004BB0FD /* PGDocFixer */ = {
+		OBJ_5 /*  */ = {
 			isa = PBXGroup;
 			children = (
-				83ECEA5E243F7B42004BB0FD /* PGDocFixer.h */,
-				83ECEA5F243F7B42004BB0FD /* Info.plist */,
-				1117DF57D63FABB23E7EA904 /* Source */,
+				8372518D250C16B2000921B4 /* build.sh */,
+				8372518C250C16B2000921B4 /* README.md */,
+				OBJ_6 /* Package.swift */,
+				OBJ_7 /* Sources */,
+				OBJ_20 /* Tests */,
+				OBJ_25 /* Products */,
 			);
-			path = PGDocFixer;
+			name = "";
 			sourceTree = "<group>";
 		};
-		83ECEA68243F7B42004BB0FD /* PGDocFixerTests */ = {
+		OBJ_7 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				83ECEA69243F7B42004BB0FD /* PGDocFixerTests.swift */,
-				83ECEA6B243F7B42004BB0FD /* Info.plist */,
-				1117D968994A4DED5D37C704 /* Data.swift */,
+				OBJ_8 /* PGDocFixer */,
 			);
-			path = PGDocFixerTests;
-			sourceTree = "<group>";
+			name = Sources;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_8 /* PGDocFixer */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_10 /* Alignment.swift */,
+				OBJ_11 /* DLItem.swift */,
+				OBJ_12 /* DocFixer.swift */,
+				OBJ_13 /* DocFixerErrors.swift */,
+				OBJ_14 /* Extensions.swift */,
+				OBJ_15 /* RegexRepl.swift */,
+				OBJ_16 /* Stuff.swift */,
+				OBJ_17 /* SwiftSourceDocument.swift */,
+				OBJ_18 /* WordWrap.swift */,
+				OBJ_19 /* html.swift */,
+			);
+			name = PGDocFixer;
+			path = Sources/PGDocFixer;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		83ECEA56243F7B42004BB0FD /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				83ECEA6C243F7B42004BB0FD /* PGDocFixer.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
-		83ECEA5A243F7B42004BB0FD /* PGDocFixer */ = {
+		"PGDocFixer::PGDocFixer" /* PGDocFixer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 83ECEA6F243F7B42004BB0FD /* Build configuration list for PBXNativeTarget "PGDocFixer" */;
+			buildConfigurationList = OBJ_29 /* Build configuration list for PBXNativeTarget "PGDocFixer" */;
 			buildPhases = (
-				83ECEA56243F7B42004BB0FD /* Headers */,
-				83ECEA57243F7B42004BB0FD /* Sources */,
-				83ECEA58243F7B42004BB0FD /* Frameworks */,
-				83ECEA59243F7B42004BB0FD /* Resources */,
+				OBJ_32 /* Sources */,
+				OBJ_43 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -160,137 +178,131 @@
 			);
 			name = PGDocFixer;
 			productName = PGDocFixer;
-			productReference = 83ECEA5B243F7B42004BB0FD /* PGDocFixer.framework */;
+			productReference = "PGDocFixer::PGDocFixer::Product" /* PGDocFixer.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		83ECEA63243F7B42004BB0FD /* PGDocFixerTests */ = {
+		"PGDocFixer::PGDocFixerTests" /* PGDocFixerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 83ECEA72243F7B42004BB0FD /* Build configuration list for PBXNativeTarget "PGDocFixerTests" */;
+			buildConfigurationList = OBJ_56 /* Build configuration list for PBXNativeTarget "PGDocFixerTests" */;
 			buildPhases = (
-				83ECEA60243F7B42004BB0FD /* Sources */,
-				83ECEA61243F7B42004BB0FD /* Frameworks */,
-				83ECEA62243F7B42004BB0FD /* Resources */,
+				OBJ_59 /* Sources */,
+				OBJ_63 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				83ECEA67243F7B42004BB0FD /* PBXTargetDependency */,
+				OBJ_65 /* PBXTargetDependency */,
 			);
 			name = PGDocFixerTests;
 			productName = PGDocFixerTests;
-			productReference = 83ECEA64243F7B42004BB0FD /* PGDocFixerTests.xctest */;
+			productReference = "PGDocFixer::PGDocFixerTests::Product" /* PGDocFixerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		"PGDocFixer::SwiftPMPackageDescription" /* PGDocFixerPackageDescription */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_45 /* Build configuration list for PBXNativeTarget "PGDocFixerPackageDescription" */;
+			buildPhases = (
+				OBJ_48 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PGDocFixerPackageDescription;
+			productName = PGDocFixerPackageDescription;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		83ECEA52243F7B42004BB0FD /* Project object */ = {
+		OBJ_1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1140;
-				LastUpgradeCheck = 1140;
-				ORGANIZATIONNAME = "Project Galen";
-				TargetAttributes = {
-					83ECEA5A243F7B42004BB0FD = {
-						CreatedOnToolsVersion = 11.4;
-					};
-					83ECEA63243F7B42004BB0FD = {
-						CreatedOnToolsVersion = 11.4;
-					};
-				};
+				LastSwiftMigration = 9999;
+				LastUpgradeCheck = 1170;
 			};
-			buildConfigurationList = 83ECEA55243F7B42004BB0FD /* Build configuration list for PBXProject "PGDocFixer" */;
-			compatibilityVersion = "Xcode 9.3";
+			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "PGDocFixer" */;
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 83ECEA51243F7B42004BB0FD;
-			productRefGroup = 83ECEA5C243F7B42004BB0FD /* Products */;
+			mainGroup = OBJ_5 /*  */;
+			productRefGroup = OBJ_25 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				83ECEA5A243F7B42004BB0FD /* PGDocFixer */,
-				83ECEA63243F7B42004BB0FD /* PGDocFixerTests */,
+				"PGDocFixer::PGDocFixer" /* PGDocFixer */,
+				"PGDocFixer::SwiftPMPackageDescription" /* PGDocFixerPackageDescription */,
+				"PGDocFixer::PGDocFixerPackageTests::ProductTarget" /* PGDocFixerPackageTests */,
+				"PGDocFixer::PGDocFixerTests" /* PGDocFixerTests */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		83ECEA59243F7B42004BB0FD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		83ECEA62243F7B42004BB0FD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		83ECEA57243F7B42004BB0FD /* Sources */ = {
+		OBJ_32 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 0;
 			files = (
-				1117D51E7E6725893C595B2B /* DocFixer.swift in Sources */,
-				1117D96D85DFEF14F3C41A9D /* html.swift in Sources */,
-				1117DB75B1882950FFC424B1 /* Stuff.swift in Sources */,
-				1117DAC74125389822CE1CFF /* Extensions.swift in Sources */,
-				1117DE57603C53114778A63F /* WordWrap.swift in Sources */,
-				1117D5A6422065F8F9B5B54D /* Alignment.swift in Sources */,
-				1117D5F2A7988B283B3166BF /* RegexRepl.swift in Sources */,
-				1117DCF7B7092AD263E86594 /* DLItem.swift in Sources */,
-				1117DA6154774A8277A5B7E5 /* SwiftSourceDocument.swift in Sources */,
-				1117D22A24E2EE0138D1DCAE /* DocFixerErrors.swift in Sources */,
+				OBJ_33 /* Alignment.swift in Sources */,
+				OBJ_34 /* DLItem.swift in Sources */,
+				OBJ_35 /* DocFixer.swift in Sources */,
+				OBJ_36 /* DocFixerErrors.swift in Sources */,
+				OBJ_37 /* Extensions.swift in Sources */,
+				OBJ_38 /* RegexRepl.swift in Sources */,
+				OBJ_39 /* Stuff.swift in Sources */,
+				OBJ_40 /* SwiftSourceDocument.swift in Sources */,
+				OBJ_41 /* WordWrap.swift in Sources */,
+				OBJ_42 /* html.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		83ECEA60243F7B42004BB0FD /* Sources */ = {
+		OBJ_48 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 0;
 			files = (
-				83ECEA6A243F7B42004BB0FD /* PGDocFixerTests.swift in Sources */,
-				1117D0E3BB197AD2FD9E05F0 /* Data.swift in Sources */,
+				OBJ_49 /* Package.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_59 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_60 /* Data.swift in Sources */,
+				OBJ_61 /* PGDocFixerTests.swift in Sources */,
+				OBJ_62 /* XCTestManifests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		83ECEA67243F7B42004BB0FD /* PBXTargetDependency */ = {
+		OBJ_54 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 83ECEA5A243F7B42004BB0FD /* PGDocFixer */;
-			targetProxy = 83ECEA66243F7B42004BB0FD /* PBXContainerItemProxy */;
+			target = "PGDocFixer::PGDocFixerTests" /* PGDocFixerTests */;
+			targetProxy = 8372518B250C1607000921B4 /* PBXContainerItemProxy */;
+		};
+		OBJ_65 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "PGDocFixer::PGDocFixer" /* PGDocFixer */;
+			targetProxy = 8372518A250C1605000921B4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		83ECEA6D243F7B42004BB0FD /* Debug */ = {
+		OBJ_3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -298,62 +310,108 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
 					"$(inherited)",
+					"SWIFT_PACKAGE=1",
+					"DEBUG=1",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "$(inherited) -DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SWIFT_PACKAGE DEBUG";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
+				USE_HEADERMAP = NO;
 			};
 			name = Debug;
 		};
-		83ECEA6E243F7B42004BB0FD /* Release */ = {
+		OBJ_30 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = PGDocFixer.xcodeproj/PGDocFixer_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = PGDocFixer;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = PGDocFixer;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		OBJ_31 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = PGDocFixer.xcodeproj/PGDocFixer_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = PGDocFixer;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = PGDocFixer;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		OBJ_4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -361,156 +419,168 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"SWIFT_PACKAGE=1",
+				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_SWIFT_FLAGS = "$(inherited) -DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SWIFT_PACKAGE";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				USE_HEADERMAP = NO;
 			};
 			name = Release;
 		};
-		83ECEA70243F7B42004BB0FD /* Debug */ = {
+		OBJ_46 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = Q5XWZ7S7E9;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = PGDocFixer/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				PRODUCT_BUNDLE_IDENTIFIER = com.projectgalen.PGDocFixer;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -package-description-version 5.2.0";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		83ECEA71243F7B42004BB0FD /* Release */ = {
+		OBJ_47 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = Q5XWZ7S7E9;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = PGDocFixer/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				PRODUCT_BUNDLE_IDENTIFIER = com.projectgalen.PGDocFixer;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -package-description-version 5.2.0";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
-		83ECEA73243F7B42004BB0FD /* Debug */ = {
+		OBJ_52 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = Q5XWZ7S7E9;
-				INFOPLIST_FILE = PGDocFixerTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.projectgalen.PGDocFixerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		83ECEA74243F7B42004BB0FD /* Release */ = {
+		OBJ_53 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = Q5XWZ7S7E9;
-				INFOPLIST_FILE = PGDocFixerTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
+			};
+			name = Release;
+		};
+		OBJ_57 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.projectgalen.PGDocFixerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = PGDocFixer.xcodeproj/PGDocFixerTests_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_VERSION = 5.0;
+				TARGET_NAME = PGDocFixerTests;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		OBJ_58 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = PGDocFixer.xcodeproj/PGDocFixerTests_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = PGDocFixerTests;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		83ECEA55243F7B42004BB0FD /* Build configuration list for PBXProject "PGDocFixer" */ = {
+		OBJ_2 /* Build configuration list for PBXProject "PGDocFixer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				83ECEA6D243F7B42004BB0FD /* Debug */,
-				83ECEA6E243F7B42004BB0FD /* Release */,
+				OBJ_3 /* Debug */,
+				OBJ_4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83ECEA6F243F7B42004BB0FD /* Build configuration list for PBXNativeTarget "PGDocFixer" */ = {
+		OBJ_29 /* Build configuration list for PBXNativeTarget "PGDocFixer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				83ECEA70243F7B42004BB0FD /* Debug */,
-				83ECEA71243F7B42004BB0FD /* Release */,
+				OBJ_30 /* Debug */,
+				OBJ_31 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83ECEA72243F7B42004BB0FD /* Build configuration list for PBXNativeTarget "PGDocFixerTests" */ = {
+		OBJ_45 /* Build configuration list for PBXNativeTarget "PGDocFixerPackageDescription" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				83ECEA73243F7B42004BB0FD /* Debug */,
-				83ECEA74243F7B42004BB0FD /* Release */,
+				OBJ_46 /* Debug */,
+				OBJ_47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_51 /* Build configuration list for PBXAggregateTarget "PGDocFixerPackageTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_52 /* Debug */,
+				OBJ_53 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_56 /* Build configuration list for PBXNativeTarget "PGDocFixerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_57 /* Debug */,
+				OBJ_58 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 83ECEA52243F7B42004BB0FD /* Project object */;
+	rootObject = OBJ_1 /* Project object */;
 }

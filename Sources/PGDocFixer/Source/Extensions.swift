@@ -46,7 +46,9 @@ extension NSRegularExpression {
 
     func firstMatch(in str: String, from start: Int, to end: Int = -1) -> NSTextCheckingResult? { firstMatch(in: str, range: NSRange(start: start, end: (end < 0 ? str.count : end))) }
 
-    func enumerateMatches(in string: String, options: NSRegularExpression.MatchingOptions = [], using block: (NSTextCheckingResult?, NSRegularExpression.MatchingFlags, UnsafeMutablePointer<ObjCBool>) -> Void) {
+    func enumerateMatches(in string: String,
+                          options: NSRegularExpression.MatchingOptions = [],
+                          using block: (NSTextCheckingResult?, NSRegularExpression.MatchingFlags, UnsafeMutablePointer<ObjCBool>) -> Void) {
         enumerateMatches(in: string, options: options, range: string.nsRange, using: block)
     }
 

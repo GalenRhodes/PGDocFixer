@@ -107,7 +107,8 @@ func scanHTML(string str: String) -> HTMLElement? {
     var index:  Int           = 0
     var curr:   HTMLElement?  = nil
     var stack:  [HTMLElement] = []
-    let string: String        = htmlRx7.stringByReplacingMatches(in: htmlRx6.stringByReplacingMatches(in: htmlRx5.stringByReplacingMatches(in: str, withTemplate: " "), withTemplate: "$1"), withTemplate: "$1")
+    let string: String        = htmlRx7.stringByReplacingMatches(in: htmlRx6.stringByReplacingMatches(in: htmlRx5.stringByReplacingMatches(in: str, withTemplate: " "), withTemplate: "$1"),
+                                                                 withTemplate: "$1")
 
     htmlRx1.enumerateMatches(in: string) {
         (m: NSTextCheckingResult?, _, _) in
