@@ -28,21 +28,35 @@ public enum CommentDocType {
     case StarsEmpty
 }
 
+struct DocFixerParams {
+    var paths:        [String]        = []
+    var remoteHost:   String?         = nil
+    var remoteUser:   String?         = nil
+    var remotePath:   String?         = nil
+    var logFile:      String          = "./docs/index.html"
+    var archive:      String          = "./DocumentArchive.tar"
+    var docOutput:    CommentDocType  = .Slashes
+    var lineLength:   Int             = 132
+    let encoding:     String.Encoding = String.Encoding.utf8
+    let replacements: [RegexRepl]
+}
+
 //=================================================================================================================================
-///
-/// Get all of the Swift source files under the given directory `workPath`.  Each file must be older than the file at the given
-/// path `logFile`.
-///
+/*===============================================================================================================================*/
+/// Get all of the Swift source files under the given directory `workPath`. Each file must be older than the file at the given path
+/// `logFile`.
+/// 
 /// - Parameters:
-///   - workPath:
+///   - workPath2:
 ///   - logFile:
-///
+/// 
 /// - Returns:
 ///
-func getFileList(path workPath: String, logFile: String) -> [String] {
-    var list:    [String]         = []
-    let fm:      FileManager      = FileManager.default
-    let modDate: FileAttributeKey = FileAttributeKey.modificationDate
+func getFileList(path: String, logFile: String) -> [String] {
+    var list:     [String]         = []
+    let fm:       FileManager      = FileManager.default
+    let modDate:    FileAttributeKey = FileAttributeKey.modificationDate
+    let searchPath: String           = fixFilename(filename: path)
 
     func testFilename(_ fileName: String) -> Bool {
         (fileName.hasSuffix(".swift") && !fileName.hasPrefix("."))
@@ -52,7 +66,7 @@ func getFileList(path workPath: String, logFile: String) -> [String] {
         if let e: FileManager.DirectoryEnumerator = fm.enumerator(atPath: dir) {
             while let fn: String = e.nextObject() as? String {
                 if let date2: NSDate = (e.fileAttributes?[modDate] as? NSDate), testFilename(fn) && date1.isLessThan(date2) {
-                    list.append("\(workPath)/\(fn)")
+                    list.append("\(searchPath)/\(fn)")
                 }
             }
         }
@@ -62,17 +76,17 @@ func getFileList(path workPath: String, logFile: String) -> [String] {
         if let e: FileManager.DirectoryEnumerator = fm.enumerator(atPath: dir) {
             while let fn: String = e.nextObject() as? String {
                 if testFilename(fn) {
-                    list.append("\(workPath)/\(fn)")
+                    list.append("\(searchPath)/\(fn)")
                 }
             }
         }
     }
 
     if fm.fileExists(atPath: logFile), let attrs: [FileAttributeKey: Any] = try? fm.attributesOfItem(atPath: logFile), let date: NSDate = attrs[modDate] as? NSDate {
-        fileList1(list: &list, dir: workPath, date: date)
+        fileList1(list: &list, dir: searchPath, date: date)
     }
     else {
-        fileList2(list: &list, dir: workPath)
+        fileList2(list: &list, dir: searchPath)
     }
 
     for fn: String in list {
@@ -82,9 +96,34 @@ func getFileList(path workPath: String, logFile: String) -> [String] {
     return list
 }
 
+func unURLFilename(_ filename: String) -> String {
+    if filename.hasPrefix("file://") {
+        let idx: String.Index = filename.index(filename.startIndex, offsetBy: "file://".count)
+        return String(filename[idx ..< filename.endIndex])
+    }
+    return filename
+}
+
+func removeLastSlash(_ filename: String) -> String {
+    if filename.hasSuffix("/") {
+        return String(filename[filename.startIndex ..< filename.index(before: filename.endIndex)])
+    }
+    return filename
+}
+
+func fixFilename(filename: String) -> String {
+    if filename == "~" {
+        return unURLFilename(removeLastSlash(FileManager.default.homeDirectoryForCurrentUser.absoluteString))
+    }
+    if filename.hasPrefix("~/") {
+        let p: String = FileManager.default.homeDirectoryForCurrentUser.absoluteString
+        return "\(removeLastSlash(unURLFilename(p)))/\(filename[filename.index(after: filename.index(after: filename.startIndex)) ..< filename.endIndex])"
+    }
+    return filename
+}
+
 //==========================================================================================================================================
-///
-///
+/*===============================================================================================================================*/
 /// - Parameter pattern:
 /// - Returns:
 /// - Throws:
@@ -93,23 +132,45 @@ func regexML(pattern: String) throws -> NSRegularExpression {
     try NSRegularExpression(pattern: pattern, options: [ NSRegularExpression.Options.anchorsMatchLines ])
 }
 
-func archiveSources(documents: SwiftSourceDocumentList, archive: String = "./DocumentArchive.tar") throws {
+func archiveSources(_ documents: SwiftSourceDocumentList, _ params: DocFixerParams) throws {
     let exec: String   = try which(prg: "tar")
-    var args: [String] = [ "cvf", archive ]
+    var args: [String] = [ "cvf", params.archive ]
 
     for source: SwiftSourceDocument in documents {
         args.append(source.filename)
     }
 
+    var str: String = "\(exec)"
+    for p: String in args { str += " \(p)" }
+    print("Executing: \(str)")
     if !execute(exec: exec, args: args) { throw DocFixerErrors.FailedArchive(description: "Failed to archive documents before fixing") }
 }
 
-func unarchiveSources(archive: String = "./DocumentArchive.tar") throws {
+func unarchiveSources(_ params: DocFixerParams) throws {
     let exec: String = try which(prg: "tar")
-    if !execute(exec: exec, args: [ "xvf", archive ]) { throw DocFixerErrors.FailedArchive(description: "Failed to unarchive documents after error.") }
+    if !execute(exec: exec, args: [ "xvf", params.archive ]) { throw DocFixerErrors.FailedArchive(description: "Failed to unarchive documents after error.") }
 
-    do { try FileManager.default.removeItem(at: URL(fileURLWithPath: archive)) }
+    do { try FileManager.default.removeItem(at: URL(fileURLWithPath: params.archive)) }
     catch let e { print("\(e)") }
+}
+
+func executeRsync(params: DocFixerParams) throws {
+    if let rhost: String = params.remoteHost, let rpath: String = params.remotePath {
+        let rsync: String   = try which(prg: "rsync")
+        var rargs: [String] = [ "-avz", "--delete-after", "docs/" ]
+
+        if let ruser: String = params.remoteUser {
+            rargs.append("\(ruser)@\(rhost):\"\(rpath)/\"")
+        }
+        else {
+            rargs.append("\(rhost):\"\(rpath)/\"")
+        }
+
+        var str: String = rsync
+        for p: String in rargs { str += " \(p)" }
+        print("Executing: \(str)")
+        guard execute(exec: rsync, args: rargs) else { throw DocFixerErrors.FailedProc(description: "Failed to execute rsync") }
+    }
 }
 
 func execute(exec: String, args: [String], stderr: inout String, stdout: inout String) -> Bool {
@@ -176,49 +237,52 @@ func executeJazzy() throws {
     guard execute(exec: jazzy, args: []) else { throw DocFixerErrors.FailedProc(description: "Failed to execute Jazzy") }
 }
 
-public func docFixer(path: String,
-                     matchAndReplace: [RegexRepl] = [],
-                     encoding: String.Encoding = String.Encoding.utf8,
-                     logFile: String = "./docs/index.html",
-                     archive: String = "./DocumentArchive.tar",
-                     docOutput: CommentDocType = .Slashes,
-                     lineLength: Int = 132) throws {
-    let list: [String] = getFileList(path: path, logFile: logFile)
+@inlinable func err(_ msg: String) -> Int {
+    print("ERROR: \(msg)", to: &errorLog)
+    return 1
+}
 
-    if list.count > 0 {
-        var documents: SwiftSourceDocumentList = []
+func loadDocuments(params: DocFixerParams) throws -> SwiftSourceDocumentList {
+    var documents: SwiftSourceDocumentList = []
 
+    for path: String in params.paths {
+        let list: [String] = getFileList(path: path, logFile: params.logFile)
         for filename: String in list {
             documents.append(try SwiftSourceDocument(filename: filename))
         }
-
-        try archiveSources(documents: documents)
-
-        do {
-            let docFixer: PGDocFixer = PGDocFixer(findAndReplace: matchAndReplace, docOutput: docOutput, lineLength: lineLength)
-
-            for document: SwiftSourceDocument in documents {
-                document.fixDocComments(fixer: docFixer)
-                try document.save()
-            }
-
-            try executeJazzy()
-
-            for document: SwiftSourceDocument in documents {
-                document.convertCommentDocs(to: docOutput, lineLength: lineLength)
-                try document.save()
-            }
-        }
-        catch let e as DocFixerErrors {
-            try unarchiveSources()
-            throw e
-        }
-        catch let e {
-            try unarchiveSources()
-            throw DocFixerErrors.UnknownError(description: "\(e)")
-        }
-
-        // try? "\(NSDate())\n".write(toFile: logFile, atomically: true, encoding: encoding)
-        try? FileManager.default.removeItem(at: URL(fileURLWithPath: archive))
     }
+    return documents
+}
+
+func printUsage(exitCode: Int = 0) -> Int {
+    if exitCode != 0 { print("") }
+    //    *--------1---------2---------3---------4---------5---------6---------7---------8---------9---------0
+    print("""
+          USAGE:
+
+          docFixer [--remote-host <hostname>] [--remote-user <username>]
+                   [--remote-path <pathname>] [--log-file <log filename>]
+                   [--archive-file <archive filename>] [--comment-type {slashes | stars}]
+                   [--line-length <integer number>] [--] <pathname> [<pathname> ...]
+
+          Everything after "--" is assumed to be a pathname. That way you can list
+          a path that begins with "--".
+
+          If "--remote-host" and "--remote-path" are given then the documentation files
+          will be rsync'd to that host at that path. If you give a username with
+          "--remote-user" then you will not be asked for a password. You can learn how
+          to setup an authorized_keys file here:
+
+               https://www.google.com/search?q=authorized_keys
+
+          DEFAULTS:
+          The following are the default values for parameters if they are omitted.
+
+          --log-file         ./docs/index.html
+          --archive-file     ./DocumentArchive.tar
+          --comment-type     slashes
+          --line-length      132
+
+          """)
+    return 0
 }

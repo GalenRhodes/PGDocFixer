@@ -1,0 +1,48 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "DocFixerErrors"
+provides-nominal:
+- "10PGDocFixer03DocB6ErrorsO"
+provides-member:
+- ["10PGDocFixer03DocB6ErrorsO", ""]
+provides-dynamic-lookup:
+depends-top-level:
+- "DocFixerErrors"
+- "Error"
+- "String"
+depends-member:
+- ["10PGDocFixer03DocB6ErrorsO", "FailedArchive"]
+- ["10PGDocFixer03DocB6ErrorsO", "FailedLoad"]
+- ["10PGDocFixer03DocB6ErrorsO", "FailedProc"]
+- ["10PGDocFixer03DocB6ErrorsO", "FailedSave"]
+- ["10PGDocFixer03DocB6ErrorsO", "FailedUnarchive"]
+- ["10PGDocFixer03DocB6ErrorsO", "FileNotFound"]
+- ["10PGDocFixer03DocB6ErrorsO", "String"]
+- ["10PGDocFixer03DocB6ErrorsO", "UnknownError"]
+- ["10PGDocFixer03DocB6ErrorsO", "_code"]
+- ["10PGDocFixer03DocB6ErrorsO", "_domain"]
+- ["10PGDocFixer03DocB6ErrorsO", "_getEmbeddedNSError"]
+- ["10PGDocFixer03DocB6ErrorsO", "_userInfo"]
+- ["10PGDocFixer03DocB6ErrorsO", "deinit"]
+- ["s5ErrorP", ""]
+- ["s5ErrorP", "_code"]
+- ["s5ErrorP", "_domain"]
+- ["s5ErrorP", "_getEmbeddedNSError"]
+- ["s5ErrorP", "_userInfo"]
+depends-nominal:
+- "10PGDocFixer03DocB6ErrorsO"
+- "s5ErrorP"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/SwiftOnoneSupport.swiftmodule/x86_64-apple-macos.swiftmodule"
+- "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/module.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include/xpc/XPC.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include/objc/ObjectiveC.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/apinotes/Dispatch.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include/Darwin.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CoreGraphics.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/ApplicationServices.framework/Headers/ApplicationServices.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreText.framework/Headers/CoreText.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Security.framework/Headers/Security.apinotes"
+interface-hash: "6caac2a1fdf582cc692d786415fe8c09"

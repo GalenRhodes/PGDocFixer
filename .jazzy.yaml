@@ -1,0 +1,12 @@
+{
+  "clean": false,
+  "sdk": "macosx",
+  "author": "Galen Rhodes",
+  "author_url": "https://blog.projectgalen.com",
+  "github_url": "https://github.com/GalenRhodes/PGDocFixer",
+  "github_file_prefix": "https://github.com/GalenRhodes/PGDocFixer/blob/master",
+  "theme": "apple",
+  "use_safe_filenames": true,
+  "undocumented_text": "",
+  "title": "PGDocFixer©",
+},

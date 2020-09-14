@@ -1,0 +1,71 @@
+{
+  "": {
+    "swift-dependencies": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/master.swiftdeps"
+  },
+  "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Launchers.swift": {
+    "dependencies": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Launchers.d",
+    "object": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Launchers.swift.o",
+    "swiftmodule": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Launchers~partial.swiftmodule",
+    "swift-dependencies": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Launchers.swiftdeps"
+  },
+  "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Alignment.swift": {
+    "dependencies": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/Alignment.d",
+    "object": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/Alignment.swift.o",
+    "swiftmodule": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/Alignment~partial.swiftmodule",
+    "swift-dependencies": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/Alignment.swiftdeps"
+  },
+  "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/DLItem.swift": {
+    "dependencies": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/DLItem.d",
+    "object": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/DLItem.swift.o",
+    "swiftmodule": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/DLItem~partial.swiftmodule",
+    "swift-dependencies": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/DLItem.swiftdeps"
+  },
+  "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/DocFixer.swift": {
+    "dependencies": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/DocFixer.d",
+    "object": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/DocFixer.swift.o",
+    "swiftmodule": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/DocFixer~partial.swiftmodule",
+    "swift-dependencies": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/DocFixer.swiftdeps"
+  },
+  "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/DocFixerErrors.swift": {
+    "dependencies": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/DocFixerErrors.d",
+    "object": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/DocFixerErrors.swift.o",
+    "swiftmodule": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/DocFixerErrors~partial.swiftmodule",
+    "swift-dependencies": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/DocFixerErrors.swiftdeps"
+  },
+  "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Extensions.swift": {
+    "dependencies": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/Extensions.d",
+    "object": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/Extensions.swift.o",
+    "swiftmodule": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/Extensions~partial.swiftmodule",
+    "swift-dependencies": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/Extensions.swiftdeps"
+  },
+  "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/RegexRepl.swift": {
+    "dependencies": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/RegexRepl.d",
+    "object": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/RegexRepl.swift.o",
+    "swiftmodule": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/RegexRepl~partial.swiftmodule",
+    "swift-dependencies": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/RegexRepl.swiftdeps"
+  },
+  "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Stuff.swift": {
+    "dependencies": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/Stuff.d",
+    "object": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/Stuff.swift.o",
+    "swiftmodule": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/Stuff~partial.swiftmodule",
+    "swift-dependencies": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/Stuff.swiftdeps"
+  },
+  "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/SwiftSourceDocument.swift": {
+    "dependencies": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/SwiftSourceDocument.d",
+    "object": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/SwiftSourceDocument.swift.o",
+    "swiftmodule": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/SwiftSourceDocument~partial.swiftmodule",
+    "swift-dependencies": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/SwiftSourceDocument.swiftdeps"
+  },
+  "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/WordWrap.swift": {
+    "dependencies": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/WordWrap.d",
+    "object": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/WordWrap.swift.o",
+    "swiftmodule": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/WordWrap~partial.swiftmodule",
+    "swift-dependencies": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/WordWrap.swiftdeps"
+  },
+  "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/html.swift": {
+    "dependencies": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/html.d",
+    "object": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/html.swift.o",
+    "swiftmodule": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/html~partial.swiftmodule",
+    "swift-dependencies": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/Source/html.swiftdeps"
+  }
+}

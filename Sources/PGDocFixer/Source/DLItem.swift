@@ -47,4 +47,3 @@ struct DLItem {
         return "\(prefix)\(p1)<b>\(dt)</b></dt>\(CR)\(WordWrap(prefix1: "\(prefix)\(p2)", prefix2: "\(prefix)\(p3)", lineLength: lineLength).wrap(str: dd))</dd>\(CR)"
     }
 }
-

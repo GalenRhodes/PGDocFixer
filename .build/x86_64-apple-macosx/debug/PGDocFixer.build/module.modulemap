@@ -1,0 +1,4 @@
+module PGDocFixer {
+    header "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/PGDocFixer-Swift.h"
+    requires objc
+}

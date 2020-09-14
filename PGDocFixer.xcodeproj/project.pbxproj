@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		1117D0242FF6B4DCA84E921B /* Launchers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D1C1C1B66ACBCFC0528A /* Launchers.swift */; };
 		OBJ_33 /* Alignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Alignment.swift */; };
 		OBJ_34 /* DLItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* DLItem.swift */; };
 		OBJ_35 /* DocFixer.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* DocFixer.swift */; };
@@ -43,19 +44,21 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = "PGDocFixer::PGDocFixer";
+			remoteGlobalIDString = PGDocFixer::PGDocFixer;
 			remoteInfo = PGDocFixer;
 		};
 		8372518B250C1607000921B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = "PGDocFixer::PGDocFixerTests";
+			remoteGlobalIDString = PGDocFixer::PGDocFixerTests;
 			remoteInfo = PGDocFixerTests;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1117D1C1C1B66ACBCFC0528A /* Launchers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Launchers.swift; sourceTree = "<group>"; };
+		1117DC021DA7925B2FFFFE6B /* .jazzy.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .jazzy.yaml; sourceTree = "<group>"; };
 		8372518C250C16B2000921B4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8372518D250C16B2000921B4 /* build.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
 		OBJ_10 /* Alignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Alignment.swift; path = Source/Alignment.swift; sourceTree = "<group>"; };
@@ -109,6 +112,7 @@
 				OBJ_22 /* Data.swift */,
 				OBJ_23 /* PGDocFixerTests.swift */,
 				OBJ_24 /* XCTestManifests.swift */,
+				1117DC021DA7925B2FFFFE6B /* .jazzy.yaml */,
 			);
 			name = PGDocFixerTests;
 			path = Tests/PGDocFixerTests;
@@ -157,6 +161,7 @@
 				OBJ_17 /* SwiftSourceDocument.swift */,
 				OBJ_18 /* WordWrap.swift */,
 				OBJ_19 /* html.swift */,
+				1117D1C1C1B66ACBCFC0528A /* Launchers.swift */,
 			);
 			name = PGDocFixer;
 			path = Sources/PGDocFixer;
@@ -257,6 +262,7 @@
 				OBJ_40 /* SwiftSourceDocument.swift in Sources */,
 				OBJ_41 /* WordWrap.swift in Sources */,
 				OBJ_42 /* html.swift in Sources */,
+				1117D0242FF6B4DCA84E921B /* Launchers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

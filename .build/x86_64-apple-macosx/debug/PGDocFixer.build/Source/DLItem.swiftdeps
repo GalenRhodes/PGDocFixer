@@ -1,0 +1,115 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "DLItem"
+provides-nominal:
+- "10PGDocFixer6DLItemV"
+provides-member:
+- ["10PGDocFixer6DLItemV", ""]
+provides-dynamic-lookup:
+depends-top-level:
+- "AssignmentPrecedence"
+- !private "CR"
+- "DLItem"
+- "FloatLiteralType"
+- "Int"
+- "IntegerLiteralType"
+- "NSRegularExpression"
+- !private "NSTextCheckingResult"
+- "String"
+- "StringLiteralType"
+- !private "WordWrap"
+- "regexML"
+depends-member:
+- !private ["s7CVarArgP", "firstMatch"]
+- !private ["s7CVarArgP", "getSub"]
+- !private ["s28CustomDebugStringConvertibleP", "firstMatch"]
+- !private ["s28CustomDebugStringConvertibleP", "getSub"]
+- !private ["s23CustomStringConvertibleP", "appendInterpolation"]
+- !private ["s23CustomStringConvertibleP", "appendLiteral"]
+- !private ["s23CustomStringConvertibleP", "firstMatch"]
+- !private ["s23CustomStringConvertibleP", "getSub"]
+- !private ["10PGDocFixer6DLItemV", "CR"]
+- !private ["10PGDocFixer6DLItemV", "DLItem"]
+- ["10PGDocFixer6DLItemV", "Int"]
+- ["10PGDocFixer6DLItemV", "NSRegularExpression"]
+- !private ["10PGDocFixer6DLItemV", "NSTextCheckingResult"]
+- ["10PGDocFixer6DLItemV", "String"]
+- !private ["10PGDocFixer6DLItemV", "WordWrap"]
+- ["10PGDocFixer6DLItemV", "dd"]
+- ["10PGDocFixer6DLItemV", "dt"]
+- ["10PGDocFixer6DLItemV", "getHTML"]
+- ["10PGDocFixer6DLItemV", "init"]
+- ["10PGDocFixer6DLItemV", "p1"]
+- ["10PGDocFixer6DLItemV", "p2"]
+- ["10PGDocFixer6DLItemV", "p3"]
+- ["10PGDocFixer6DLItemV", "regexML"]
+- ["10PGDocFixer6DLItemV", "rx1"]
+- ["10PGDocFixer6DLItemV", "rx2"]
+- !private ["s26DefaultStringInterpolationV", "appendInterpolation"]
+- !private ["s26DefaultStringInterpolationV", "appendLiteral"]
+- !private ["SQ", "firstMatch"]
+- !private ["SQ", "getSub"]
+- !private ["SH", "firstMatch"]
+- !private ["SH", "getSub"]
+- !private ["So8NSCodingP", "firstMatch"]
+- !private ["So8NSCodingP", "getSub"]
+- !private ["So9NSCopyingP", "firstMatch"]
+- !private ["So9NSCopyingP", "getSub"]
+- !private ["So8NSObjectC", "firstMatch"]
+- !private ["So8NSObjectC", "getSub"]
+- !private ["So8NSObjectP", "firstMatch"]
+- !private ["So8NSObjectP", "getSub"]
+- !private ["So19NSRegularExpressionC", "firstMatch"]
+- !private ["So14NSSecureCodingP", "firstMatch"]
+- !private ["So14NSSecureCodingP", "getSub"]
+- !private ["So20NSTextCheckingResultC", "getSub"]
+- !private ["s27StringInterpolationProtocolP", "appendInterpolation"]
+- !private ["s27StringInterpolationProtocolP", "appendLiteral"]
+- !private ["s16TextOutputStreamP", "appendInterpolation"]
+- !private ["s16TextOutputStreamP", "appendLiteral"]
+- !private ["10PGDocFixer8WordWrapC", "init"]
+- !private ["10PGDocFixer8WordWrapC", "wrap"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "firstMatch"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "getSub"]
+- !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "firstMatch"]
+- !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "getSub"]
+depends-nominal:
+- !private "s7CVarArgP"
+- !private "s28CustomDebugStringConvertibleP"
+- !private "s23CustomStringConvertibleP"
+- "10PGDocFixer6DLItemV"
+- !private "s26DefaultStringInterpolationV"
+- !private "SQ"
+- !private "SH"
+- !private "So8NSCodingP"
+- !private "So9NSCopyingP"
+- !private "So8NSObjectC"
+- !private "So8NSObjectP"
+- !private "So19NSRegularExpressionC"
+- !private "So14NSSecureCodingP"
+- !private "So20NSTextCheckingResultC"
+- !private "s27StringInterpolationProtocolP"
+- !private "s16TextOutputStreamP"
+- !private "10PGDocFixer8WordWrapC"
+- !private "10Foundation27_KeyValueCodingAndObservingP"
+- !private "10Foundation37_KeyValueCodingAndObservingPublishingP"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/XPC.swiftmodule/x86_64-apple-macos.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/ObjectiveC.swiftmodule/x86_64-apple-macos.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/Dispatch.swiftmodule/x86_64-apple-macos.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/CoreFoundation.swiftmodule/x86_64-apple-macos.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/CoreGraphics.swiftmodule/x86_64-apple-macos.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/IOKit.swiftmodule/x86_64-apple-macos.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/SwiftOnoneSupport.swiftmodule/x86_64-apple-macos.swiftmodule"
+- "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/module.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include/xpc/XPC.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include/objc/ObjectiveC.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/apinotes/Dispatch.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include/Darwin.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CoreGraphics.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/ApplicationServices.framework/Headers/ApplicationServices.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreText.framework/Headers/CoreText.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Security.framework/Headers/Security.apinotes"
+interface-hash: "2f84aa7090757a81e712e36aa8b1ca79"

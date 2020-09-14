@@ -1,0 +1,1204 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "CR"
+- "SPC"
+- "BELEMS"
+- "LogDestination"
+- "errorLog"
+- "a"
+- "b"
+- "u1"
+- "u2"
+- "NORMAL_FIND_REPLACE"
+- "URL_PREFIX"
+- "URL_REPLACEMENTS"
+- "addUrlsToFindAndReplace"
+- "ParagraphType"
+- "LineParts"
+- "ParagraphInfo"
+- "PGDocFixer"
+provides-nominal:
+- "10PGDocFixer14LogDestinationC"
+- "10PGDocFixer13ParagraphTypeO"
+- "10PGDocFixer9LinePartsV"
+- "10PGDocFixer13ParagraphInfoC"
+- "10PGDocFixerAAC"
+provides-member:
+- ["10PGDocFixer14LogDestinationC", ""]
+- ["10PGDocFixer13ParagraphTypeO", ""]
+- ["10PGDocFixer9LinePartsV", ""]
+- ["10PGDocFixer13ParagraphInfoC", ""]
+- ["10PGDocFixerAAC", ""]
+provides-dynamic-lookup:
+- "adjustIndent"
+- "buildAlignments"
+- "buildHTMLTableRow"
+- "buildTableRow"
+- "closeBlock"
+- "closeParagraph"
+- "convertCommentBlocks"
+- "convertCommentBlocks01"
+- "doSimpleOnes"
+- "docOutput"
+- "dumpTable"
+- "dumpTableAsHTML"
+- "dumpTableAsMarkdown"
+- "findReplace"
+- "handleCodeBlock"
+- "handleDefListBlock"
+- "handleHTMLTableBlock"
+- "handleListBlock"
+- "handleMarkDownTableBlock"
+- "handleNormal"
+- "handlePreformattedBlock"
+- "handleRawBlock"
+- "indent"
+- "maxLineLength"
+- "paraType"
+- "paragraph"
+- "parseHTMLTree"
+- "prefix"
+- "processBlock"
+- "processDocument"
+- "renderDefList"
+- "renderDefList2"
+- "renderHTMLElement"
+- "renderHTMLTable"
+- "renderHTMLTable2"
+- "renderList"
+- "renderList2"
+- "renderParagraph"
+- "renderTable"
+- "resetParagraph"
+- "restoreCommentBlocks"
+- "restoreCommentBlocks01"
+- "rx1"
+- "rx2"
+- "rx3"
+- "rx4"
+- "rx5"
+- "rx7"
+- "rx8"
+- "rxFinal"
+- "rxLead"
+- "rxLine"
+- "startup"
+- "stripTableRow"
+- "tablesAsMarkdown"
+- "twoThirdsMaxLineLength"
+- "write"
+depends-top-level:
+- !private "!"
+- !private "!="
+- !private "&&"
+- !private "*"
+- !private "+"
+- !private "+="
+- !private "..<"
+- !private "/"
+- !private "<"
+- !private "<="
+- "=="
+- !private ">"
+- !private ">="
+- !private "??"
+- "Alignment"
+- "AssignmentPrecedence"
+- "BELEMS"
+- "Bool"
+- "BooleanLiteralType"
+- "CR"
+- "CommentDocType"
+- !private "DLItem"
+- !private "Data"
+- !private "DocFixerErrors"
+- !private "FileHandle"
+- "FloatLiteralType"
+- "HTMLElement"
+- "Int"
+- "IntegerLiteralType"
+- "LineParts"
+- "LogDestination"
+- "NORMAL_FIND_REPLACE"
+- !private "NSNotFound"
+- !private "NSRange"
+- "NSRegularExpression"
+- "NSTextCheckingResult"
+- "PGDocFixer"
+- "ParagraphInfo"
+- "ParagraphType"
+- "RegexRepl"
+- "SPC"
+- "String"
+- "StringLiteralType"
+- "TernaryPrecedence"
+- "TextOutputStream"
+- "URL_PREFIX"
+- "URL_REPLACEMENTS"
+- "UnicodeScalarType"
+- !private "WordWrap"
+- "a"
+- "addUrlsToFindAndReplace"
+- "b"
+- "errorLog"
+- !private "max"
+- !private "min"
+- "regexML"
+- !private "scanHTML"
+- "u1"
+- "u2"
+- !private "||"
+- !private "~="
+depends-member:
+- ["10PGDocFixer9AlignmentO", "Center"]
+- ["10PGDocFixer9AlignmentO", "Left"]
+- ["10PGDocFixer9AlignmentO", "Right"]
+- !private ["10PGDocFixer9AlignmentO", "getAlignText"]
+- !private ["10PGDocFixer9AlignmentO", "testAlignment"]
+- !private ["Sa", "append"]
+- !private ["Sa", "count"]
+- !private ["Sa", "enumerated"]
+- !private ["Sa", "subscript"]
+- !private ["SK", "Encoding"]
+- !private ["SK", "append"]
+- !private ["SK", "count"]
+- !private ["SK", "data"]
+- !private ["SK", "enumerated"]
+- !private ["SK", "getPreMatch"]
+- !private ["SK", "hasPrefix"]
+- !private ["SK", "hasSuffix"]
+- !private ["SK", "init"]
+- !private ["SK", "isEmpty"]
+- !private ["SK", "lowercased"]
+- !private ["SK", "padding"]
+- !private ["SK", "split"]
+- !private ["SK", "subscript"]
+- !private ["SK", "substr"]
+- !private ["SK", "trimmed"]
+- !private ["s7CVarArgP", "Encoding"]
+- !private ["s7CVarArgP", "append"]
+- !private ["s7CVarArgP", "count"]
+- !private ["s7CVarArgP", "data"]
+- !private ["s7CVarArgP", "enumerateMatches"]
+- !private ["s7CVarArgP", "enumerated"]
+- !private ["s7CVarArgP", "escapedPattern"]
+- !private ["s7CVarArgP", "escapedTemplate"]
+- !private ["s7CVarArgP", "firstMatch"]
+- !private ["s7CVarArgP", "getPreMatch"]
+- !private ["s7CVarArgP", "getSub"]
+- !private ["s7CVarArgP", "hasPrefix"]
+- !private ["s7CVarArgP", "hasSuffix"]
+- !private ["s7CVarArgP", "init"]
+- !private ["s7CVarArgP", "isEmpty"]
+- !private ["s7CVarArgP", "keys"]
+- !private ["s7CVarArgP", "lowercased"]
+- !private ["s7CVarArgP", "padding"]
+- !private ["s7CVarArgP", "range"]
+- !private ["s7CVarArgP", "split"]
+- !private ["s7CVarArgP", "standardError"]
+- !private ["s7CVarArgP", "stringByReplacingMatches"]
+- !private ["s7CVarArgP", "subscript"]
+- !private ["s7CVarArgP", "substr"]
+- !private ["s7CVarArgP", "trimmed"]
+- !private ["s7CVarArgP", "write"]
+- !private ["Sl", "Encoding"]
+- !private ["Sl", "append"]
+- !private ["Sl", "count"]
+- !private ["Sl", "data"]
+- !private ["Sl", "enumerated"]
+- !private ["Sl", "getPreMatch"]
+- !private ["Sl", "hasPrefix"]
+- !private ["Sl", "hasSuffix"]
+- !private ["Sl", "init"]
+- !private ["Sl", "isEmpty"]
+- !private ["Sl", "keys"]
+- !private ["Sl", "lowercased"]
+- !private ["Sl", "padding"]
+- !private ["Sl", "sorted"]
+- !private ["Sl", "split"]
+- !private ["Sl", "subscript"]
+- !private ["Sl", "substr"]
+- !private ["Sl", "trimmed"]
+- !private ["10PGDocFixer14CommentDocTypeO", "Slashes"]
+- !private ["10PGDocFixer14CommentDocTypeO", "StarsEmpty"]
+- !private ["10PGDocFixer14CommentDocTypeO", "deinit"]
+- !private ["SL", "Encoding"]
+- !private ["SL", "count"]
+- !private ["SL", "data"]
+- !private ["SL", "getPreMatch"]
+- !private ["SL", "hasPrefix"]
+- !private ["SL", "hasSuffix"]
+- !private ["SL", "init"]
+- !private ["SL", "isEmpty"]
+- !private ["SL", "lowercased"]
+- !private ["SL", "padding"]
+- !private ["SL", "split"]
+- !private ["SL", "substr"]
+- !private ["SL", "trimmed"]
+- !private ["10Foundation15ContiguousBytesP", "append"]
+- !private ["10Foundation15ContiguousBytesP", "count"]
+- !private ["10Foundation15ContiguousBytesP", "enumerated"]
+- !private ["10Foundation15ContiguousBytesP", "subscript"]
+- !private ["s28CustomDebugStringConvertibleP", "Encoding"]
+- !private ["s28CustomDebugStringConvertibleP", "append"]
+- !private ["s28CustomDebugStringConvertibleP", "callAsFunction"]
+- !private ["s28CustomDebugStringConvertibleP", "count"]
+- !private ["s28CustomDebugStringConvertibleP", "data"]
+- !private ["s28CustomDebugStringConvertibleP", "enumerateMatches"]
+- !private ["s28CustomDebugStringConvertibleP", "enumerated"]
+- !private ["s28CustomDebugStringConvertibleP", "escapedPattern"]
+- !private ["s28CustomDebugStringConvertibleP", "escapedTemplate"]
+- !private ["s28CustomDebugStringConvertibleP", "firstMatch"]
+- !private ["s28CustomDebugStringConvertibleP", "getPreMatch"]
+- !private ["s28CustomDebugStringConvertibleP", "getSub"]
+- !private ["s28CustomDebugStringConvertibleP", "hasPrefix"]
+- !private ["s28CustomDebugStringConvertibleP", "hasSuffix"]
+- !private ["s28CustomDebugStringConvertibleP", "init"]
+- !private ["s28CustomDebugStringConvertibleP", "isEmpty"]
+- !private ["s28CustomDebugStringConvertibleP", "keys"]
+- !private ["s28CustomDebugStringConvertibleP", "location"]
+- !private ["s28CustomDebugStringConvertibleP", "lowercased"]
+- !private ["s28CustomDebugStringConvertibleP", "padding"]
+- !private ["s28CustomDebugStringConvertibleP", "range"]
+- !private ["s28CustomDebugStringConvertibleP", "sorted"]
+- !private ["s28CustomDebugStringConvertibleP", "split"]
+- !private ["s28CustomDebugStringConvertibleP", "standardError"]
+- !private ["s28CustomDebugStringConvertibleP", "stringByReplacingMatches"]
+- !private ["s28CustomDebugStringConvertibleP", "subscript"]
+- !private ["s28CustomDebugStringConvertibleP", "substr"]
+- !private ["s28CustomDebugStringConvertibleP", "trimmed"]
+- !private ["s28CustomDebugStringConvertibleP", "write"]
+- !private ["s17CustomReflectableP", "Encoding"]
+- !private ["s17CustomReflectableP", "append"]
+- !private ["s17CustomReflectableP", "callAsFunction"]
+- !private ["s17CustomReflectableP", "count"]
+- !private ["s17CustomReflectableP", "data"]
+- !private ["s17CustomReflectableP", "enumerated"]
+- !private ["s17CustomReflectableP", "getPreMatch"]
+- !private ["s17CustomReflectableP", "hasPrefix"]
+- !private ["s17CustomReflectableP", "hasSuffix"]
+- !private ["s17CustomReflectableP", "init"]
+- !private ["s17CustomReflectableP", "isEmpty"]
+- !private ["s17CustomReflectableP", "keys"]
+- !private ["s17CustomReflectableP", "location"]
+- !private ["s17CustomReflectableP", "lowercased"]
+- !private ["s17CustomReflectableP", "padding"]
+- !private ["s17CustomReflectableP", "split"]
+- !private ["s17CustomReflectableP", "subscript"]
+- !private ["s17CustomReflectableP", "substr"]
+- !private ["s17CustomReflectableP", "trimmed"]
+- !private ["s23CustomStringConvertibleP", "Encoding"]
+- !private ["s23CustomStringConvertibleP", "append"]
+- ["s23CustomStringConvertibleP", "appendInterpolation"]
+- ["s23CustomStringConvertibleP", "appendLiteral"]
+- !private ["s23CustomStringConvertibleP", "callAsFunction"]
+- !private ["s23CustomStringConvertibleP", "count"]
+- !private ["s23CustomStringConvertibleP", "data"]
+- !private ["s23CustomStringConvertibleP", "enumerateMatches"]
+- !private ["s23CustomStringConvertibleP", "enumerated"]
+- !private ["s23CustomStringConvertibleP", "escapedPattern"]
+- !private ["s23CustomStringConvertibleP", "escapedTemplate"]
+- !private ["s23CustomStringConvertibleP", "firstMatch"]
+- !private ["s23CustomStringConvertibleP", "getPreMatch"]
+- !private ["s23CustomStringConvertibleP", "getSub"]
+- !private ["s23CustomStringConvertibleP", "hasPrefix"]
+- !private ["s23CustomStringConvertibleP", "hasSuffix"]
+- !private ["s23CustomStringConvertibleP", "init"]
+- !private ["s23CustomStringConvertibleP", "isEmpty"]
+- !private ["s23CustomStringConvertibleP", "keys"]
+- !private ["s23CustomStringConvertibleP", "location"]
+- !private ["s23CustomStringConvertibleP", "lowercased"]
+- !private ["s23CustomStringConvertibleP", "padding"]
+- !private ["s23CustomStringConvertibleP", "range"]
+- !private ["s23CustomStringConvertibleP", "sorted"]
+- !private ["s23CustomStringConvertibleP", "split"]
+- !private ["s23CustomStringConvertibleP", "standardError"]
+- !private ["s23CustomStringConvertibleP", "stringByReplacingMatches"]
+- !private ["s23CustomStringConvertibleP", "subscript"]
+- !private ["s23CustomStringConvertibleP", "substr"]
+- !private ["s23CustomStringConvertibleP", "trimmed"]
+- !private ["s23CustomStringConvertibleP", "utf8"]
+- !private ["s23CustomStringConvertibleP", "write"]
+- !private ["10PGDocFixer6DLItemV", "getHTML"]
+- !private ["10PGDocFixer6DLItemV", "init"]
+- !private ["10Foundation12DataProtocolP", "append"]
+- !private ["10Foundation12DataProtocolP", "count"]
+- !private ["10Foundation12DataProtocolP", "enumerated"]
+- !private ["10Foundation12DataProtocolP", "subscript"]
+- !private ["Se", "Encoding"]
+- !private ["Se", "append"]
+- !private ["Se", "callAsFunction"]
+- !private ["Se", "count"]
+- !private ["Se", "data"]
+- !private ["Se", "enumerated"]
+- !private ["Se", "getPreMatch"]
+- !private ["Se", "hasPrefix"]
+- !private ["Se", "hasSuffix"]
+- !private ["Se", "init"]
+- !private ["Se", "isEmpty"]
+- !private ["Se", "keys"]
+- !private ["Se", "location"]
+- !private ["Se", "lowercased"]
+- !private ["Se", "padding"]
+- !private ["Se", "split"]
+- !private ["Se", "subscript"]
+- !private ["Se", "substr"]
+- !private ["Se", "trimmed"]
+- ["s26DefaultStringInterpolationV", "appendInterpolation"]
+- ["s26DefaultStringInterpolationV", "appendLiteral"]
+- !private ["SD", "keys"]
+- !private ["SD", "subscript"]
+- !private ["10PGDocFixer03DocB6ErrorsO", "FileNotFound"]
+- !private ["10PGDocFixer03DocB6ErrorsO", "deinit"]
+- !private ["SE", "Encoding"]
+- !private ["SE", "append"]
+- !private ["SE", "callAsFunction"]
+- !private ["SE", "count"]
+- !private ["SE", "data"]
+- !private ["SE", "enumerated"]
+- !private ["SE", "getPreMatch"]
+- !private ["SE", "hasPrefix"]
+- !private ["SE", "hasSuffix"]
+- !private ["SE", "init"]
+- !private ["SE", "isEmpty"]
+- !private ["SE", "keys"]
+- !private ["SE", "location"]
+- !private ["SE", "lowercased"]
+- !private ["SE", "padding"]
+- !private ["SE", "split"]
+- !private ["SE", "subscript"]
+- !private ["SE", "substr"]
+- !private ["SE", "trimmed"]
+- !private ["SS10FoundationE8EncodingV", "utf8"]
+- ["SQ", "=="]
+- ["SQ", "Center"]
+- ["SQ", "CodeBlock"]
+- ["SQ", "DefList"]
+- !private ["SQ", "Encoding"]
+- ["SQ", "HTMLTable"]
+- ["SQ", "Left"]
+- ["SQ", "MarkDownTable"]
+- ["SQ", "Normal"]
+- ["SQ", "OrderedList"]
+- ["SQ", "Preformatted"]
+- ["SQ", "Right"]
+- !private ["SQ", "Slashes"]
+- !private ["SQ", "StarsEmpty"]
+- ["SQ", "UnorderedList"]
+- ["SQ", ""]
+- ["SQ", "_rawHashValue"]
+- !private ["SQ", "append"]
+- !private ["SQ", "callAsFunction"]
+- !private ["SQ", "count"]
+- !private ["SQ", "data"]
+- !private ["SQ", "enumerateMatches"]
+- !private ["SQ", "enumerated"]
+- !private ["SQ", "escapedPattern"]
+- !private ["SQ", "escapedTemplate"]
+- !private ["SQ", "firstMatch"]
+- !private ["SQ", "getAlignText"]
+- !private ["SQ", "getPreMatch"]
+- !private ["SQ", "getSub"]
+- !private ["SQ", "hasPrefix"]
+- !private ["SQ", "hasSuffix"]
+- ["SQ", "hash"]
+- ["SQ", "hashValue"]
+- !private ["SQ", "init"]
+- !private ["SQ", "isEmpty"]
+- !private ["SQ", "keys"]
+- !private ["SQ", "location"]
+- !private ["SQ", "lowercased"]
+- !private ["SQ", "padding"]
+- !private ["SQ", "range"]
+- !private ["SQ", "sorted"]
+- !private ["SQ", "split"]
+- !private ["SQ", "standardError"]
+- !private ["SQ", "stringByReplacingMatches"]
+- !private ["SQ", "subscript"]
+- !private ["SQ", "substr"]
+- !private ["SQ", "testAlignment"]
+- !private ["SQ", "trimmed"]
+- !private ["SQ", "utf8"]
+- !private ["SQ", "write"]
+- !private ["s5ErrorP", "FileNotFound"]
+- !private ["s25ExpressibleByArrayLiteralP", "append"]
+- !private ["s25ExpressibleByArrayLiteralP", "count"]
+- !private ["s25ExpressibleByArrayLiteralP", "enumerated"]
+- !private ["s25ExpressibleByArrayLiteralP", "subscript"]
+- !private ["s30ExpressibleByDictionaryLiteralP", "keys"]
+- !private ["s30ExpressibleByDictionaryLiteralP", "subscript"]
+- !private ["s43ExpressibleByExtendedGraphemeClusterLiteralP", "Encoding"]
+- !private ["s43ExpressibleByExtendedGraphemeClusterLiteralP", "count"]
+- !private ["s43ExpressibleByExtendedGraphemeClusterLiteralP", "data"]
+- !private ["s43ExpressibleByExtendedGraphemeClusterLiteralP", "getPreMatch"]
+- !private ["s43ExpressibleByExtendedGraphemeClusterLiteralP", "hasPrefix"]
+- !private ["s43ExpressibleByExtendedGraphemeClusterLiteralP", "hasSuffix"]
+- !private ["s43ExpressibleByExtendedGraphemeClusterLiteralP", "init"]
+- !private ["s43ExpressibleByExtendedGraphemeClusterLiteralP", "isEmpty"]
+- !private ["s43ExpressibleByExtendedGraphemeClusterLiteralP", "lowercased"]
+- !private ["s43ExpressibleByExtendedGraphemeClusterLiteralP", "padding"]
+- !private ["s43ExpressibleByExtendedGraphemeClusterLiteralP", "split"]
+- !private ["s43ExpressibleByExtendedGraphemeClusterLiteralP", "substr"]
+- !private ["s43ExpressibleByExtendedGraphemeClusterLiteralP", "trimmed"]
+- !private ["s32ExpressibleByStringInterpolationP", "Encoding"]
+- !private ["s32ExpressibleByStringInterpolationP", "count"]
+- !private ["s32ExpressibleByStringInterpolationP", "data"]
+- !private ["s32ExpressibleByStringInterpolationP", "getPreMatch"]
+- !private ["s32ExpressibleByStringInterpolationP", "hasPrefix"]
+- !private ["s32ExpressibleByStringInterpolationP", "hasSuffix"]
+- !private ["s32ExpressibleByStringInterpolationP", "init"]
+- !private ["s32ExpressibleByStringInterpolationP", "isEmpty"]
+- !private ["s32ExpressibleByStringInterpolationP", "lowercased"]
+- !private ["s32ExpressibleByStringInterpolationP", "padding"]
+- !private ["s32ExpressibleByStringInterpolationP", "split"]
+- !private ["s32ExpressibleByStringInterpolationP", "substr"]
+- !private ["s32ExpressibleByStringInterpolationP", "trimmed"]
+- !private ["s26ExpressibleByStringLiteralP", "Encoding"]
+- !private ["s26ExpressibleByStringLiteralP", "count"]
+- !private ["s26ExpressibleByStringLiteralP", "data"]
+- !private ["s26ExpressibleByStringLiteralP", "getPreMatch"]
+- !private ["s26ExpressibleByStringLiteralP", "hasPrefix"]
+- !private ["s26ExpressibleByStringLiteralP", "hasSuffix"]
+- !private ["s26ExpressibleByStringLiteralP", "init"]
+- !private ["s26ExpressibleByStringLiteralP", "isEmpty"]
+- !private ["s26ExpressibleByStringLiteralP", "lowercased"]
+- !private ["s26ExpressibleByStringLiteralP", "padding"]
+- !private ["s26ExpressibleByStringLiteralP", "split"]
+- !private ["s26ExpressibleByStringLiteralP", "substr"]
+- !private ["s26ExpressibleByStringLiteralP", "trimmed"]
+- !private ["s33ExpressibleByUnicodeScalarLiteralP", "Encoding"]
+- !private ["s33ExpressibleByUnicodeScalarLiteralP", "count"]
+- !private ["s33ExpressibleByUnicodeScalarLiteralP", "data"]
+- !private ["s33ExpressibleByUnicodeScalarLiteralP", "getPreMatch"]
+- !private ["s33ExpressibleByUnicodeScalarLiteralP", "hasPrefix"]
+- !private ["s33ExpressibleByUnicodeScalarLiteralP", "hasSuffix"]
+- !private ["s33ExpressibleByUnicodeScalarLiteralP", "init"]
+- !private ["s33ExpressibleByUnicodeScalarLiteralP", "isEmpty"]
+- !private ["s33ExpressibleByUnicodeScalarLiteralP", "lowercased"]
+- !private ["s33ExpressibleByUnicodeScalarLiteralP", "padding"]
+- !private ["s33ExpressibleByUnicodeScalarLiteralP", "split"]
+- !private ["s33ExpressibleByUnicodeScalarLiteralP", "substr"]
+- !private ["s33ExpressibleByUnicodeScalarLiteralP", "trimmed"]
+- !private ["So12NSFileHandleC", "standardError"]
+- !private ["So12NSFileHandleC", "write"]
+- !private ["10PGDocFixer11HTMLElementC", "children"]
+- !private ["10PGDocFixer11HTMLElementC", "html"]
+- !private ["10PGDocFixer11HTMLElementC", "innerHtml"]
+- !private ["10PGDocFixer11HTMLElementC", "isBlock"]
+- !private ["10PGDocFixer11HTMLElementC", "name"]
+- ["SH", "=="]
+- ["SH", "Center"]
+- ["SH", "CodeBlock"]
+- ["SH", "DefList"]
+- !private ["SH", "Encoding"]
+- ["SH", "HTMLTable"]
+- ["SH", "Left"]
+- ["SH", "MarkDownTable"]
+- ["SH", "Normal"]
+- ["SH", "OrderedList"]
+- ["SH", "Preformatted"]
+- ["SH", "Right"]
+- !private ["SH", "Slashes"]
+- !private ["SH", "StarsEmpty"]
+- ["SH", "UnorderedList"]
+- ["SH", ""]
+- ["SH", "_rawHashValue"]
+- !private ["SH", "append"]
+- !private ["SH", "callAsFunction"]
+- !private ["SH", "count"]
+- !private ["SH", "data"]
+- !private ["SH", "enumerateMatches"]
+- !private ["SH", "enumerated"]
+- !private ["SH", "escapedPattern"]
+- !private ["SH", "escapedTemplate"]
+- !private ["SH", "firstMatch"]
+- !private ["SH", "getAlignText"]
+- !private ["SH", "getPreMatch"]
+- !private ["SH", "getSub"]
+- !private ["SH", "hasPrefix"]
+- !private ["SH", "hasSuffix"]
+- ["SH", "hash"]
+- ["SH", "hashValue"]
+- !private ["SH", "init"]
+- !private ["SH", "isEmpty"]
+- !private ["SH", "keys"]
+- !private ["SH", "location"]
+- !private ["SH", "lowercased"]
+- !private ["SH", "padding"]
+- !private ["SH", "range"]
+- !private ["SH", "split"]
+- !private ["SH", "standardError"]
+- !private ["SH", "stringByReplacingMatches"]
+- !private ["SH", "subscript"]
+- !private ["SH", "substr"]
+- !private ["SH", "testAlignment"]
+- !private ["SH", "trimmed"]
+- !private ["SH", "utf8"]
+- !private ["SH", "write"]
+- !private ["s6HasherV", "combine"]
+- !private ["SD4KeysV", "sorted"]
+- ["10PGDocFixer9LinePartsV", "NSTextCheckingResult"]
+- ["10PGDocFixer9LinePartsV", "String"]
+- ["10PGDocFixer9LinePartsV", "init"]
+- ["10PGDocFixer9LinePartsV", "s0"]
+- ["10PGDocFixer9LinePartsV", "s1"]
+- ["10PGDocFixer9LinePartsV", "s2"]
+- ["10PGDocFixer9LinePartsV", "s3"]
+- ["10PGDocFixer9LinePartsV", "s4"]
+- ["10PGDocFixer9LinePartsV", "s5"]
+- !private ["10PGDocFixer14LogDestinationC", "Data"]
+- !private ["10PGDocFixer14LogDestinationC", "FileHandle"]
+- ["10PGDocFixer14LogDestinationC", "String"]
+- ["10PGDocFixer14LogDestinationC", "_lock"]
+- ["10PGDocFixer14LogDestinationC", "_unlock"]
+- ["10PGDocFixer14LogDestinationC", "_writeASCII"]
+- ["10PGDocFixer14LogDestinationC", "deinit"]
+- ["10PGDocFixer14LogDestinationC", "init"]
+- ["10PGDocFixer14LogDestinationC", "write"]
+- !private ["s25LosslessStringConvertibleP", "Encoding"]
+- !private ["s25LosslessStringConvertibleP", "count"]
+- !private ["s25LosslessStringConvertibleP", "data"]
+- !private ["s25LosslessStringConvertibleP", "getPreMatch"]
+- !private ["s25LosslessStringConvertibleP", "hasPrefix"]
+- !private ["s25LosslessStringConvertibleP", "hasSuffix"]
+- !private ["s25LosslessStringConvertibleP", "init"]
+- !private ["s25LosslessStringConvertibleP", "isEmpty"]
+- !private ["s25LosslessStringConvertibleP", "lowercased"]
+- !private ["s25LosslessStringConvertibleP", "padding"]
+- !private ["s25LosslessStringConvertibleP", "split"]
+- !private ["s25LosslessStringConvertibleP", "substr"]
+- !private ["s25LosslessStringConvertibleP", "trimmed"]
+- !private ["s10MirrorPathP", "Encoding"]
+- !private ["s10MirrorPathP", "count"]
+- !private ["s10MirrorPathP", "data"]
+- !private ["s10MirrorPathP", "getPreMatch"]
+- !private ["s10MirrorPathP", "hasPrefix"]
+- !private ["s10MirrorPathP", "hasSuffix"]
+- !private ["s10MirrorPathP", "init"]
+- !private ["s10MirrorPathP", "isEmpty"]
+- !private ["s10MirrorPathP", "lowercased"]
+- !private ["s10MirrorPathP", "padding"]
+- !private ["s10MirrorPathP", "split"]
+- !private ["s10MirrorPathP", "substr"]
+- !private ["s10MirrorPathP", "trimmed"]
+- !private ["SM", "append"]
+- !private ["SM", "count"]
+- !private ["SM", "enumerated"]
+- !private ["SM", "subscript"]
+- !private ["10Foundation19MutableDataProtocolP", "append"]
+- !private ["10Foundation19MutableDataProtocolP", "count"]
+- !private ["10Foundation19MutableDataProtocolP", "enumerated"]
+- !private ["10Foundation19MutableDataProtocolP", "subscript"]
+- !private ["So8NSCodingP", "count"]
+- !private ["So8NSCodingP", "data"]
+- !private ["So8NSCodingP", "enumerateMatches"]
+- !private ["So8NSCodingP", "escapedPattern"]
+- !private ["So8NSCodingP", "escapedTemplate"]
+- !private ["So8NSCodingP", "firstMatch"]
+- !private ["So8NSCodingP", "getPreMatch"]
+- !private ["So8NSCodingP", "getSub"]
+- !private ["So8NSCodingP", "hasPrefix"]
+- !private ["So8NSCodingP", "hasSuffix"]
+- !private ["So8NSCodingP", "init"]
+- !private ["So8NSCodingP", "isEmpty"]
+- !private ["So8NSCodingP", "lowercased"]
+- !private ["So8NSCodingP", "padding"]
+- !private ["So8NSCodingP", "range"]
+- !private ["So8NSCodingP", "split"]
+- !private ["So8NSCodingP", "standardError"]
+- !private ["So8NSCodingP", "stringByReplacingMatches"]
+- !private ["So8NSCodingP", "substr"]
+- !private ["So8NSCodingP", "trimmed"]
+- !private ["So8NSCodingP", "write"]
+- !private ["So9NSCopyingP", "count"]
+- !private ["So9NSCopyingP", "data"]
+- !private ["So9NSCopyingP", "enumerateMatches"]
+- !private ["So9NSCopyingP", "escapedPattern"]
+- !private ["So9NSCopyingP", "escapedTemplate"]
+- !private ["So9NSCopyingP", "firstMatch"]
+- !private ["So9NSCopyingP", "getPreMatch"]
+- !private ["So9NSCopyingP", "getSub"]
+- !private ["So9NSCopyingP", "hasPrefix"]
+- !private ["So9NSCopyingP", "hasSuffix"]
+- !private ["So9NSCopyingP", "init"]
+- !private ["So9NSCopyingP", "isEmpty"]
+- !private ["So9NSCopyingP", "lowercased"]
+- !private ["So9NSCopyingP", "padding"]
+- !private ["So9NSCopyingP", "range"]
+- !private ["So9NSCopyingP", "split"]
+- !private ["So9NSCopyingP", "stringByReplacingMatches"]
+- !private ["So9NSCopyingP", "substr"]
+- !private ["So9NSCopyingP", "trimmed"]
+- !private ["So21NSItemProviderReadingP", "count"]
+- !private ["So21NSItemProviderReadingP", "data"]
+- !private ["So21NSItemProviderReadingP", "getPreMatch"]
+- !private ["So21NSItemProviderReadingP", "hasPrefix"]
+- !private ["So21NSItemProviderReadingP", "hasSuffix"]
+- !private ["So21NSItemProviderReadingP", "isEmpty"]
+- !private ["So21NSItemProviderReadingP", "lowercased"]
+- !private ["So21NSItemProviderReadingP", "padding"]
+- !private ["So21NSItemProviderReadingP", "split"]
+- !private ["So21NSItemProviderReadingP", "substr"]
+- !private ["So21NSItemProviderReadingP", "trimmed"]
+- !private ["So21NSItemProviderWritingP", "count"]
+- !private ["So21NSItemProviderWritingP", "data"]
+- !private ["So21NSItemProviderWritingP", "getPreMatch"]
+- !private ["So21NSItemProviderWritingP", "hasPrefix"]
+- !private ["So21NSItemProviderWritingP", "hasSuffix"]
+- !private ["So21NSItemProviderWritingP", "isEmpty"]
+- !private ["So21NSItemProviderWritingP", "lowercased"]
+- !private ["So21NSItemProviderWritingP", "padding"]
+- !private ["So21NSItemProviderWritingP", "split"]
+- !private ["So21NSItemProviderWritingP", "substr"]
+- !private ["So21NSItemProviderWritingP", "trimmed"]
+- !private ["So16NSMutableCopyingP", "count"]
+- !private ["So16NSMutableCopyingP", "data"]
+- !private ["So16NSMutableCopyingP", "getPreMatch"]
+- !private ["So16NSMutableCopyingP", "hasPrefix"]
+- !private ["So16NSMutableCopyingP", "hasSuffix"]
+- !private ["So16NSMutableCopyingP", "isEmpty"]
+- !private ["So16NSMutableCopyingP", "lowercased"]
+- !private ["So16NSMutableCopyingP", "padding"]
+- !private ["So16NSMutableCopyingP", "split"]
+- !private ["So16NSMutableCopyingP", "substr"]
+- !private ["So16NSMutableCopyingP", "trimmed"]
+- !private ["So8NSObjectC", "count"]
+- !private ["So8NSObjectC", "data"]
+- !private ["So8NSObjectC", "enumerateMatches"]
+- !private ["So8NSObjectC", "escapedPattern"]
+- !private ["So8NSObjectC", "escapedTemplate"]
+- !private ["So8NSObjectC", "firstMatch"]
+- !private ["So8NSObjectC", "getPreMatch"]
+- !private ["So8NSObjectC", "getSub"]
+- !private ["So8NSObjectC", "hasPrefix"]
+- !private ["So8NSObjectC", "hasSuffix"]
+- !private ["So8NSObjectC", "init"]
+- !private ["So8NSObjectC", "isEmpty"]
+- !private ["So8NSObjectC", "lowercased"]
+- !private ["So8NSObjectC", "padding"]
+- !private ["So8NSObjectC", "range"]
+- !private ["So8NSObjectC", "split"]
+- !private ["So8NSObjectC", "standardError"]
+- !private ["So8NSObjectC", "stringByReplacingMatches"]
+- !private ["So8NSObjectC", "substr"]
+- !private ["So8NSObjectC", "trimmed"]
+- !private ["So8NSObjectC", "write"]
+- !private ["So8NSObjectP", "count"]
+- !private ["So8NSObjectP", "data"]
+- !private ["So8NSObjectP", "enumerateMatches"]
+- !private ["So8NSObjectP", "escapedPattern"]
+- !private ["So8NSObjectP", "escapedTemplate"]
+- !private ["So8NSObjectP", "firstMatch"]
+- !private ["So8NSObjectP", "getPreMatch"]
+- !private ["So8NSObjectP", "getSub"]
+- !private ["So8NSObjectP", "hasPrefix"]
+- !private ["So8NSObjectP", "hasSuffix"]
+- !private ["So8NSObjectP", "init"]
+- !private ["So8NSObjectP", "isEmpty"]
+- !private ["So8NSObjectP", "lowercased"]
+- !private ["So8NSObjectP", "padding"]
+- !private ["So8NSObjectP", "range"]
+- !private ["So8NSObjectP", "split"]
+- !private ["So8NSObjectP", "standardError"]
+- !private ["So8NSObjectP", "stringByReplacingMatches"]
+- !private ["So8NSObjectP", "substr"]
+- !private ["So8NSObjectP", "trimmed"]
+- !private ["So8NSObjectP", "write"]
+- !private ["So19NSRegularExpressionC", "enumerateMatches"]
+- !private ["So19NSRegularExpressionC", "escapedPattern"]
+- !private ["So19NSRegularExpressionC", "escapedTemplate"]
+- !private ["So19NSRegularExpressionC", "firstMatch"]
+- !private ["So19NSRegularExpressionC", "init"]
+- !private ["So19NSRegularExpressionC", "stringByReplacingMatches"]
+- !private ["So14NSSecureCodingP", "count"]
+- !private ["So14NSSecureCodingP", "data"]
+- !private ["So14NSSecureCodingP", "enumerateMatches"]
+- !private ["So14NSSecureCodingP", "escapedPattern"]
+- !private ["So14NSSecureCodingP", "escapedTemplate"]
+- !private ["So14NSSecureCodingP", "firstMatch"]
+- !private ["So14NSSecureCodingP", "getPreMatch"]
+- !private ["So14NSSecureCodingP", "getSub"]
+- !private ["So14NSSecureCodingP", "hasPrefix"]
+- !private ["So14NSSecureCodingP", "hasSuffix"]
+- !private ["So14NSSecureCodingP", "init"]
+- !private ["So14NSSecureCodingP", "isEmpty"]
+- !private ["So14NSSecureCodingP", "lowercased"]
+- !private ["So14NSSecureCodingP", "padding"]
+- !private ["So14NSSecureCodingP", "range"]
+- !private ["So14NSSecureCodingP", "split"]
+- !private ["So14NSSecureCodingP", "standardError"]
+- !private ["So14NSSecureCodingP", "stringByReplacingMatches"]
+- !private ["So14NSSecureCodingP", "substr"]
+- !private ["So14NSSecureCodingP", "trimmed"]
+- !private ["So14NSSecureCodingP", "write"]
+- !private ["So8NSStringC", "count"]
+- !private ["So8NSStringC", "data"]
+- !private ["So8NSStringC", "getPreMatch"]
+- !private ["So8NSStringC", "hasPrefix"]
+- !private ["So8NSStringC", "hasSuffix"]
+- !private ["So8NSStringC", "isEmpty"]
+- !private ["So8NSStringC", "lowercased"]
+- !private ["So8NSStringC", "padding"]
+- !private ["So8NSStringC", "split"]
+- !private ["So8NSStringC", "substr"]
+- !private ["So8NSStringC", "trimmed"]
+- !private ["So20NSTextCheckingResultC", "getSub"]
+- !private ["So20NSTextCheckingResultC", "range"]
+- ["10PGDocFixerAAC", "Alignment"]
+- ["10PGDocFixerAAC", "Bool"]
+- !private ["10PGDocFixerAAC", "CR"]
+- ["10PGDocFixerAAC", "CommentDocType"]
+- !private ["10PGDocFixerAAC", "DLItem"]
+- !private ["10PGDocFixerAAC", "DocFixerErrors"]
+- ["10PGDocFixerAAC", "HTMLElement"]
+- ["10PGDocFixerAAC", "Int"]
+- ["10PGDocFixerAAC", "LineParts"]
+- !private ["10PGDocFixerAAC", "NSNotFound"]
+- !private ["10PGDocFixerAAC", "NSRange"]
+- ["10PGDocFixerAAC", "NSRegularExpression"]
+- !private ["10PGDocFixerAAC", "NSTextCheckingResult"]
+- ["10PGDocFixerAAC", "ParagraphInfo"]
+- ["10PGDocFixerAAC", "ParagraphType"]
+- ["10PGDocFixerAAC", "RegexRepl"]
+- !private ["10PGDocFixerAAC", "SPC"]
+- ["10PGDocFixerAAC", "String"]
+- !private ["10PGDocFixerAAC", "WordWrap"]
+- !private ["10PGDocFixerAAC", "addUrlsToFindAndReplace"]
+- ["10PGDocFixerAAC", "adjustIndent"]
+- ["10PGDocFixerAAC", "buildAlignments"]
+- ["10PGDocFixerAAC", "buildHTMLTableRow"]
+- ["10PGDocFixerAAC", "buildTableRow"]
+- !private ["10PGDocFixerAAC", "closeBlock"]
+- !private ["10PGDocFixerAAC", "closeParagraph"]
+- !private ["10PGDocFixerAAC", "convertCommentBlocks"]
+- !private ["10PGDocFixerAAC", "convertCommentBlocks01"]
+- ["10PGDocFixerAAC", "deinit"]
+- ["10PGDocFixerAAC", "doSimpleOnes"]
+- ["10PGDocFixerAAC", "docOutput"]
+- ["10PGDocFixerAAC", "dumpTable"]
+- ["10PGDocFixerAAC", "dumpTableAsHTML"]
+- ["10PGDocFixerAAC", "dumpTableAsMarkdown"]
+- ["10PGDocFixerAAC", "findReplace"]
+- ["10PGDocFixerAAC", "handleCodeBlock"]
+- ["10PGDocFixerAAC", "handleDefListBlock"]
+- ["10PGDocFixerAAC", "handleHTMLTableBlock"]
+- ["10PGDocFixerAAC", "handleListBlock"]
+- ["10PGDocFixerAAC", "handleMarkDownTableBlock"]
+- !private ["10PGDocFixerAAC", "handleNormal"]
+- ["10PGDocFixerAAC", "handlePreformattedBlock"]
+- ["10PGDocFixerAAC", "handleRawBlock"]
+- ["10PGDocFixerAAC", "init"]
+- !private ["10PGDocFixerAAC", "max"]
+- ["10PGDocFixerAAC", "maxLineLength"]
+- !private ["10PGDocFixerAAC", "min"]
+- ["10PGDocFixerAAC", "paraType"]
+- ["10PGDocFixerAAC", "parseHTMLTree"]
+- ["10PGDocFixerAAC", "processBlock"]
+- ["10PGDocFixerAAC", "processDocument"]
+- ["10PGDocFixerAAC", "regexML"]
+- ["10PGDocFixerAAC", "renderDefList"]
+- ["10PGDocFixerAAC", "renderDefList2"]
+- ["10PGDocFixerAAC", "renderHTMLElement"]
+- ["10PGDocFixerAAC", "renderHTMLTable"]
+- ["10PGDocFixerAAC", "renderHTMLTable2"]
+- ["10PGDocFixerAAC", "renderList"]
+- ["10PGDocFixerAAC", "renderList2"]
+- ["10PGDocFixerAAC", "renderParagraph"]
+- ["10PGDocFixerAAC", "renderTable"]
+- !private ["10PGDocFixerAAC", "resetParagraph"]
+- !private ["10PGDocFixerAAC", "restoreCommentBlocks"]
+- !private ["10PGDocFixerAAC", "restoreCommentBlocks01"]
+- ["10PGDocFixerAAC", "rx1"]
+- ["10PGDocFixerAAC", "rx2"]
+- ["10PGDocFixerAAC", "rx3"]
+- ["10PGDocFixerAAC", "rx4"]
+- ["10PGDocFixerAAC", "rx5"]
+- ["10PGDocFixerAAC", "rx7"]
+- ["10PGDocFixerAAC", "rx8"]
+- ["10PGDocFixerAAC", "rxFinal"]
+- ["10PGDocFixerAAC", "rxLead"]
+- ["10PGDocFixerAAC", "rxLine"]
+- !private ["10PGDocFixerAAC", "scanHTML"]
+- ["10PGDocFixerAAC", "stripTableRow"]
+- ["10PGDocFixerAAC", "tablesAsMarkdown"]
+- ["10PGDocFixerAAC", "twoThirdsMaxLineLength"]
+- ["10PGDocFixer13ParagraphInfoC", "Bool"]
+- ["10PGDocFixer13ParagraphInfoC", "String"]
+- ["10PGDocFixer13ParagraphInfoC", "deinit"]
+- ["10PGDocFixer13ParagraphInfoC", "indent"]
+- ["10PGDocFixer13ParagraphInfoC", "init"]
+- ["10PGDocFixer13ParagraphInfoC", "paragraph"]
+- ["10PGDocFixer13ParagraphInfoC", "prefix"]
+- ["10PGDocFixer13ParagraphInfoC", "startup"]
+- ["10PGDocFixer13ParagraphTypeO", "=="]
+- ["10PGDocFixer13ParagraphTypeO", "CodeBlock"]
+- ["10PGDocFixer13ParagraphTypeO", "DefList"]
+- ["10PGDocFixer13ParagraphTypeO", "HTMLTable"]
+- ["10PGDocFixer13ParagraphTypeO", "MarkDownTable"]
+- ["10PGDocFixer13ParagraphTypeO", "Normal"]
+- ["10PGDocFixer13ParagraphTypeO", "OrderedList"]
+- ["10PGDocFixer13ParagraphTypeO", "Preformatted"]
+- ["10PGDocFixer13ParagraphTypeO", "UnorderedList"]
+- ["10PGDocFixer13ParagraphTypeO", "__derived_enum_equals"]
+- ["10PGDocFixer13ParagraphTypeO", "_rawHashValue"]
+- ["10PGDocFixer13ParagraphTypeO", "deinit"]
+- ["10PGDocFixer13ParagraphTypeO", "hash"]
+- ["10PGDocFixer13ParagraphTypeO", "hashValue"]
+- !private ["Sk", "append"]
+- !private ["Sk", "count"]
+- !private ["Sk", "enumerated"]
+- !private ["Sk", "subscript"]
+- !private ["Sm", "Encoding"]
+- !private ["Sm", "append"]
+- !private ["Sm", "count"]
+- !private ["Sm", "data"]
+- !private ["Sm", "enumerated"]
+- !private ["Sm", "getPreMatch"]
+- !private ["Sm", "hasPrefix"]
+- !private ["Sm", "hasSuffix"]
+- !private ["Sm", "init"]
+- !private ["Sm", "isEmpty"]
+- !private ["Sm", "lowercased"]
+- !private ["Sm", "padding"]
+- !private ["Sm", "split"]
+- !private ["Sm", "subscript"]
+- !private ["Sm", "substr"]
+- !private ["Sm", "trimmed"]
+- !private ["SY", "utf8"]
+- ["10PGDocFixer9RegexReplC", "init"]
+- !private ["10PGDocFixer9RegexReplC", "regex"]
+- !private ["10PGDocFixer9RegexReplC", "repl"]
+- !private ["ST", "Encoding"]
+- !private ["ST", "append"]
+- !private ["ST", "count"]
+- !private ["ST", "data"]
+- !private ["ST", "enumerated"]
+- !private ["ST", "getPreMatch"]
+- !private ["ST", "hasPrefix"]
+- !private ["ST", "hasSuffix"]
+- !private ["ST", "init"]
+- !private ["ST", "isEmpty"]
+- !private ["ST", "keys"]
+- !private ["ST", "lowercased"]
+- !private ["ST", "padding"]
+- !private ["ST", "sorted"]
+- !private ["ST", "split"]
+- !private ["ST", "subscript"]
+- !private ["ST", "substr"]
+- !private ["ST", "trimmed"]
+- !private ["SS", "Encoding"]
+- !private ["SS", "count"]
+- !private ["SS", "data"]
+- !private ["SS", "getPreMatch"]
+- !private ["SS", "hasPrefix"]
+- !private ["SS", "hasSuffix"]
+- !private ["SS", "init"]
+- !private ["SS", "isEmpty"]
+- !private ["SS", "lowercased"]
+- !private ["SS", "padding"]
+- !private ["SS", "split"]
+- !private ["SS", "substr"]
+- !private ["SS", "trimmed"]
+- ["s27StringInterpolationProtocolP", "appendInterpolation"]
+- ["s27StringInterpolationProtocolP", "appendLiteral"]
+- !private ["Sy", "Encoding"]
+- !private ["Sy", "count"]
+- !private ["Sy", "data"]
+- !private ["Sy", "getPreMatch"]
+- !private ["Sy", "hasPrefix"]
+- !private ["Sy", "hasSuffix"]
+- !private ["Sy", "init"]
+- !private ["Sy", "isEmpty"]
+- !private ["Sy", "lowercased"]
+- !private ["Sy", "padding"]
+- !private ["Sy", "split"]
+- !private ["Sy", "substr"]
+- !private ["Sy", "trimmed"]
+- !private ["s16TextOutputStreamP", "Encoding"]
+- !private ["s16TextOutputStreamP", "FileHandle"]
+- ["s16TextOutputStreamP", ""]
+- ["s16TextOutputStreamP", "_lock"]
+- ["s16TextOutputStreamP", "_unlock"]
+- ["s16TextOutputStreamP", "_writeASCII"]
+- ["s16TextOutputStreamP", "appendInterpolation"]
+- ["s16TextOutputStreamP", "appendLiteral"]
+- !private ["s16TextOutputStreamP", "count"]
+- !private ["s16TextOutputStreamP", "data"]
+- !private ["s16TextOutputStreamP", "getPreMatch"]
+- !private ["s16TextOutputStreamP", "hasPrefix"]
+- !private ["s16TextOutputStreamP", "hasSuffix"]
+- ["s16TextOutputStreamP", "init"]
+- !private ["s16TextOutputStreamP", "isEmpty"]
+- !private ["s16TextOutputStreamP", "lowercased"]
+- !private ["s16TextOutputStreamP", "padding"]
+- !private ["s16TextOutputStreamP", "split"]
+- !private ["s16TextOutputStreamP", "substr"]
+- !private ["s16TextOutputStreamP", "trimmed"]
+- ["s16TextOutputStreamP", "write"]
+- !private ["s20TextOutputStreamableP", "Encoding"]
+- !private ["s20TextOutputStreamableP", "count"]
+- !private ["s20TextOutputStreamableP", "data"]
+- !private ["s20TextOutputStreamableP", "getPreMatch"]
+- !private ["s20TextOutputStreamableP", "hasPrefix"]
+- !private ["s20TextOutputStreamableP", "hasSuffix"]
+- !private ["s20TextOutputStreamableP", "init"]
+- !private ["s20TextOutputStreamableP", "isEmpty"]
+- !private ["s20TextOutputStreamableP", "lowercased"]
+- !private ["s20TextOutputStreamableP", "padding"]
+- !private ["s20TextOutputStreamableP", "split"]
+- !private ["s20TextOutputStreamableP", "substr"]
+- !private ["s20TextOutputStreamableP", "trimmed"]
+- !private ["10PGDocFixer8WordWrapC", "init"]
+- !private ["10PGDocFixer8WordWrapC", "wrap"]
+- !private ["s14_ArrayProtocolP", "append"]
+- !private ["s14_ArrayProtocolP", "count"]
+- !private ["s14_ArrayProtocolP", "enumerated"]
+- !private ["s14_ArrayProtocolP", "subscript"]
+- !private ["s30_CustomPlaygroundQuickLookableP", "Encoding"]
+- !private ["s30_CustomPlaygroundQuickLookableP", "callAsFunction"]
+- !private ["s30_CustomPlaygroundQuickLookableP", "count"]
+- !private ["s30_CustomPlaygroundQuickLookableP", "data"]
+- !private ["s30_CustomPlaygroundQuickLookableP", "getPreMatch"]
+- !private ["s30_CustomPlaygroundQuickLookableP", "hasPrefix"]
+- !private ["s30_CustomPlaygroundQuickLookableP", "hasSuffix"]
+- !private ["s30_CustomPlaygroundQuickLookableP", "init"]
+- !private ["s30_CustomPlaygroundQuickLookableP", "isEmpty"]
+- !private ["s30_CustomPlaygroundQuickLookableP", "location"]
+- !private ["s30_CustomPlaygroundQuickLookableP", "lowercased"]
+- !private ["s30_CustomPlaygroundQuickLookableP", "padding"]
+- !private ["s30_CustomPlaygroundQuickLookableP", "split"]
+- !private ["s30_CustomPlaygroundQuickLookableP", "substr"]
+- !private ["s30_CustomPlaygroundQuickLookableP", "trimmed"]
+- !private ["s24_DestructorSafeContainerP", "append"]
+- !private ["s24_DestructorSafeContainerP", "count"]
+- !private ["s24_DestructorSafeContainerP", "enumerated"]
+- !private ["s24_DestructorSafeContainerP", "subscript"]
+- !private ["s51_ExpressibleByBuiltinExtendedGraphemeClusterLiteralP", "Encoding"]
+- !private ["s51_ExpressibleByBuiltinExtendedGraphemeClusterLiteralP", "count"]
+- !private ["s51_ExpressibleByBuiltinExtendedGraphemeClusterLiteralP", "data"]
+- !private ["s51_ExpressibleByBuiltinExtendedGraphemeClusterLiteralP", "getPreMatch"]
+- !private ["s51_ExpressibleByBuiltinExtendedGraphemeClusterLiteralP", "hasPrefix"]
+- !private ["s51_ExpressibleByBuiltinExtendedGraphemeClusterLiteralP", "hasSuffix"]
+- !private ["s51_ExpressibleByBuiltinExtendedGraphemeClusterLiteralP", "init"]
+- !private ["s51_ExpressibleByBuiltinExtendedGraphemeClusterLiteralP", "isEmpty"]
+- !private ["s51_ExpressibleByBuiltinExtendedGraphemeClusterLiteralP", "lowercased"]
+- !private ["s51_ExpressibleByBuiltinExtendedGraphemeClusterLiteralP", "padding"]
+- !private ["s51_ExpressibleByBuiltinExtendedGraphemeClusterLiteralP", "split"]
+- !private ["s51_ExpressibleByBuiltinExtendedGraphemeClusterLiteralP", "substr"]
+- !private ["s51_ExpressibleByBuiltinExtendedGraphemeClusterLiteralP", "trimmed"]
+- !private ["s34_ExpressibleByBuiltinStringLiteralP", "Encoding"]
+- !private ["s34_ExpressibleByBuiltinStringLiteralP", "count"]
+- !private ["s34_ExpressibleByBuiltinStringLiteralP", "data"]
+- !private ["s34_ExpressibleByBuiltinStringLiteralP", "getPreMatch"]
+- !private ["s34_ExpressibleByBuiltinStringLiteralP", "hasPrefix"]
+- !private ["s34_ExpressibleByBuiltinStringLiteralP", "hasSuffix"]
+- !private ["s34_ExpressibleByBuiltinStringLiteralP", "init"]
+- !private ["s34_ExpressibleByBuiltinStringLiteralP", "isEmpty"]
+- !private ["s34_ExpressibleByBuiltinStringLiteralP", "lowercased"]
+- !private ["s34_ExpressibleByBuiltinStringLiteralP", "padding"]
+- !private ["s34_ExpressibleByBuiltinStringLiteralP", "split"]
+- !private ["s34_ExpressibleByBuiltinStringLiteralP", "substr"]
+- !private ["s34_ExpressibleByBuiltinStringLiteralP", "trimmed"]
+- !private ["s41_ExpressibleByBuiltinUnicodeScalarLiteralP", "Encoding"]
+- !private ["s41_ExpressibleByBuiltinUnicodeScalarLiteralP", "count"]
+- !private ["s41_ExpressibleByBuiltinUnicodeScalarLiteralP", "data"]
+- !private ["s41_ExpressibleByBuiltinUnicodeScalarLiteralP", "getPreMatch"]
+- !private ["s41_ExpressibleByBuiltinUnicodeScalarLiteralP", "hasPrefix"]
+- !private ["s41_ExpressibleByBuiltinUnicodeScalarLiteralP", "hasSuffix"]
+- !private ["s41_ExpressibleByBuiltinUnicodeScalarLiteralP", "init"]
+- !private ["s41_ExpressibleByBuiltinUnicodeScalarLiteralP", "isEmpty"]
+- !private ["s41_ExpressibleByBuiltinUnicodeScalarLiteralP", "lowercased"]
+- !private ["s41_ExpressibleByBuiltinUnicodeScalarLiteralP", "padding"]
+- !private ["s41_ExpressibleByBuiltinUnicodeScalarLiteralP", "split"]
+- !private ["s41_ExpressibleByBuiltinUnicodeScalarLiteralP", "substr"]
+- !private ["s41_ExpressibleByBuiltinUnicodeScalarLiteralP", "trimmed"]
+- !private ["s19_HasContiguousBytesP", "Encoding"]
+- !private ["s19_HasContiguousBytesP", "append"]
+- !private ["s19_HasContiguousBytesP", "count"]
+- !private ["s19_HasContiguousBytesP", "data"]
+- !private ["s19_HasContiguousBytesP", "enumerated"]
+- !private ["s19_HasContiguousBytesP", "getPreMatch"]
+- !private ["s19_HasContiguousBytesP", "hasPrefix"]
+- !private ["s19_HasContiguousBytesP", "hasSuffix"]
+- !private ["s19_HasContiguousBytesP", "init"]
+- !private ["s19_HasContiguousBytesP", "isEmpty"]
+- !private ["s19_HasContiguousBytesP", "lowercased"]
+- !private ["s19_HasContiguousBytesP", "padding"]
+- !private ["s19_HasContiguousBytesP", "split"]
+- !private ["s19_HasContiguousBytesP", "subscript"]
+- !private ["s19_HasContiguousBytesP", "substr"]
+- !private ["s19_HasContiguousBytesP", "trimmed"]
+- !private ["s35_HasCustomAnyHashableRepresentationP", "append"]
+- !private ["s35_HasCustomAnyHashableRepresentationP", "count"]
+- !private ["s35_HasCustomAnyHashableRepresentationP", "data"]
+- !private ["s35_HasCustomAnyHashableRepresentationP", "enumerated"]
+- !private ["s35_HasCustomAnyHashableRepresentationP", "getPreMatch"]
+- !private ["s35_HasCustomAnyHashableRepresentationP", "hasPrefix"]
+- !private ["s35_HasCustomAnyHashableRepresentationP", "hasSuffix"]
+- !private ["s35_HasCustomAnyHashableRepresentationP", "isEmpty"]
+- !private ["s35_HasCustomAnyHashableRepresentationP", "keys"]
+- !private ["s35_HasCustomAnyHashableRepresentationP", "lowercased"]
+- !private ["s35_HasCustomAnyHashableRepresentationP", "padding"]
+- !private ["s35_HasCustomAnyHashableRepresentationP", "split"]
+- !private ["s35_HasCustomAnyHashableRepresentationP", "subscript"]
+- !private ["s35_HasCustomAnyHashableRepresentationP", "substr"]
+- !private ["s35_HasCustomAnyHashableRepresentationP", "trimmed"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "count"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "data"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "enumerateMatches"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "escapedPattern"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "escapedTemplate"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "firstMatch"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "getPreMatch"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "getSub"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "hasPrefix"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "hasSuffix"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "init"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "isEmpty"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "lowercased"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "padding"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "range"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "split"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "standardError"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "stringByReplacingMatches"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "substr"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "trimmed"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "write"]
+- !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "count"]
+- !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "data"]
+- !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "enumerateMatches"]
+- !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "escapedPattern"]
+- !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "escapedTemplate"]
+- !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "firstMatch"]
+- !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "getPreMatch"]
+- !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "getSub"]
+- !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "hasPrefix"]
+- !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "hasSuffix"]
+- !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "init"]
+- !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "isEmpty"]
+- !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "lowercased"]
+- !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "padding"]
+- !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "range"]
+- !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "split"]
+- !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "standardError"]
+- !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "stringByReplacingMatches"]
+- !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "substr"]
+- !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "trimmed"]
+- !private ["10Foundation37_KeyValueCodingAndObservingPublishingP", "write"]
+- !private ["So8_NSRangeV", "callAsFunction"]
+- !private ["So8_NSRangeV", "location"]
+- !private ["s21_ObjectiveCBridgeableP", "Encoding"]
+- !private ["s21_ObjectiveCBridgeableP", "append"]
+- !private ["s21_ObjectiveCBridgeableP", "callAsFunction"]
+- !private ["s21_ObjectiveCBridgeableP", "count"]
+- !private ["s21_ObjectiveCBridgeableP", "data"]
+- !private ["s21_ObjectiveCBridgeableP", "enumerated"]
+- !private ["s21_ObjectiveCBridgeableP", "getPreMatch"]
+- !private ["s21_ObjectiveCBridgeableP", "hasPrefix"]
+- !private ["s21_ObjectiveCBridgeableP", "hasSuffix"]
+- !private ["s21_ObjectiveCBridgeableP", "init"]
+- !private ["s21_ObjectiveCBridgeableP", "isEmpty"]
+- !private ["s21_ObjectiveCBridgeableP", "keys"]
+- !private ["s21_ObjectiveCBridgeableP", "location"]
+- !private ["s21_ObjectiveCBridgeableP", "lowercased"]
+- !private ["s21_ObjectiveCBridgeableP", "padding"]
+- !private ["s21_ObjectiveCBridgeableP", "split"]
+- !private ["s21_ObjectiveCBridgeableP", "subscript"]
+- !private ["s21_ObjectiveCBridgeableP", "substr"]
+- !private ["s21_ObjectiveCBridgeableP", "trimmed"]
+depends-nominal:
+- "10PGDocFixer9AlignmentO"
+- !private "Sa"
+- !private "SK"
+- !private "s7CVarArgP"
+- !private "Sl"
+- !private "10PGDocFixer14CommentDocTypeO"
+- !private "SL"
+- !private "10Foundation15ContiguousBytesP"
+- !private "s28CustomDebugStringConvertibleP"
+- !private "s17CustomReflectableP"
+- "s23CustomStringConvertibleP"
+- !private "10PGDocFixer6DLItemV"
+- !private "10Foundation12DataProtocolP"
+- !private "Se"
+- "s26DefaultStringInterpolationV"
+- !private "SD"
+- !private "10PGDocFixer03DocB6ErrorsO"
+- !private "SE"
+- !private "SS10FoundationE8EncodingV"
+- "SQ"
+- !private "s5ErrorP"
+- !private "s25ExpressibleByArrayLiteralP"
+- !private "s30ExpressibleByDictionaryLiteralP"
+- !private "s43ExpressibleByExtendedGraphemeClusterLiteralP"
+- !private "s32ExpressibleByStringInterpolationP"
+- !private "s26ExpressibleByStringLiteralP"
+- !private "s33ExpressibleByUnicodeScalarLiteralP"
+- !private "So12NSFileHandleC"
+- !private "10PGDocFixer11HTMLElementC"
+- "SH"
+- !private "s6HasherV"
+- !private "SD4KeysV"
+- "10PGDocFixer9LinePartsV"
+- "10PGDocFixer14LogDestinationC"
+- !private "s25LosslessStringConvertibleP"
+- !private "s10MirrorPathP"
+- !private "SM"
+- !private "10Foundation19MutableDataProtocolP"
+- !private "So8NSCodingP"
+- !private "So9NSCopyingP"
+- !private "So21NSItemProviderReadingP"
+- !private "So21NSItemProviderWritingP"
+- !private "So16NSMutableCopyingP"
+- !private "So8NSObjectC"
+- !private "So8NSObjectP"
+- !private "So19NSRegularExpressionC"
+- !private "So14NSSecureCodingP"
+- !private "So8NSStringC"
+- !private "So20NSTextCheckingResultC"
+- "10PGDocFixerAAC"
+- "10PGDocFixer13ParagraphInfoC"
+- "10PGDocFixer13ParagraphTypeO"
+- !private "Sk"
+- !private "Sm"
+- !private "SY"
+- "10PGDocFixer9RegexReplC"
+- !private "ST"
+- !private "SS"
+- "s27StringInterpolationProtocolP"
+- !private "Sy"
+- "s16TextOutputStreamP"
+- !private "s20TextOutputStreamableP"
+- !private "10PGDocFixer8WordWrapC"
+- !private "s14_ArrayProtocolP"
+- !private "s30_CustomPlaygroundQuickLookableP"
+- !private "s24_DestructorSafeContainerP"
+- !private "s51_ExpressibleByBuiltinExtendedGraphemeClusterLiteralP"
+- !private "s34_ExpressibleByBuiltinStringLiteralP"
+- !private "s41_ExpressibleByBuiltinUnicodeScalarLiteralP"
+- !private "s19_HasContiguousBytesP"
+- !private "s35_HasCustomAnyHashableRepresentationP"
+- !private "10Foundation27_KeyValueCodingAndObservingP"
+- !private "10Foundation37_KeyValueCodingAndObservingPublishingP"
+- !private "So8_NSRangeV"
+- !private "s21_ObjectiveCBridgeableP"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/XPC.swiftmodule/x86_64-apple-macos.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/ObjectiveC.swiftmodule/x86_64-apple-macos.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/Dispatch.swiftmodule/x86_64-apple-macos.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/CoreFoundation.swiftmodule/x86_64-apple-macos.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/CoreGraphics.swiftmodule/x86_64-apple-macos.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/IOKit.swiftmodule/x86_64-apple-macos.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/SwiftOnoneSupport.swiftmodule/x86_64-apple-macos.swiftmodule"
+- "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/.build/x86_64-apple-macosx/debug/PGDocFixer.build/module.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include/xpc/XPC.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include/objc/ObjectiveC.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/apinotes/Dispatch.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include/Darwin.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CoreGraphics.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/ApplicationServices.framework/Headers/ApplicationServices.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreText.framework/Headers/CoreText.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Security.framework/Headers/Security.apinotes"
+interface-hash: "14b33fd8765f880207ecff93c02ad6c5"

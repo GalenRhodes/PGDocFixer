@@ -1,0 +1,257 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Launchers.swift",
+      "line": 25,
+      "symbol": "doDocFixer(args:replacements:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/DocFixer.swift",
+      "line": 46,
+      "symbol": "errorLog",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/DocFixerErrors.swift",
+      "line": 29,
+      "symbol": "DocFixerErrors.FileNotFound(description:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/DocFixerErrors.swift",
+      "line": 30,
+      "symbol": "DocFixerErrors.FailedProc(description:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/DocFixerErrors.swift",
+      "line": 31,
+      "symbol": "DocFixerErrors.FailedArchive(description:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/DocFixerErrors.swift",
+      "line": 32,
+      "symbol": "DocFixerErrors.FailedUnarchive(description:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/DocFixerErrors.swift",
+      "line": 33,
+      "symbol": "DocFixerErrors.FailedSave(description:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/DocFixerErrors.swift",
+      "line": 34,
+      "symbol": "DocFixerErrors.FailedLoad(description:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/DocFixerErrors.swift",
+      "line": 35,
+      "symbol": "DocFixerErrors.UnknownError(description:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Extensions.swift",
+      "line": 34,
+      "symbol": "NSRange.range(string:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Extensions.swift",
+      "line": 38,
+      "symbol": "NSRange.init(start:end:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Extensions.swift",
+      "line": 45,
+      "symbol": "NSRegularExpression.matches(in:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Extensions.swift",
+      "line": 47,
+      "symbol": "NSRegularExpression.firstMatch(in:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Extensions.swift",
+      "line": 49,
+      "symbol": "NSRegularExpression.firstMatch(in:from:to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Extensions.swift",
+      "line": 51,
+      "symbol": "NSRegularExpression.enumerateMatches(in:options:using:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Extensions.swift",
+      "line": 57,
+      "symbol": "NSRegularExpression.stringByReplacingMatches(in:options:withTemplate:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Extensions.swift",
+      "line": 63,
+      "symbol": "String.nsRange",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Extensions.swift",
+      "line": 64,
+      "symbol": "String.trimmed",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Extensions.swift",
+      "line": 66,
+      "symbol": "String.index(pos:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Extensions.swift",
+      "line": 68,
+      "symbol": "String.range(from:to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Extensions.swift",
+      "line": 70,
+      "symbol": "String.range(from:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Extensions.swift",
+      "line": 72,
+      "symbol": "String.range(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Extensions.swift",
+      "line": 74,
+      "symbol": "String.range(range:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Extensions.swift",
+      "line": 76,
+      "symbol": "String.substr(from:to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Extensions.swift",
+      "line": 78,
+      "symbol": "String.substr(from:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Extensions.swift",
+      "line": 80,
+      "symbol": "String.substr(to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Extensions.swift",
+      "line": 82,
+      "symbol": "String.substr(range:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Extensions.swift",
+      "line": 84,
+      "symbol": "String.split(regex:limit:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Extensions.swift",
+      "line": 97,
+      "symbol": "String.padding(toLength:withPad:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Extensions.swift",
+      "line": 148,
+      "symbol": "String.getPreMatch(start:range:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/RegexRepl.swift",
+      "line": 30,
+      "symbol": "RegexRepl.regex",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/RegexRepl.swift",
+      "line": 31,
+      "symbol": "RegexRepl.repl",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Stuff.swift",
+      "line": 25,
+      "symbol": "CommentDocType",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Stuff.swift",
+      "line": 26,
+      "symbol": "CommentDocType.Slashes",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Stuff.swift",
+      "line": 27,
+      "symbol": "CommentDocType.Stars",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Stuff.swift",
+      "line": 28,
+      "symbol": "CommentDocType.StarsEmpty",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer"
+}

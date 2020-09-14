@@ -24,7 +24,9 @@ import Foundation
 
 extension CharacterSet {
 
+    /*===========================================================================================================================*/
     /// A simple concatination of the CharacterSet.whitespacesAndNewlines and CharacterSet.controlCharacters character sets.
+    ///
     static let whitespacesAndNewlinesAndControlCharacters: CharacterSet = CharacterSet.whitespacesAndNewlines.union(CharacterSet.controlCharacters)
 }
 
@@ -151,8 +153,7 @@ extension String {
 }
 
 extension NSTextCheckingResult {
-    ///
-    ///
+    /*===========================================================================================================================*/
     /// - Parameters:
     ///   - string:
     ///   - match:
@@ -171,4 +172,3 @@ extension NSTextCheckingResult {
         return ""
     }
 }
-

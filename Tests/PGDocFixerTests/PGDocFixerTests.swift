@@ -16,6 +16,20 @@ class PGDocFixerTests: XCTestCase {
     override func tearDownWithError() throws {}
 
     func testProcessDocument() throws {
-        try docFixer(path: "Rubicon", matchAndReplace: [], logFile: "./runlogtest.txt", docOutput: .Slashes, lineLength: 132)
+        // @f:0
+        let args: [String] = [ "docFixer",
+                               "--remote-host",  "goober",
+                               "--remote-user",  "grhodes",
+                               "--remote-path",  "/var/www/html/PGDocFixer",
+                               "--log-file",     "./test.log",
+                               "--archive-file", "./docs.tar",
+                               "--comment-type", "slashes",
+                               "--line-length",  "132",
+                               "Sources" ]
+        // @f:1
+        print("""
+
+              EXIT CODE: \(doDocFixer(args: args, replacements: SIMPLEONES))
+              """)
     }
 }

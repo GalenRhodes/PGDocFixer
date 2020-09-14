@@ -1,0 +1,15 @@
+version: "Apple Swift version 5.2.4 (swiftlang-1103.0.32.9 clang-1103.0.32.53)"
+options: "77ce5e18bf69ee668e24f3eb490d050d"
+build_time: [1600106560, 952806000]
+inputs:
+  "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Launchers.swift": [1600106542, 734100449]
+  "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Alignment.swift": [1600106547, 729575585]
+  "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/DLItem.swift": [1600106554, 490777795]
+  "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/DocFixer.swift": [1600106551, 136110464]
+  "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/DocFixerErrors.swift": [1600106545, 691958972]
+  "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Extensions.swift": [1600106549, 190597345]
+  "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/RegexRepl.swift": [1600106548, 459551507]
+  "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/Stuff.swift": [1600106546, 948253614]
+  "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/SwiftSourceDocument.swift": [1600106552, 601161327]
+  "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/WordWrap.swift": [1600106543, 954448507]
+  "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer/Sources/PGDocFixer/Source/html.swift": [1600106550, 148883884]

@@ -46,7 +46,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "YES"
-      customWorkingDirectory = "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon"
+      customWorkingDirectory = "/Users/grhodes/Projects/2020/SwiftProjects/PGDocFixer"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"

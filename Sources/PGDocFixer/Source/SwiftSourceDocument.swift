@@ -216,4 +216,3 @@ internal class SwiftSourceDocument {
         return _outs + "\(indent) */\n"
     }
 }
-

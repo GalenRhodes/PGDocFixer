@@ -22,8 +22,7 @@
 
 import Foundation
 
-///
-///
+/*===============================================================================================================================*/
 /// - FileNotFound:
 ///
 public enum DocFixerErrors: Error {
@@ -35,4 +34,3 @@ public enum DocFixerErrors: Error {
     case FailedLoad(description: String)
     case UnknownError(description: String)
 }
-
