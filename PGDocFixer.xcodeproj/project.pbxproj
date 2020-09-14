@@ -58,7 +58,7 @@
 
 /* Begin PBXFileReference section */
 		1117D1C1C1B66ACBCFC0528A /* Launchers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Launchers.swift; sourceTree = "<group>"; };
-		1117DC021DA7925B2FFFFE6B /* .jazzy.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .jazzy.yaml; sourceTree = "<group>"; };
+		1117DA6E569378C4AEA3470A /* .jazzy.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .jazzy.yaml; sourceTree = "<group>"; };
 		8372518C250C16B2000921B4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8372518D250C16B2000921B4 /* build.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
 		OBJ_10 /* Alignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Alignment.swift; path = Source/Alignment.swift; sourceTree = "<group>"; };
@@ -112,7 +112,6 @@
 				OBJ_22 /* Data.swift */,
 				OBJ_23 /* PGDocFixerTests.swift */,
 				OBJ_24 /* XCTestManifests.swift */,
-				1117DC021DA7925B2FFFFE6B /* .jazzy.yaml */,
 			);
 			name = PGDocFixerTests;
 			path = Tests/PGDocFixerTests;
@@ -136,6 +135,7 @@
 				OBJ_7 /* Sources */,
 				OBJ_20 /* Tests */,
 				OBJ_25 /* Products */,
+				1117DA6E569378C4AEA3470A /* .jazzy.yaml */,
 			);
 			name = "";
 			sourceTree = "<group>";
