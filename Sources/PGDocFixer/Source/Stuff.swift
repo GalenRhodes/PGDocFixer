@@ -46,11 +46,11 @@ struct DocFixerParams {
 /*===============================================================================================================================*/
 /// Get all of the Swift source files under the given directory `workPath`. Each file must be older than the file at the given path
 /// `logFile`.
-///
+/// 
 /// - Parameters:
 ///   - workPath2:
 ///   - logFile:
-///
+/// 
 /// - Returns:
 ///
 func getFileList(path: String, logFile: String) -> [String] {

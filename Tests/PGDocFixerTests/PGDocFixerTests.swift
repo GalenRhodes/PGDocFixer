@@ -18,13 +18,14 @@ class PGDocFixerTests: XCTestCase {
     func testProcessDocument() throws {
         // @f:0
         let args: [String] = [ "docFixer",
-                               "--remote-host",  "goober",
-                               "--remote-user",  "grhodes",
-                               "--remote-path",  "/var/www/html/PGDocFixer",
-                               "--log-file",     "./test.log",
-                               "--archive-file", "./docs.tar",
-                               "--comment-type", "slashes",
-                               "--line-length",  "132",
+                               "--remote-host",   "goober",
+                               "--remote-user",   "grhodes",
+                               "--remote-path",   "/var/www/html/PGDocFixer",
+                               "--log-file",      "./test.log",
+                               "--archive-file",  "./docs.tar",
+                               "--comment-type",  "slashes",
+                               "--line-length",   "132",
+                               "--jazzy-version", "0.13.1",
                                "Sources" ]
         // @f:1
         print("""
