@@ -34,6 +34,14 @@ public func doDocFixer(args: [String], replacements: [RegexRepl]) -> Int {
             switch p {
                 case "--":
                     noIgnore = false
+                case "--jazzy-version":
+                    if idx < args.count {
+                        params.jazzyVersion = "_\(args[idx])_"
+                        idx += 1
+                    }
+                    else {
+                        return printUsage(exitCode: err("Missing value for parameter: \"\(p)\""))
+                    }
                 case "--remote-host":
                     if idx < args.count {
                         params.remoteHost = args[idx]
@@ -125,7 +133,7 @@ public func doDocFixer(args: [String], replacements: [RegexRepl]) -> Int {
                 try document.save()
             }
 
-            try executeJazzy()
+            try executeJazzy(params: params)
 
             for document: SwiftSourceDocument in documents {
                 document.convertCommentDocs(to: params.docOutput, lineLength: params.lineLength)

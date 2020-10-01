@@ -35,6 +35,7 @@ struct DocFixerParams {
     var remotePath:   String?         = nil
     var logFile:      String          = "./docs/index.html"
     var archive:      String          = "./DocumentArchive.tar"
+    var jazzyVersion: String?         = nil
     var docOutput:    CommentDocType  = .Slashes
     var lineLength:   Int             = 132
     let encoding:     String.Encoding = String.Encoding.utf8
@@ -45,16 +46,16 @@ struct DocFixerParams {
 /*===============================================================================================================================*/
 /// Get all of the Swift source files under the given directory `workPath`. Each file must be older than the file at the given path
 /// `logFile`.
-/// 
+///
 /// - Parameters:
 ///   - workPath2:
 ///   - logFile:
-/// 
+///
 /// - Returns:
 ///
 func getFileList(path: String, logFile: String) -> [String] {
-    var list:     [String]         = []
-    let fm:       FileManager      = FileManager.default
+    var list:       [String]         = []
+    let fm:         FileManager      = FileManager.default
     let modDate:    FileAttributeKey = FileAttributeKey.modificationDate
     let searchPath: String           = fixFilename(filename: path)
 
@@ -140,9 +141,6 @@ func archiveSources(_ documents: SwiftSourceDocumentList, _ params: DocFixerPara
         args.append(source.filename)
     }
 
-    var str: String = "\(exec)"
-    for p: String in args { str += " \(p)" }
-    print("Executing: \(str)")
     if !execute(exec: exec, args: args) { throw DocFixerErrors.FailedArchive(description: "Failed to archive documents before fixing") }
 }
 
@@ -166,9 +164,6 @@ func executeRsync(params: DocFixerParams) throws {
             rargs.append("\(rhost):\"\(rpath)/\"")
         }
 
-        var str: String = rsync
-        for p: String in rargs { str += " \(p)" }
-        print("Executing: \(str)")
         guard execute(exec: rsync, args: rargs) else { throw DocFixerErrors.FailedProc(description: "Failed to execute rsync") }
     }
 }
@@ -207,6 +202,9 @@ func execute(exec: String, args: [String]) -> Bool {
     proc.standardOutput = FileHandle.standardOutput
 
     do {
+        print("Executing: \(exec)", terminator: "")
+        for a: String in args { print(" \(a)", terminator: "") }
+        print("")
         try proc.run()
     }
     catch let e {
@@ -231,10 +229,11 @@ func which(prg: String) throws -> String {
     return stdout.trimmed
 }
 
-func executeJazzy() throws {
-    let jazzy: String = try which(prg: "jazzy")
-    print("Executing: \(jazzy)")
-    guard execute(exec: jazzy, args: []) else { throw DocFixerErrors.FailedProc(description: "Failed to execute Jazzy") }
+func executeJazzy(params: DocFixerParams) throws {
+    let jazzy:   String   = try which(prg: "jazzy")
+    var cparams: [String] = []
+    if let jv = params.jazzyVersion { cparams.append(jv) }
+    guard execute(exec: jazzy, args: cparams) else { throw DocFixerErrors.FailedProc(description: "Failed to execute Jazzy") }
 }
 
 @inlinable func err(_ msg: String) -> Int {
@@ -263,7 +262,9 @@ func printUsage(exitCode: Int = 0) -> Int {
           docFixer [--remote-host <hostname>] [--remote-user <username>]
                    [--remote-path <pathname>] [--log-file <log filename>]
                    [--archive-file <archive filename>] [--comment-type {slashes | stars}]
-                   [--line-length <integer number>] [--] <pathname> [<pathname> ...]
+                   [--line-length <integer number>]
+                   [--jazzy-version <version of jazzy to use>]
+                   [--] <pathname> [<pathname> ...]
 
           Everything after "--" is assumed to be a pathname. That way you can list
           a path that begins with "--".
@@ -282,7 +283,8 @@ func printUsage(exitCode: Int = 0) -> Int {
           --archive-file     ./DocumentArchive.tar
           --comment-type     slashes
           --line-length      132
+          --jazzy-verion     <the latest installed version>
 
           """)
-    return 0
+    return exitCode
 }
