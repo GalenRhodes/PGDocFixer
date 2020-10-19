@@ -30,23 +30,10 @@ extension CharacterSet {
     static let whitespacesAndNewlinesAndControlCharacters: CharacterSet = CharacterSet.whitespacesAndNewlines.union(CharacterSet.controlCharacters)
 }
 
-extension NSRange {
-    func range(string: String) -> Range<String.Index> {
-        Range<String.Index>(self, in: string)!
-    }
-
-    init(start: Int, end: Int) {
-        if start <= end { self.init(location: start, length: end - start) }
-        else { self.init(location: end, length: start - end) }
-    }
-}
-
 extension NSRegularExpression {
     func matches(in str: String) -> [NSTextCheckingResult] { matches(in: str, range: str.nsRange) }
 
     func firstMatch(in str: String) -> NSTextCheckingResult? { firstMatch(in: str, range: str.nsRange) }
-
-    func firstMatch(in str: String, from start: Int, to end: Int = -1) -> NSTextCheckingResult? { firstMatch(in: str, range: NSRange(start: start, end: (end < 0 ? str.count : end))) }
 
     func enumerateMatches(in string: String,
                           options: NSRegularExpression.MatchingOptions = [],
@@ -60,26 +47,27 @@ extension NSRegularExpression {
 }
 
 extension String {
-    var nsRange: NSRange { NSRange(location: 0, length: self.count) }
+    var nsRange: NSRange { NSRange((startIndex ..< endIndex), in: self) }
+
     var trimmed: String { self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlinesAndControlCharacters) }
 
-    func index(pos: Int) -> String.Index { String.Index(utf16Offset: pos, in: self) }
+    func index(pos: Int) -> String.Index { index(startIndex, offsetBy: pos) }
 
-    func range(from: Int, to: Int) -> Range<String.Index> { Range<String.Index>(uncheckedBounds: (lower: index(pos: from), upper: index(pos: to))) }
+    func range(from: Int, to: Int) -> Range<String.Index> { (index(pos: from) ..< index(pos: to)) }
 
-    func range(from: Int) -> Range<String.Index> { range(from: from, to: self.count) }
+    func range(from: Int) -> Range<String.Index> { (index(pos: from) ..< endIndex) }
 
-    func range(to: Int) -> Range<String.Index> { range(from: 0, to: to) }
+    func range(to: Int) -> Range<String.Index> { (startIndex ..< index(pos: to)) }
 
     func range(range: NSRange) -> Range<String.Index> { Range<String.Index>(range, in: self)! }
 
     func substr(from: Int, to: Int) -> String { String(self[range(from: from, to: to)]) }
 
-    func substr(from: Int) -> String { substr(from: from, to: self.count) }
+    func substr(from: Int) -> String { String(self[range(from: from)]) }
 
-    func substr(to: Int) -> String { substr(from: 0, to: to) }
+    func substr(to: Int) -> String { String(self[range(to: to)]) }
 
-    func substr(range: NSRange) -> String { String(substr(from: range.lowerBound, to: range.upperBound)) }
+    func substr(nsRange: NSRange) -> String { String(self[range(range: nsRange)]) }
 
     func split(regex: NSRegularExpression, limit: Int = 0) -> [String] {
         if self.count > 0 && limit != 1 {
@@ -165,7 +153,7 @@ extension NSTextCheckingResult {
             let r: NSRange = range(at: i)
 
             if r.location != NSNotFound {
-                return string.substr(range: r)
+                return string.substr(nsRange: r)
             }
         }
 

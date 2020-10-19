@@ -40,7 +40,6 @@ let blockElements: [String] = [
     "figcaption", "footer", "header", "hr", "ins", "main", "menu", "nav", "noscript", "section", "script"
 ]
 // (p|div|table|dl|ol|ul|h1|h2|h3|h4|h5|h6|pre|dt|dd|li|dir|address|article|aside|blockquote|center|del|figure|figcaption|footer|header|hr|ins|main|menu|nav|noscript|section|script)
-//=================================================================================================================================
 /*===============================================================================================================================*/
 /// HTML
 ///
@@ -81,9 +80,8 @@ class HTMLElement {
     }
 }
 
-//=================================================================================================================================
 /*===============================================================================================================================*/
-/// 
+///
 ///
 class HTMLText: HTMLElement {
 
@@ -98,7 +96,6 @@ class HTMLText: HTMLElement {
     override var innerHtml: String { content }
 }
 
-//=================================================================================================================================
 /*===============================================================================================================================*/
 /// - Parameter string:
 /// - Returns:
@@ -146,7 +143,6 @@ func scanHTML(string str: String) -> HTMLElement? {
     return ((stack.count == 0) ? curr : stack[0])
 }
 
-//=================================================================================================================================
 /*===============================================================================================================================*/
 /// - Parameter str:
 /// - Returns:
@@ -159,13 +155,13 @@ public func unescapeHTML(string str: String) -> String {
         (m: NSTextCheckingResult?, _, _) in
         if let m: NSTextCheckingResult = m {
             let r: NSRange = m.range(at: 1)
-            let s: String  = str.substr(range: r)
+            let s: String  = str.substr(nsRange: r)
 
             outs += str.getPreMatch(start: &idx, range: r)
 
             if s.hasPrefix("#") {
                 let r2: NSRange = m.range(at: 2)
-                if r2.location != NSNotFound, let ch: Int = Int(str.substr(range: r2)), let us: UnicodeScalar = UnicodeScalar(ch) {
+                if r2.location != NSNotFound, let ch: Int = Int(str.substr(nsRange: r2)), let us: UnicodeScalar = UnicodeScalar(ch) {
                     outs.append(Character(us))
                 }
             }
@@ -177,7 +173,6 @@ public func unescapeHTML(string str: String) -> String {
     return outs
 }
 
-//=================================================================================================================================
 /*===============================================================================================================================*/
 /// - Parameters:
 ///   - str:
@@ -192,7 +187,7 @@ public func escapeHTML(string str: String, forAttrs: Bool = false) -> String {
         (m: NSTextCheckingResult?, _, _) in
         if let m: NSTextCheckingResult = m {
             let r:     NSRange = m.range
-            let chStr: String  = str.substr(range: r)
+            let chStr: String  = str.substr(nsRange: r)
 
             outs += str.getPreMatch(start: &idx, range: r)
 //@f:0

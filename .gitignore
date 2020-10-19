@@ -2,3 +2,4 @@
 /build/
 /runlog.txt
 /.swiftpm/
+/.build/

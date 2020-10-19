@@ -82,8 +82,8 @@ internal class SwiftSourceDocument {
             (m: NSTextCheckingResult?, _, _) in
             if let m: NSTextCheckingResult = m {
                 let p1: String = str.getPreMatch(start: &idx, range: m.range)
-                let p2: String = str.substr(range: m.range(at: 1))
-                let p3: String = str.substr(range: m.range(at: 2))
+                let p2: String = str.substr(nsRange: m.range(at: 1))
+                let p3: String = str.substr(nsRange: m.range(at: 2))
 
                 outs += p1
                 outs += p2
@@ -120,8 +120,8 @@ internal class SwiftSourceDocument {
         SwiftSourceDocument.rx01.enumerateMatches(in: source) {
             (m: NSTextCheckingResult?, _, _) in
             if let m: NSTextCheckingResult = m {
-                let indent:  String = source.substr(range: m.range(at: 1))
-                let subData: String = source.substr(range: m.range(at: 2))
+                let indent:  String = source.substr(nsRange: m.range(at: 1))
+                let subData: String = source.substr(nsRange: m.range(at: 2))
 
                 outs += (source.getPreMatch(start: &indx, range: m.range) + (("\(indent)/*".padding(toLength: lineLength - 3, withPad: "==========")) + "*/\n"))
                 outs += convertCommentDocsToSlashes01(indent: indent, blockString: subData, lineLength: lineLength)
@@ -143,7 +143,7 @@ internal class SwiftSourceDocument {
                 let r2:    NSRange = m.range(at: 2)
                 let r1Bad: Bool    = (r1.location == NSNotFound)
                 let r2Bad: Bool    = (r2.location == NSNotFound)
-                let s:     String  = ((r1Bad && r2Bad) ? "" : str.substr(range: (r1Bad ? r2 : r1)))
+                let s:     String  = ((r1Bad && r2Bad) ? "" : str.substr(nsRange: (r1Bad ? r2 : r1)))
 
                 outs += "\(indent)/// \(s)\n"
             }
@@ -160,8 +160,8 @@ internal class SwiftSourceDocument {
             (m: NSTextCheckingResult?, _, _) in
             if let m: NSTextCheckingResult = m {
                 let r:      NSRange = m.range
-                let indent: String  = source.substr(range: m.range(at: 2))
-                let block:  String  = source.substr(range: r)
+                let indent: String  = source.substr(nsRange: m.range(at: 2))
+                let block:  String  = source.substr(nsRange: r)
                 let pfx             = source.getPreMatch(start: &indx, range: r)
 
                 outs += (pfx + convertCommentDocsToStars01(indent: indent, blockString: block, empty: empty, lineLength: lineLength))
@@ -184,7 +184,7 @@ internal class SwiftSourceDocument {
         rxy.enumerateMatches(in: str) {
             (m2: NSTextCheckingResult?, _, _) in
             if let m2: NSTextCheckingResult = m2 {
-                let content: String = str.substr(range: m2.range(at: 2))
+                let content: String = str.substr(nsRange: m2.range(at: 2))
 
                 if doLeading {
                     doLeading = false
