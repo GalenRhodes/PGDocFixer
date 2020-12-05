@@ -40,6 +40,8 @@ struct DocFixerParams {
         var idx:      Int  = 1
         var noIgnore: Bool = true
 
+        print("Command Line:")
+
         for s in args {
             print("\(s) ", terminator: "")
         }
