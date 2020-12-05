@@ -33,4 +33,5 @@ public enum DocFixerErrors: Error {
     case FailedSave(description: String)
     case FailedLoad(description: String)
     case UnknownError(description: String)
+    case Usage(exitCode: Int)
 }

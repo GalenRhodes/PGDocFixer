@@ -21,17 +21,24 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		1117D0242FF6B4DCA84E921B /* Launchers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D1C1C1B66ACBCFC0528A /* Launchers.swift */; };
-		OBJ_33 /* Alignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Alignment.swift */; };
-		OBJ_34 /* DLItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* DLItem.swift */; };
+		1117D033400F5503DF558985 /* LogDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D64F3FBA7824233054A1 /* LogDestination.swift */; };
+		1117D08B8C072898DDEACE89 /* Stuff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D9A03C8D084658E2FDA1 /* Stuff.swift */; };
+		1117D15D300FB228C943C602 /* CommentDocType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DAFE125A45D6BA52782F /* CommentDocType.swift */; };
+		1117D27B9078B65C8E317446 /* DocGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DA2911366F1AD13B54B7 /* DocGenerator.swift */; };
+		1117D2E6867FFD074DA5245A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D2E94BC2BC31E5565395 /* Extensions.swift */; };
+		1117D4D3456F816D2F0132FC /* LineParts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DB90DBD3A950107E8EA1 /* LineParts.swift */; };
+		1117D506B52FB01D4BCF9411 /* ParagraphType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D10ABB1DEF1B1C600391 /* ParagraphType.swift */; };
+		1117D5119D51AA6E7E6BFFCD /* Launchers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D9B129F3065E735BAA59 /* Launchers.swift */; };
+		1117D5D9429D3BB0B19F32F4 /* SwiftSourceDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D76A55BCB7EBFDC01E54 /* SwiftSourceDocument.swift */; };
+		1117D73CDC90DE5596A9BDA5 /* WordWrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DEF5597AC3B9BB4C95D8 /* WordWrap.swift */; };
+		1117D85E30FAB422E78BD550 /* DocFixerErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D09D53D9DCFC0D42C01B /* DocFixerErrors.swift */; };
+		1117D9DAAAEDB840E759848B /* DocFixerParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DB21BB340472CE079BB8 /* DocFixerParams.swift */; };
+		1117D9E7CA7978C0AC91FB13 /* html.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D8ACC560AA17E14B2DDA /* html.swift */; };
+		1117DC77DE5CDC3A2BBCA861 /* Alignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D61E9038ED70BEF458CD /* Alignment.swift */; };
+		1117DCEE6FC404FBEDD8A370 /* DLItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DE15BD637FB08A62D922 /* DLItem.swift */; };
+		1117DD32A4EA156DEFCF393A /* RegexRepl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D04B82962548C5FE7E1F /* RegexRepl.swift */; };
+		1117DF0FD662D258CCE8B260 /* GlobalVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DD15628DB6EFFCE53DDC /* GlobalVars.swift */; };
 		OBJ_35 /* DocFixer.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* DocFixer.swift */; };
-		OBJ_36 /* DocFixerErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* DocFixerErrors.swift */; };
-		OBJ_37 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* Extensions.swift */; };
-		OBJ_38 /* RegexRepl.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* RegexRepl.swift */; };
-		OBJ_39 /* Stuff.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* Stuff.swift */; };
-		OBJ_40 /* SwiftSourceDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* SwiftSourceDocument.swift */; };
-		OBJ_41 /* WordWrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* WordWrap.swift */; };
-		OBJ_42 /* html.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* html.swift */; };
 		OBJ_49 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_60 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* Data.swift */; };
 		OBJ_61 /* PGDocFixerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* PGDocFixerTests.swift */; };
@@ -57,20 +64,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1117D1C1C1B66ACBCFC0528A /* Launchers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Launchers.swift; sourceTree = "<group>"; };
+		1117D04B82962548C5FE7E1F /* RegexRepl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegexRepl.swift; path = Sources/PGDocFixer/Source/RegexRepl.swift; sourceTree = SOURCE_ROOT; };
+		1117D09D53D9DCFC0D42C01B /* DocFixerErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DocFixerErrors.swift; path = Sources/PGDocFixer/Source/DocFixerErrors.swift; sourceTree = SOURCE_ROOT; };
+		1117D10ABB1DEF1B1C600391 /* ParagraphType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphType.swift; sourceTree = "<group>"; };
+		1117D2E94BC2BC31E5565395 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Sources/PGDocFixer/Source/Extensions.swift; sourceTree = SOURCE_ROOT; };
+		1117D61E9038ED70BEF458CD /* Alignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Alignment.swift; path = Sources/PGDocFixer/Source/Alignment.swift; sourceTree = SOURCE_ROOT; };
+		1117D64F3FBA7824233054A1 /* LogDestination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogDestination.swift; sourceTree = "<group>"; };
+		1117D76A55BCB7EBFDC01E54 /* SwiftSourceDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftSourceDocument.swift; path = Sources/PGDocFixer/Source/SwiftSourceDocument.swift; sourceTree = SOURCE_ROOT; };
+		1117D8ACC560AA17E14B2DDA /* html.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = html.swift; path = Sources/PGDocFixer/Source/html.swift; sourceTree = SOURCE_ROOT; };
+		1117D9A03C8D084658E2FDA1 /* Stuff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stuff.swift; path = Sources/PGDocFixer/Source/Stuff.swift; sourceTree = SOURCE_ROOT; };
+		1117D9B129F3065E735BAA59 /* Launchers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Launchers.swift; path = Sources/PGDocFixer/Launchers.swift; sourceTree = SOURCE_ROOT; };
+		1117DA2911366F1AD13B54B7 /* DocGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocGenerator.swift; sourceTree = "<group>"; };
 		1117DA6E569378C4AEA3470A /* .jazzy.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .jazzy.yaml; sourceTree = "<group>"; };
+		1117DAFE125A45D6BA52782F /* CommentDocType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentDocType.swift; sourceTree = "<group>"; };
+		1117DB21BB340472CE079BB8 /* DocFixerParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DocFixerParams.swift; path = Sub/DocFixerParams.swift; sourceTree = "<group>"; };
+		1117DB90DBD3A950107E8EA1 /* LineParts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineParts.swift; sourceTree = "<group>"; };
+		1117DD15628DB6EFFCE53DDC /* GlobalVars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GlobalVars.swift; path = Sources/PGDocFixer/GlobalVars.swift; sourceTree = SOURCE_ROOT; };
+		1117DE15BD637FB08A62D922 /* DLItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DLItem.swift; path = Sources/PGDocFixer/Source/DLItem.swift; sourceTree = SOURCE_ROOT; };
+		1117DEF5597AC3B9BB4C95D8 /* WordWrap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WordWrap.swift; path = Sources/PGDocFixer/Source/WordWrap.swift; sourceTree = SOURCE_ROOT; };
 		8372518C250C16B2000921B4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8372518D250C16B2000921B4 /* build.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
-		OBJ_10 /* Alignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Alignment.swift; path = Source/Alignment.swift; sourceTree = "<group>"; };
-		OBJ_11 /* DLItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DLItem.swift; path = Source/DLItem.swift; sourceTree = "<group>"; };
 		OBJ_12 /* DocFixer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DocFixer.swift; path = Source/DocFixer.swift; sourceTree = "<group>"; };
-		OBJ_13 /* DocFixerErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DocFixerErrors.swift; path = Source/DocFixerErrors.swift; sourceTree = "<group>"; };
-		OBJ_14 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Source/Extensions.swift; sourceTree = "<group>"; };
-		OBJ_15 /* RegexRepl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegexRepl.swift; path = Source/RegexRepl.swift; sourceTree = "<group>"; };
-		OBJ_16 /* Stuff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Stuff.swift; path = Source/Stuff.swift; sourceTree = "<group>"; };
-		OBJ_17 /* SwiftSourceDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SwiftSourceDocument.swift; path = Source/SwiftSourceDocument.swift; sourceTree = "<group>"; };
-		OBJ_18 /* WordWrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WordWrap.swift; path = Source/WordWrap.swift; sourceTree = "<group>"; };
-		OBJ_19 /* html.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = html.swift; path = Source/html.swift; sourceTree = "<group>"; };
 		OBJ_22 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		OBJ_23 /* PGDocFixerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PGDocFixerTests.swift; sourceTree = "<group>"; };
 		OBJ_24 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
@@ -98,6 +112,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1117D39154FF37337FBE503D /* Sub */ = {
+			isa = PBXGroup;
+			children = (
+				1117D64F3FBA7824233054A1 /* LogDestination.swift */,
+				1117DE15BD637FB08A62D922 /* DLItem.swift */,
+				1117D9A03C8D084658E2FDA1 /* Stuff.swift */,
+				1117D9B129F3065E735BAA59 /* Launchers.swift */,
+				1117D8ACC560AA17E14B2DDA /* html.swift */,
+				1117D09D53D9DCFC0D42C01B /* DocFixerErrors.swift */,
+				1117D2E94BC2BC31E5565395 /* Extensions.swift */,
+				1117D61E9038ED70BEF458CD /* Alignment.swift */,
+				1117D76A55BCB7EBFDC01E54 /* SwiftSourceDocument.swift */,
+				1117D04B82962548C5FE7E1F /* RegexRepl.swift */,
+				1117DEF5597AC3B9BB4C95D8 /* WordWrap.swift */,
+				1117DAFE125A45D6BA52782F /* CommentDocType.swift */,
+				1117D10ABB1DEF1B1C600391 /* ParagraphType.swift */,
+				1117DB90DBD3A950107E8EA1 /* LineParts.swift */,
+				1117DD15628DB6EFFCE53DDC /* GlobalVars.swift */,
+				1117DA2911366F1AD13B54B7 /* DocGenerator.swift */,
+			);
+			path = Sub;
+			sourceTree = "<group>";
+		};
 		OBJ_20 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,17 +188,9 @@
 		OBJ_8 /* PGDocFixer */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_10 /* Alignment.swift */,
-				OBJ_11 /* DLItem.swift */,
 				OBJ_12 /* DocFixer.swift */,
-				OBJ_13 /* DocFixerErrors.swift */,
-				OBJ_14 /* Extensions.swift */,
-				OBJ_15 /* RegexRepl.swift */,
-				OBJ_16 /* Stuff.swift */,
-				OBJ_17 /* SwiftSourceDocument.swift */,
-				OBJ_18 /* WordWrap.swift */,
-				OBJ_19 /* html.swift */,
-				1117D1C1C1B66ACBCFC0528A /* Launchers.swift */,
+				1117D39154FF37337FBE503D /* Sub */,
+				1117DB21BB340472CE079BB8 /* DocFixerParams.swift */,
 			);
 			name = PGDocFixer;
 			path = Sources/PGDocFixer;
@@ -252,17 +281,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_33 /* Alignment.swift in Sources */,
-				OBJ_34 /* DLItem.swift in Sources */,
 				OBJ_35 /* DocFixer.swift in Sources */,
-				OBJ_36 /* DocFixerErrors.swift in Sources */,
-				OBJ_37 /* Extensions.swift in Sources */,
-				OBJ_38 /* RegexRepl.swift in Sources */,
-				OBJ_39 /* Stuff.swift in Sources */,
-				OBJ_40 /* SwiftSourceDocument.swift in Sources */,
-				OBJ_41 /* WordWrap.swift in Sources */,
-				OBJ_42 /* html.swift in Sources */,
-				1117D0242FF6B4DCA84E921B /* Launchers.swift in Sources */,
+				1117D033400F5503DF558985 /* LogDestination.swift in Sources */,
+				1117DCEE6FC404FBEDD8A370 /* DLItem.swift in Sources */,
+				1117D08B8C072898DDEACE89 /* Stuff.swift in Sources */,
+				1117D5119D51AA6E7E6BFFCD /* Launchers.swift in Sources */,
+				1117D9E7CA7978C0AC91FB13 /* html.swift in Sources */,
+				1117D85E30FAB422E78BD550 /* DocFixerErrors.swift in Sources */,
+				1117D2E6867FFD074DA5245A /* Extensions.swift in Sources */,
+				1117DC77DE5CDC3A2BBCA861 /* Alignment.swift in Sources */,
+				1117D5D9429D3BB0B19F32F4 /* SwiftSourceDocument.swift in Sources */,
+				1117DD32A4EA156DEFCF393A /* RegexRepl.swift in Sources */,
+				1117D73CDC90DE5596A9BDA5 /* WordWrap.swift in Sources */,
+				1117D15D300FB228C943C602 /* CommentDocType.swift in Sources */,
+				1117D506B52FB01D4BCF9411 /* ParagraphType.swift in Sources */,
+				1117D4D3456F816D2F0132FC /* LineParts.swift in Sources */,
+				1117DF0FD662D258CCE8B260 /* GlobalVars.swift in Sources */,
+				1117D9DAAAEDB840E759848B /* DocFixerParams.swift in Sources */,
+				1117D27B9078B65C8E317446 /* DocGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,26 +22,6 @@
 
 import Foundation
 
-public enum CommentDocType {
-    case Slashes
-    case Stars
-    case StarsEmpty
-}
-
-struct DocFixerParams {
-    var paths:        [String]        = []
-    var remoteHost:   String?         = nil
-    var remoteUser:   String?         = nil
-    var remotePath:   String?         = nil
-    var logFile:      String          = "./docs/index.html"
-    var archive:      String          = "./DocumentArchive.tar"
-    var jazzyVersion: String?         = nil
-    var docOutput:    CommentDocType  = .Slashes
-    var lineLength:   Int             = 132
-    let encoding:     String.Encoding = String.Encoding.utf8
-    let replacements: [RegexRepl]
-}
-
 /*===============================================================================================================================*/
 /// Get all of the Swift source files under the given directory `workPath`. Each file must be older than the file at the given path
 /// `logFile`.
@@ -227,11 +207,17 @@ func which(prg: String) throws -> String {
     return stdout.trimmed
 }
 
-func executeJazzy(params: DocFixerParams) throws {
+func executeJazzy(version: String) throws {
     let jazzy:   String   = try which(prg: "jazzy")
-    var cparams: [String] = []
-    if let jv = params.jazzyVersion { cparams.append(jv) }
+    let cparams: [String] = [ "_\(version)_", "--swift-version", "5.3", "--swift-build-tool", "spm" ]
     guard execute(exec: jazzy, args: cparams) else { throw DocFixerErrors.FailedProc(description: "Failed to execute Jazzy") }
+}
+
+func executeSwiftDoc(format: SwiftDocFormat, project: String, dirs: [String]) throws {
+    let swiftDoc: String   = try which(prg: "swift-doc")
+    var cparams:  [String] = [ "generate", "--module-name", project, "--format", format.rawValue, "--base-url", "/\(project)/" ]
+    cparams.insert(contentsOf: dirs, at: 1)
+    guard execute(exec: swiftDoc, args: cparams) else { throw DocFixerErrors.FailedProc(description: "Failed to execute SwiftDoc") }
 }
 
 @inlinable func err(_ msg: String) -> Int {
@@ -261,7 +247,7 @@ func printUsage(exitCode: Int = 0) -> Int {
                    [--remote-path <pathname>] [--log-file <log filename>]
                    [--archive-file <archive filename>] [--comment-type {slashes | stars}]
                    [--line-length <integer number>]
-                   [--jazzy-version <version of jazzy to use>]
+                   [{--jazzy-version <version of jazzy to use>} | {--swift-doc-format {HTML} | {Markdown}}]
                    [--] <pathname> [<pathname> ...]
 
           Everything after "--" is assumed to be a pathname. That way you can list
@@ -285,4 +271,24 @@ func printUsage(exitCode: Int = 0) -> Int {
 
           """)
     return exitCode
+}
+
+func addUrlsToFindAndReplace() -> [RegexRepl] {
+    var list: [RegexRepl]         = NORMAL_FIND_REPLACE
+    let rx:   NSRegularExpression = try! NSRegularExpression(pattern: "\\.")
+    let keys: [String] = URL_REPLACEMENTS.keys.sorted { (s1: String, s2: String) in s1.count > s2.count }
+
+    for name in keys {
+        let patt: String = "\(a)\(NSRegularExpression.escapedPattern(for: name))\(b)"
+
+        if let i: Int = URL_REPLACEMENTS[name] {
+            let pfx: String = URL_PREFIX[i]
+            let sfx: String = rx.stringByReplacingMatches(in: name.lowercased(), withTemplate: "/")
+            let rep: String = NSRegularExpression.escapedTemplate(for: "<code>[\(name)](\(pfx)\(sfx)/)</code>")
+
+            list.append(RegexRepl(pattern: patt, repl: rep))
+        }
+    }
+
+    return list
 }
