@@ -40,6 +40,12 @@ struct DocFixerParams {
         var idx:      Int  = 1
         var noIgnore: Bool = true
 
+        for s in args {
+            print("\(s) ", terminator: "")
+        }
+        print("")
+        print("")
+
         self.replacements = replacements
 
         while idx < args.count {

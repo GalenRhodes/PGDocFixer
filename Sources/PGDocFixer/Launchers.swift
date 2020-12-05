@@ -24,8 +24,7 @@ import Foundation
 
 public func doDocFixer(args: [String], replacements: [RegexRepl]) -> Int {
     do {
-        let params: DocFixerParams = try DocFixerParams(args: args, replacements: replacements)
-
+        let params:    DocFixerParams          = try DocFixerParams(args: args, replacements: replacements)
         let docFixer:  PGDocFixer              = PGDocFixer(findAndReplace: params.replacements, docOutput: params.docOutput, lineLength: params.lineLength)
         let documents: SwiftSourceDocumentList = try loadDocuments(params: params)
 
