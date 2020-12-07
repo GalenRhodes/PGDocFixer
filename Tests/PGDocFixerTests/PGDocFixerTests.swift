@@ -18,19 +18,22 @@ class PGDocFixerTests: XCTestCase {
     func testProcessDocument() throws {
         // @f:0
         let args: [String] = [ "docFixer",
-                               "--remote-host",   "goober",
-                               "--remote-user",   "grhodes",
-                               "--remote-path",   "/var/www/html/PGDocFixer",
-                               "--log-file",      "./test.log",
-                               "--archive-file",  "./docs.tar",
-                               "--comment-type",  "slashes",
-                               "--line-length",   "132",
-                               "--jazzy-version", "0.13.1",
-                               "Sources" ]
+                               "--project",          "Rubicon",
+                               "--remote-host",      "goober",
+                               "--remote-user",      "grhodes",
+                               "--remote-path",      "/var/www/html/Rubicon",
+                               "--swift-doc-format", "HTML",
+                               "Sources/Rubicon" ]
         // @f:1
+        let mAndR: [RegexRepl] = [
+            RegexRepl(pattern: "(?<!\\w|`)(nil)(?!\\w|`)", repl: "`$1`"),
+            RegexRepl(pattern: "(?<!\\w|`)(\\w+(?:\\.\\w+)*\\([^)]*\\))(?!\\w|`)", repl: "`$1`"),
+            RegexRepl(pattern: "(?<!\\w|\\[)([Zz][Ee][Rr][Oo])(?!\\w|\\])", repl: "<code>[$1](https://en.wikipedia.org/wiki/0)</code>")
+        ]
+        let ec = doDocFixer(args: args, replacements: mAndR)
         print("""
 
-              EXIT CODE: \(doDocFixer(args: args, replacements: SIMPLEONES))
+              EXIT CODE: \(ec)
               """)
     }
 }

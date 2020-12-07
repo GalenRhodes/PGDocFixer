@@ -40,7 +40,7 @@ public func doDocFixer(args: [String], replacements: [RegexRepl]) -> Int {
                 case .Jazzy(version: let version):
                     try executeJazzy(version: version)
                 case .SwiftDoc(format: let format):
-                    try executeSwiftDoc(format: format, project: "", dirs: params.paths)
+                    try executeSwiftDoc(format: format, project: params.project, dirs: params.paths)
             }
 
             for document: SwiftSourceDocument in documents {

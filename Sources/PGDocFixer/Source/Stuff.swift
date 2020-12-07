@@ -203,7 +203,15 @@ func dumpOutput(stdout: String, stderr: String) {
 func which(prg: String) throws -> String {
     var stdout: String = ""
     var stderr: String = ""
-    if !execute(exec: "/bin/bash", args: [ "-c", "which \(prg)" ], stderr: &stderr, stdout: &stdout) { throw DocFixerErrors.FailedProc(description: "Failed to locate \"\(prg)\": \(stderr)") }
+    guard execute(exec: "/bin/bash", args: [ "-c", "which \(prg)" ], stderr: &stderr, stdout: &stdout) else { throw DocFixerErrors.FailedProc(description: "Failed to locate \"\(prg)\": \(stderr)") }
+    return stdout.trimmed
+}
+
+func rm(dir: String) throws -> String {
+    var stdout: String = ""
+    var stderr: String = ""
+    print("Executing: /bin/bash -c rm -fr \(dir)")
+    guard execute(exec: "/bin/bash", args: [ "-c", "rm -fr \(dir)" ], stderr: &stderr, stdout: &stdout) else { throw DocFixerErrors.FailedProc(description: "Failed to remove \"\(dir)\": \(stderr)") }
     return stdout.trimmed
 }
 
@@ -215,8 +223,11 @@ func executeJazzy(version: String) throws {
 
 func executeSwiftDoc(format: SwiftDocFormat, project: String, dirs: [String]) throws {
     let swiftDoc: String   = try which(prg: "swift-doc")
-    var cparams:  [String] = [ "generate", "--module-name", project, "--format", format.rawValue, "--base-url", "/\(project)/" ]
+    let outputDir          = "./docs"
+    var cparams:  [String] = [ "generate", "--module-name", project, "--format", format.rawValue, "--base-url", "/\(project)/", "--output", outputDir ]
     cparams.insert(contentsOf: dirs, at: 1)
+    let output: String = try rm(dir: outputDir)
+    print("rm -fr \(outputDir): \(output)")
     guard execute(exec: swiftDoc, args: cparams) else { throw DocFixerErrors.FailedProc(description: "Failed to execute SwiftDoc") }
 }
 
