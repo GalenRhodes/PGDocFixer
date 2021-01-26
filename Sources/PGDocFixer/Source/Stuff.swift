@@ -217,8 +217,7 @@ func rm(dir: String) throws -> String {
 
 func executeJazzy(version: String) throws {
     let jazzy:   String   = try which(prg: "jazzy")
-    let cparams: [String] = [ "_\(version)_", "--swift-version", "5.3", "--swift-build-tool", "spm" ]
-    guard execute(exec: jazzy, args: cparams) else { throw DocFixerErrors.FailedProc(description: "Failed to execute Jazzy") }
+    guard execute(exec: jazzy, args: [ "_\(version)_" ]) else { throw DocFixerErrors.FailedProc(description: "Failed to execute Jazzy") }
 }
 
 func executeSwiftDoc(format: SwiftDocFormat, project: String, dirs: [String]) throws {
