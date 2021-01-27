@@ -294,7 +294,7 @@ func addUrlsToFindAndReplace() -> [RegexRepl] {
         if let i: Int = URL_REPLACEMENTS[name] {
             let pfx: String = URL_PREFIX[i]
             let sfx: String = rx.stringByReplacingMatches(in: name.lowercased(), withTemplate: "/")
-            let rep: String = NSRegularExpression.escapedTemplate(for: "<code>[\(name)](\(pfx)\(sfx)/)</code>")
+            let rep: String = NSRegularExpression.escapedTemplate(for: "<code>[\(name)](\(pfx)/\(sfx)/)</code>")
 
             list.append(RegexRepl(pattern: patt, repl: rep))
         }
