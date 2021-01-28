@@ -52,7 +52,7 @@ class HTMLElement {
 
     init(name: String, attrStr: String) {
         self.name = name
-        htmlRx2.enumerateMatches(in: attrStr) { (m: NSTextCheckingResult?, _, _) in if let m: NSTextCheckingResult = m { attrs[m.getSub(string: attrStr, at: 1)] = m.getSub(string: attrStr, at: 2) } }
+        htmlRx2.enumerateMatches(in: attrStr) { (m: NSTextCheckingResult?, _, _) in if let m: NSTextCheckingResult = m { self.attrs[m.getSub(string: attrStr, at: 1)] = m.getSub(string: attrStr, at: 2) } }
     }
 
     var innerHtml: String {

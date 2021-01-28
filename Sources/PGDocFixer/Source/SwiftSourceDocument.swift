@@ -120,11 +120,11 @@ internal class SwiftSourceDocument {
         SwiftSourceDocument.rx01.enumerateMatches(in: source) {
             (m: NSTextCheckingResult?, _, _) in
             if let m: NSTextCheckingResult = m {
-                let indent:  String = source.substr(nsRange: m.range(at: 1))
-                let subData: String = source.substr(nsRange: m.range(at: 2))
+                let indent:  String = self.source.substr(nsRange: m.range(at: 1))
+                let subData: String = self.source.substr(nsRange: m.range(at: 2))
 
-                outs += (source.getPreMatch(start: &indx, range: m.range) + (("\(indent)/*".padding(toLength: lineLength - 3, withPad: "==========")) + "*/\n"))
-                outs += convertCommentDocsToSlashes01(indent: indent, blockString: subData, lineLength: lineLength)
+                outs += (self.source.getPreMatch(start: &indx, range: m.range) + (("\(indent)/*".padding(toLength: lineLength - 3, withPad: "==========")) + "*/\n"))
+                outs += self.convertCommentDocsToSlashes01(indent: indent, blockString: subData, lineLength: lineLength)
                 outs += "\(indent)///\n"
             }
         }
@@ -160,15 +160,15 @@ internal class SwiftSourceDocument {
             (m: NSTextCheckingResult?, _, _) in
             if let m: NSTextCheckingResult = m {
                 let r:      NSRange = m.range
-                let indent: String  = source.substr(nsRange: m.range(at: 2))
-                let block:  String  = source.substr(nsRange: r)
-                let pfx             = source.getPreMatch(start: &indx, range: r)
+                let indent: String  = self.source.substr(nsRange: m.range(at: 2))
+                let block:  String  = self.source.substr(nsRange: r)
+                let pfx             = self.source.getPreMatch(start: &indx, range: r)
 
-                outs += (pfx + convertCommentDocsToStars01(indent: indent, blockString: block, empty: empty, lineLength: lineLength))
+                outs += (pfx + self.convertCommentDocsToStars01(indent: indent, blockString: block, empty: empty, lineLength: lineLength))
             }
         }
 
-        source = ((outs + source.substr(from: indx)).trimmed + "\n")
+        self.source = ((outs + self.source.substr(from: indx)).trimmed + "\n")
     }
 
     private func convertCommentDocsToStars01(indent: String, blockString str: String, empty: Bool = false, lineLength: Int = 132) -> String {

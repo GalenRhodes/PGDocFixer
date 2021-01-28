@@ -27,49 +27,53 @@ extension CharacterSet {
     /*===========================================================================================================================*/
     /// A simple concatination of the CharacterSet.whitespacesAndNewlines and CharacterSet.controlCharacters character sets.
     ///
-    static let whitespacesAndNewlinesAndControlCharacters: CharacterSet = CharacterSet.whitespacesAndNewlines.union(CharacterSet.controlCharacters)
+    @usableFromInline static let whitespacesAndNewlinesAndControlCharacters: CharacterSet = CharacterSet.whitespacesAndNewlines.union(CharacterSet.controlCharacters)
 }
 
 extension NSRegularExpression {
-    func matches(in str: String) -> [NSTextCheckingResult] { matches(in: str, range: str.nsRange) }
+    @inlinable func matches(in str: String) -> [NSTextCheckingResult] { matches(in: str, range: str.nsRange) }
 
-    func firstMatch(in str: String) -> NSTextCheckingResult? { firstMatch(in: str, range: str.nsRange) }
+    @inlinable func firstMatch(in str: String) -> NSTextCheckingResult? { firstMatch(in: str, range: str.nsRange) }
 
-    func enumerateMatches(in string: String,
-                          options: NSRegularExpression.MatchingOptions = [],
-                          using block: (NSTextCheckingResult?, NSRegularExpression.MatchingFlags, UnsafeMutablePointer<ObjCBool>) -> Void) {
+    @inlinable func enumerateMatches(in string: String, options: NSRegularExpression.MatchingOptions = [], using block: @escaping (NSTextCheckingResult?, NSRegularExpression.MatchingFlags, UnsafeMutablePointer<ObjCBool>) -> Void) {
         enumerateMatches(in: string, options: options, range: string.nsRange, using: block)
     }
 
-    func stringByReplacingMatches(in string: String, options: NSRegularExpression.MatchingOptions = [], withTemplate templ: String) -> String {
+    @inlinable func stringByReplacingMatches(in string: String, options: NSRegularExpression.MatchingOptions = [], withTemplate templ: String) -> String {
         stringByReplacingMatches(in: string, options: options, range: string.nsRange, withTemplate: templ)
     }
 }
 
+extension NSRange {
+    @inlinable func stringRange(_ str: String) -> Range<String.Index> { (stringLowerBounds(str) ..< stringUpperBounds(str)) }
+
+    @inlinable func stringUpperBounds(_ str: String) -> String.Index { String.Index(utf16Offset: upperBound, in: str) }
+
+    @inlinable func stringLowerBounds(_ str: String) -> String.Index { String.Index(utf16Offset: lowerBound, in: str) }
+}
+
 extension String {
-    var nsRange: NSRange { NSRange((startIndex ..< endIndex), in: self) }
+    @inlinable var nsRange: NSRange { NSRange(location: 0, length: endIndex.utf16Offset(in: self)) }
 
-    var trimmed: String { self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlinesAndControlCharacters) }
+    @inlinable var trimmed: String { self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlinesAndControlCharacters) }
 
-    func index(pos: Int) -> String.Index { index(startIndex, offsetBy: pos) }
+    @inlinable func index(pos: Int) -> String.Index { String.Index(utf16Offset: pos, in: self) }
 
-    func range(from: Int, to: Int) -> Range<String.Index> { (index(pos: from) ..< index(pos: to)) }
+    @inlinable func range(from: Int, to: Int) -> Range<String.Index> { (index(pos: from) ..< index(pos: to)) }
 
-    func range(from: Int) -> Range<String.Index> { (index(pos: from) ..< endIndex) }
+    @inlinable func range(from: Int) -> Range<String.Index> { (index(pos: from) ..< endIndex) }
 
-    func range(to: Int) -> Range<String.Index> { (startIndex ..< index(pos: to)) }
+    @inlinable func range(to: Int) -> Range<String.Index> { (startIndex ..< index(pos: to)) }
 
-    func range(range: NSRange) -> Range<String.Index> { Range<String.Index>(range, in: self)! }
+    @inlinable func substr(from: Int, to: Int) -> String { String(self[range(from: from, to: to)]) }
 
-    func substr(from: Int, to: Int) -> String { String(self[range(from: from, to: to)]) }
+    @inlinable func substr(from: Int) -> String { String(self[range(from: from)]) }
 
-    func substr(from: Int) -> String { String(self[range(from: from)]) }
+    @inlinable func substr(to: Int) -> String { String(self[range(to: to)]) }
 
-    func substr(to: Int) -> String { String(self[range(to: to)]) }
+    @inlinable func substr(nsRange: NSRange) -> String { String(self[nsRange.stringRange(self)]) }
 
-    func substr(nsRange: NSRange) -> String { String(self[range(range: nsRange)]) }
-
-    func split(regex: NSRegularExpression, limit: Int = 0) -> [String] {
+    @usableFromInline func split(regex: NSRegularExpression, limit: Int = 0) -> [String] {
         if self.count > 0 && limit != 1 {
             let matches: [NSTextCheckingResult] = regex.matches(in: self)
 
@@ -82,8 +86,8 @@ extension String {
         return [ self ]
     }
 
-    func padding(toLength newLength: Int, withPad padString: String = " ") -> String {
-        self.padding(toLength: newLength, withPad: padString, startingAt: 0)
+    @inlinable func padding(toLength newLength: Int, withPad padString: String = " ") -> String {
+        padding(toLength: newLength, withPad: padString, startingAt: 0)
     }
 
     private func _splitInN(matches: [NSTextCheckingResult], max: Int, trim: Bool) -> [String] {
@@ -133,7 +137,7 @@ extension String {
         out.append(to > from ? self.substr(from: from, to: to) : "")
     }
 
-    func getPreMatch(start: inout Int, range: NSRange) -> String {
+    @inlinable func getPreMatch(start: inout Int, range: NSRange) -> String {
         let s: String = ((start == range.location) ? "" : substr(from: start, to: range.location))
         start = range.upperBound
         return s
@@ -148,15 +152,11 @@ extension NSTextCheckingResult {
     ///   - i:
     /// - Returns:
     ///
-    func getSub(string: String, at i: Int) -> String {
+    @inlinable func getSub(string: String, at i: Int) -> String {
         if i < numberOfRanges {
             let r: NSRange = range(at: i)
-
-            if r.location != NSNotFound {
-                return string.substr(nsRange: r)
-            }
+            if r.location != NSNotFound { return string.substr(nsRange: r) }
         }
-
         return ""
     }
 }

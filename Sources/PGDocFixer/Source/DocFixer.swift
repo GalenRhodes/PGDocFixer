@@ -468,7 +468,7 @@ public class PGDocFixer {
         rx7.enumerateMatches(in: fixedStr) {
             (m: NSTextCheckingResult?, _, _) in
             if let m: NSTextCheckingResult = m {
-                stripTableRow(fixedStr.getPreMatch(start: &idx01, range: m.range), &headerIndex, &maxColumns, &columnWidths, &columnAligns, &table)
+                self.stripTableRow(fixedStr.getPreMatch(start: &idx01, range: m.range), &headerIndex, &maxColumns, &columnWidths, &columnAligns, &table)
             }
         }
 
@@ -509,7 +509,7 @@ public class PGDocFixer {
 
         rx2.enumerateMatches(in: block) {
             (m: NSTextCheckingResult?, _, _) in
-            if let m: NSTextCheckingResult = m { o += handleRawBlock(paragraphInfo: info, line: LineParts(match: m, block: block)) }
+            if let m: NSTextCheckingResult = m { o += self.handleRawBlock(paragraphInfo: info, line: LineParts(match: m, block: block)) }
         }
 
         return o + closeBlock(paragraphInfo: info)
@@ -791,7 +791,7 @@ public class PGDocFixer {
             (m: NSTextCheckingResult?, _, _) in
             if let m: NSTextCheckingResult = m {
                 let r: NSRange = m.range
-                outs += data.getPreMatch(start: &indx, range: r) + processBlock(block: data.substr(nsRange: r))
+                outs += data.getPreMatch(start: &indx, range: r) + self.processBlock(block: data.substr(nsRange: r))
             }
         }
 
@@ -811,7 +811,7 @@ public class PGDocFixer {
                 let subData: String = data.substr(nsRange: m.range(at: 2))
 
                 outs += data.getPreMatch(start: &indx, range: m.range) + "\(indent)///\n"
-                outs += convertCommentBlocks01(indent: indent, blockString: subData)
+                outs += self.convertCommentBlocks01(indent: indent, blockString: subData)
                 outs += "\(indent)///\n"
             }
         }
@@ -851,7 +851,7 @@ public class PGDocFixer {
             if let m: NSTextCheckingResult = m {
                 let r: NSRange = m.range
                 outs += data.getPreMatch(start: &indx, range: r)
-                outs += restoreCommentBlocks01(indent: data.substr(nsRange: m.range(at: 2)), blockString: data.substr(nsRange: r), empty: empty)
+                outs += self.restoreCommentBlocks01(indent: data.substr(nsRange: m.range(at: 2)), blockString: data.substr(nsRange: r), empty: empty)
             }
         }
 
