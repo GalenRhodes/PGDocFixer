@@ -38,9 +38,9 @@ public func doDocFixer(args: [String], replacements: [RegexRepl]) -> Int {
 
             switch params.generator {
                 case .Jazzy(version: let version):
-                    try executeJazzy(version: version)
+                    try executeJazzy(version: version, params: params)
                 case .SwiftDoc(format: let format):
-                    try executeSwiftDoc(format: format, project: params.project, dirs: params.paths)
+                    try executeSwiftDoc(format: format, params: params)
             }
 
             for document: SwiftSourceDocument in documents {

@@ -24,21 +24,23 @@ import Foundation
 
 struct DocFixerParams {
     var paths:        [String]        = []
-    var project:      String!         = nil
+    var project:      String
     var remoteHost:   String?         = nil
     var remoteUser:   String?         = nil
     var remotePath:   String?         = nil
-    var logFile:      String          = "./docs/index.html"
-    var archive:      String          = "./DocumentArchive.tar"
+    var logFile:      String          = "index.html"
+    var archive:      String          = "DocumentArchive.tar"
     var generator:    DocGenerator    = .Jazzy()
     var docOutput:    CommentDocType  = .Slashes
-    var lineLength:   Int             = 180
+    var outputPath:   String          = "docs"
+    var lineLength:   Int             = 132
     let encoding:     String.Encoding = String.Encoding.utf8
     let replacements: [RegexRepl]
 
     init(args: [String], replacements: [RegexRepl]) throws {
-        var idx:      Int  = 1
-        var noIgnore: Bool = true
+        var idx:      Int     = 1
+        var noIgnore: Bool    = true
+        var prj:      String? = nil
 
         print("Command Line:")
 
@@ -57,9 +59,17 @@ struct DocFixerParams {
                 switch p {
                     case "--":
                         noIgnore = false
+                    case "--output-path":
+                        if idx < args.count {
+                            self.outputPath = args[idx]
+                            idx += 1
+                        }
+                        else {
+                            throw DocFixerErrors.Usage(exitCode: printUsage(exitCode: err("Missing output path value for parameter: \"\(p)\"")))
+                        }
                     case "--project":
                         if idx < args.count {
-                            project = args[idx]
+                            prj = args[idx]
                             idx += 1
                         }
                         else {
@@ -71,9 +81,9 @@ struct DocFixerParams {
                             idx += 1
                             switch q.lowercased() {
                                 case "html":
-                                    generator = .SwiftDoc(format: .HTML)
+                                    self.generator = .SwiftDoc(format: .HTML)
                                 case "markdown":
-                                    generator = .SwiftDoc(format: .MarkDown)
+                                    self.generator = .SwiftDoc(format: .MarkDown)
                                 default:
                                     throw DocFixerErrors.Usage(exitCode: printUsage(exitCode: err("Expected \"HTML\" or \"Markdown\" but got \"\(q)\" instead.")))
                             }
@@ -83,7 +93,7 @@ struct DocFixerParams {
                         }
                     case "--jazzy-version":
                         if idx < args.count {
-                            generator = .Jazzy(version: args[idx])
+                            self.generator = .Jazzy(version: args[idx])
                             idx += 1
                         }
                         else {
@@ -91,7 +101,7 @@ struct DocFixerParams {
                         }
                     case "--remote-host":
                         if idx < args.count {
-                            remoteHost = args[idx]
+                            self.remoteHost = args[idx]
                             idx += 1
                         }
                         else {
@@ -99,7 +109,7 @@ struct DocFixerParams {
                         }
                     case "--remote-user":
                         if idx < args.count {
-                            remoteUser = args[idx]
+                            self.remoteUser = args[idx]
                             idx += 1
                         }
                         else {
@@ -107,7 +117,7 @@ struct DocFixerParams {
                         }
                     case "--remote-path":
                         if idx < args.count {
-                            remotePath = args[idx]
+                            self.remotePath = args[idx]
                             idx += 1
                         }
                         else {
@@ -115,7 +125,7 @@ struct DocFixerParams {
                         }
                     case "--log-file":
                         if idx < args.count {
-                            logFile = args[idx]
+                            self.logFile = args[idx]
                             idx += 1
                         }
                         else {
@@ -123,7 +133,7 @@ struct DocFixerParams {
                         }
                     case "--archive-file":
                         if idx < args.count {
-                            archive = args[idx]
+                            self.archive = args[idx]
                             idx += 1
                         }
                         else {
@@ -134,9 +144,9 @@ struct DocFixerParams {
                             let ct: String = args[idx]
                             idx += 1
                             switch ct {
-                                case "slashes": docOutput = .Slashes
-                                case "stars": docOutput = .Stars
-                                default: throw DocFixerErrors.Usage(exitCode: err("Invalid document comment type: \"\(ct)\""))
+                                case "slashes": self.docOutput = .Slashes
+                                case "stars":   self.docOutput = .Stars
+                                default:        throw DocFixerErrors.Usage(exitCode: err("Invalid document comment type: \"\(ct)\""))
                             }
                         }
                         else {
@@ -162,15 +172,18 @@ struct DocFixerParams {
                 }
             }
             else {
-                paths.append(p)
+                self.paths.append(p)
             }
         }
 
-        guard paths.count > 0 else { throw DocFixerErrors.Usage(exitCode: printUsage(exitCode: err("No path(s) given"))) }
+        guard self.paths.count > 0 else { throw DocFixerErrors.Usage(exitCode: printUsage(exitCode: err("No path(s) given"))) }
 
-        if project == nil {
-            project = paths[0].replacingOccurrences(of: "Sources/", with: "")
-            if project.hasSuffix("/") || project.hasSuffix("\\") { project.removeLast(1) }
+        if let p = prj {
+            self.project = p
+        }
+        else {
+            self.project = self.paths[0].replacingOccurrences(of: "Sources/", with: "")
+            if self.project.hasSuffix("/") || self.project.hasSuffix("\\") { self.project.removeLast(1) }
         }
     }
 }

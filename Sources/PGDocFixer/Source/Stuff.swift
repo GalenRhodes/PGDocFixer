@@ -215,18 +215,18 @@ func rm(dir: String) throws -> String {
     return stdout.trimmed
 }
 
-func executeJazzy(version: String) throws {
-    let jazzy:   String   = try which(prg: "jazzy")
-    guard execute(exec: jazzy, args: [ "_\(version)_" ]) else { throw DocFixerErrors.FailedProc(description: "Failed to execute Jazzy") }
+func executeJazzy(version: String, params: DocFixerParams) throws {
+    let jazzy: String = try which(prg: "jazzy")
+    guard execute(exec: jazzy, args: [ "_\(version)_", "--output", params.outputPath ]) else { throw DocFixerErrors.FailedProc(description: "Failed to execute Jazzy") }
 }
 
-func executeSwiftDoc(format: SwiftDocFormat, project: String, dirs: [String]) throws {
+func executeSwiftDoc(format: SwiftDocFormat, params: DocFixerParams) throws {
     let swiftDoc: String   = try which(prg: "swift-doc")
-    let outputDir          = "./docs"
-    var cparams:  [String] = [ "generate", "--module-name", project, "--format", format.rawValue, "--base-url", "/\(project)/", "--output", outputDir ]
-    cparams.insert(contentsOf: dirs, at: 1)
-    let output: String = try rm(dir: outputDir)
-    print("rm -fr \(outputDir): \(output)")
+    let cparams:  [String] = [ "generate" ] + params.paths + [ "--module-name", params.project, "--format", format.rawValue, "--base-url", "/\(params.project)/", "--output", params.outputPath ]
+    let output:   String   = try rm(dir: params.outputPath)
+
+    print("rm -fr \(params.outputPath): \(output)")
+
     guard execute(exec: swiftDoc, args: cparams) else { throw DocFixerErrors.FailedProc(description: "Failed to execute SwiftDoc") }
 }
 
@@ -253,10 +253,9 @@ func printUsage(exitCode: Int = 0) -> Int {
     print("""
           USAGE:
 
-          docFixer [--remote-host <hostname>] [--remote-user <username>]
-                   [--remote-path <pathname>] [--log-file <log filename>]
-                   [--archive-file <archive filename>] [--comment-type {slashes | stars}]
-                   [--line-length <integer number>]
+          docFixer [--remote-host <hostname>] [--remote-user <username>] [--remote-path <pathname>]
+                   [--log-file <log filename>] [--output-path <pathname>] [--archive-file <archive filename>]
+                   [--comment-type {slashes | stars}] [--line-length <integer number>]
                    [{--jazzy-version <version of jazzy to use>} | {--swift-doc-format {HTML} | {Markdown}}]
                    [--] <pathname> [<pathname> ...]
 
